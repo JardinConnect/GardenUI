@@ -28,7 +28,7 @@ Comme la librairie n'est pas publiée sur [pub.dev](https://pub.dev), elle est a
 dependencies:
   garden_ui:
     git:
-      url: https://github.com/JardinConnect/GardenUI.git
+      url: git@github.com:JardinConnect/GardenUI.git
       ref: v1.0.0 # Remplacez par le tag, la branche ou le commit souhaité
 ```
 
