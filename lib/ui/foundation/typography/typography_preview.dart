@@ -21,7 +21,7 @@ class TypographyPreview extends StatelessWidget {
           style: GardenTypography.caption.copyWith(
             fontWeight: FontWeight.w200,
             fontSize: 11,
-            color: GardenTypography.caption.color?.withOpacity(0.64),
+            color: GardenTypography.caption.color?.withValues(alpha: 0.64),
           ),
         ),
         for (final style in styles.entries) Text(style.key, style: style.value),
