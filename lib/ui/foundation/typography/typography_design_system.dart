@@ -14,6 +14,10 @@ class GardenTypography {
     'heading-xl': 39.0,
     'display-lg': 49.0,
     'display-xl': 61.0,
+    'radius-xs': 4.0,
+    'radius-sm': 8.0,
+    'radius-md': 12.0,
+    'radius-lg': 16.0,
   };
 
   static TextStyle get _base => GoogleFonts.inter(fontWeight: FontWeight.w500);
@@ -85,4 +89,41 @@ class GardenTypography {
     height: 1.6,
     letterSpacing: 0.03 * _sizes['caption']!,
   );
+
+  static final radiusXs = BorderRadiusGeometry.circular(_sizes['radius-xs']!);
+  static final radiusSm = BorderRadiusGeometry.circular(_sizes['radius-sm']!);
+  static final radiusMd = BorderRadiusGeometry.circular(_sizes['radius-md']!);
+  static final radiusLg = BorderRadiusGeometry.circular(_sizes['radius-lg']!);
+
+  static final shadowSm = [
+    BoxShadow(
+      color: GardenColors.shadow.shade700,
+      blurRadius: 4,
+      offset: Offset(0, 2),
+    ),
+  ];
+
+  static final shadowMd = [
+    BoxShadow(
+      color: GardenColors.shadow.shade800,
+      blurRadius: 8,
+      offset: Offset(0, 4),
+    ),
+  ];
+
+  static final shadowLg = [
+    BoxShadow(
+      color: GardenColors.shadow.shade900,
+      blurRadius: 16,
+      offset: Offset(0, 8),
+    ),
+  ];
+
+  static final shadowXl = [
+    BoxShadow(
+      color: GardenColors.shadow.shade900,
+      blurRadius: 32,
+      offset: Offset(0, 16),
+    ),
+  ];
 }
