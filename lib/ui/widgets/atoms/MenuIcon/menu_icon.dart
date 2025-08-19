@@ -36,7 +36,7 @@ class MenuIcon extends StatelessWidget {
   MenuIcon({
     super.key,
     required this.icon,
-    required this.isSelected,
+    this.isSelected = false,
     this.matchToContent = true,
     this.width = 36.0,
     this.iconWidth = 26.0,

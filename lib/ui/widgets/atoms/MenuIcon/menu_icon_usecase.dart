@@ -16,11 +16,7 @@ Widget buildMenuIconUseCase(BuildContext context) {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          MenuIcon(
-            icon: Icons.home_outlined,
-            isSelected: false,
-            matchToContent: false,
-          ),
+          MenuIcon(icon: Icons.home_outlined, matchToContent: false),
           const SizedBox(width: 32),
           MenuIcon(
             icon: Icons.home_outlined,
