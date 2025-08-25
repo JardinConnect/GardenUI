@@ -19,7 +19,7 @@ class MenuIcon extends StatelessWidget {
   /// MenuIcon size.
   final MenuIconSize size;
 
-  MenuIcon({
+  const MenuIcon({
     super.key,
     required this.icon,
     this.isActive = false,
