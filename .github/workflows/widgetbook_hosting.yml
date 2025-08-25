@@ -1,0 +1,68 @@
+name: Widgetbook Cloud Hosting
+
+on:
+  push:
+    branches:
+      - master
+      - feat/**
+
+jobs:
+  widgetbook-cloud-hosting:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Bootstrap App
+        run: |
+          flutter pub get
+          # Add any other steps needed to make your
+          # app widgets available for Widgetbook
+
+      - name: Build Widgetbook
+        run: |
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+          flutter build web -t lib/main.dart
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Widgetbook Build
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }}
+
+  widgetbook-cloud-test:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/heads/feat/')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Bootstrap App
+        run: |
+          flutter pub get
+          # Add any other steps needed to make your
+          # app widgets available for Widgetbook
+
+      - name: Build Widgetbook for Test
+        run: |
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+          flutter build web -t lib/main.dart
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Widgetbook Build to Test
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_TEST_API_KEY }}
