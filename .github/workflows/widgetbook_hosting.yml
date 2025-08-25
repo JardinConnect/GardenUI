@@ -20,7 +20,6 @@ jobs:
           # app widgets available for Widgetbook
 
       - name: Build Widgetbook
-        working-directory: widgetbook
         run: |
           flutter pub get
           dart run build_runner build -d
