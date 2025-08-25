@@ -21,7 +21,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: MenuIcon(icon: Icons.access_alarm_outlined, isSelected: true),
+            body: MenuIcon(icon: Icons.access_alarm_outlined, isActive: true),
           ),
         ),
       );
@@ -51,7 +51,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: MenuIcon(icon: Icons.access_alarm_outlined, isSelected: false),
+            body: MenuIcon(icon: Icons.access_alarm_outlined, isActive: false),
           ),
         ),
       );

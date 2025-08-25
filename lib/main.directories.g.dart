@@ -20,7 +20,11 @@ import 'package:widgetbook_workspace/ui/widgets/atoms/TabItem/tab_item_usecase.d
 import 'package:widgetbook_workspace/ui/widgets/molecules/tab_menu_usecase.dart'
     as _i5;
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
-as _i6;
+    as _i6;
+import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_usecase.dart'
+    as _i7;
+import 'package:widgetbook_workspace/ui/foundation/radius/radius_usecase.dart'
+    as _i8;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -50,6 +54,32 @@ final directories = <_i1.WidgetbookNode>[
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Default',
                   builder: _i3.buildDesignSystemTextStylesUseCase,
+                  designLink: 'https://www.figma.com/',
+                ),
+              ),
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'shadow',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'GardenShadow',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i7.buildDesignSystemShadowUseCase,
+                  designLink: 'https://www.figma.com/',
+                ),
+              ),
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'radius',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'GardenRadius',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i8.buildDesignSystemRadiusUseCase,
                   designLink: 'https://www.figma.com/',
                 ),
               ),

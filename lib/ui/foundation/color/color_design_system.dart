@@ -109,21 +109,6 @@ class GardenColors extends ColorSwatch<int> {
     900: Color(0xFF1f3562),
   });
 
-  static const GardenColors shadow =
-  GardenColors._(0xFF000000, <int, Color> {
-    50: Color(0xFFF5F5F5),
-    100: Color(0xFFE0E0E0),
-    200: Color(0xFFBDBDBD),
-    300: Color(0xFF9E9E9E),
-    400: Color(0xFF757575),
-    500: Color(0xFF616161),
-    600: Color(0xFF424242),
-    700: Color(0xFF303030),
-    800: Color(0xFF212121),
-    900: Color(0xFF000000),
-  });
-
-
   Color get shade50 => this[50]!;
   Color get shade100 => this[100]!;
   Color get shade200 => this[200]!;

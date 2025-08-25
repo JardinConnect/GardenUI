@@ -24,7 +24,6 @@ Widget buildDesignSystemColorUseCase(BuildContext context) {
         ColorPreview(name: 'Info', color: GardenColors.blueInfo),
         ColorPreview(name: 'Warning', color: GardenColors.yellowWarning),
         ColorPreview(name: 'Error', color: GardenColors.redAlert),
-        ColorPreview(name: 'Shadow', color: GardenColors.shadow),
       ],
     ),
   );

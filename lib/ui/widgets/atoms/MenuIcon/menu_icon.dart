@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
 import 'package:widgetbook_workspace/ui/foundation/color/color_design_system.dart';
+import 'package:widgetbook_workspace/ui/foundation/radius/radius_design_system.dart';
+import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.dart';
+
+enum MenuIconSize { sm, md, lg }
 
 /// A single menu icon used in [MenuItem].
 ///
@@ -9,71 +13,91 @@ class MenuIcon extends StatelessWidget {
   /// Icon to display.
   final IconData icon;
 
-  /// Whether this menu is currently selected.
-  final bool isSelected;
+  /// Whether this menu is currently active.
+  final bool isActive;
 
-  /// Whether the MenuIcon width should match the content width.
-  final bool matchToContent;
+  /// MenuIcon size.
+  final MenuIconSize size;
 
-  /// Custom width, used when [matchToContent] is false.
-  final double width;
+  /// Custom icon width.
+  double? width;
 
-  /// Custom icon width, used when [matchToContent] is false.
-  final double? iconWidth;
+  /// Custom icon width.
+  double? iconWidth;
 
-  /// Custom background color when isSelected = true
-  Color? selectedBackgroundColor;
+  /// Custom background color when [isActive] = true
+  Color? activeBackgroundColor;
 
-  /// Custom icon color when isSelected = true
-  Color? selectedIconColor;
+  /// Custom icon color when [isActive] = true
+  Color? activeIconColor;
 
-  /// Custom background color when isSelected = false
+  /// Custom background color when [isActive] = false
   Color? defaultBackgroundColor;
 
-  /// Custom icon color when isSelected = false
+  /// Custom icon color when isActive = false
   Color? defaultIconColor;
+
+  BorderRadiusGeometry? radius;
 
   MenuIcon({
     super.key,
     required this.icon,
-    this.isSelected = false,
-    this.matchToContent = true,
-    this.width = 36.0,
-    this.iconWidth = 26.0,
-    this.selectedBackgroundColor,
-    this.selectedIconColor,
+    this.isActive = false,
+    this.size = MenuIconSize.md,
   });
 
   void _initDefaultColors() {
-    selectedBackgroundColor =
-        selectedBackgroundColor ?? GardenColors.primary.shade500;
-    selectedIconColor = selectedIconColor ?? GardenColors.primary.shade50;
+    activeBackgroundColor =
+        activeBackgroundColor ?? GardenColors.primary.shade500;
+    activeIconColor = activeIconColor ?? GardenColors.primary.shade50;
     defaultBackgroundColor =
         defaultBackgroundColor ?? GardenColors.primary.shade50;
     defaultIconColor = defaultIconColor ?? GardenColors.primary.shade500;
   }
 
+  void _initDefaultSizes() {
+    switch (size) {
+      case MenuIconSize.sm:
+        width = 16.0;
+        iconWidth = 12.0;
+        radius = GardenRadius.radiusXs;
+        break;
+      case MenuIconSize.md:
+        width = 32.0;
+        iconWidth = 24.0;
+        radius = GardenRadius.radiusSm;
+        break;
+      case MenuIconSize.lg:
+        width = 48.0;
+        iconWidth = 36.0;
+        radius = GardenRadius.radiusSm;
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _initDefaultColors();
+    _initDefaultSizes();
 
-    final Widget content = AspectRatio(
-      aspectRatio: 1,
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: GardenTypography.radiusSm,
-          color: isSelected ? selectedBackgroundColor : defaultBackgroundColor,
-          boxShadow: GardenTypography.shadowSm,
-        ),
-        child: Icon(
-          icon,
-          size: matchToContent ? null : iconWidth,
-          color: isSelected ? selectedIconColor : defaultIconColor,
+    return SizedBox(
+      width: width,
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            color: isActive ? activeBackgroundColor : defaultBackgroundColor,
+            boxShadow: GardenShadow.shadowSm,
+          ),
+          child: Icon(
+            icon,
+            size: iconWidth,
+            color: isActive ? activeIconColor : defaultIconColor,
+          ),
         ),
       ),
     );
-
-    return SizedBox(width: width, child: content);
   }
 }
