@@ -6,6 +6,7 @@ import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.d
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon.dart';
 
 enum MenuItemSize { sm, md, lg }
+
 enum MenuItemSeverity { normal, danger }
 
 class MenuItem extends StatefulWidget {
@@ -55,7 +56,9 @@ class _MenuItemState extends State<MenuItem> {
 
   Color get _bgColor {
     if (_isActive || _isHovered) {
-      return widget.severity == MenuItemSeverity.danger ? GardenColors.redAlert.shade50 : GardenColors.primary.shade50;
+      return widget.severity == MenuItemSeverity.danger
+          ? GardenColors.redAlert.shade50
+          : GardenColors.primary.shade50;
     } else {
       return Colors.transparent;
     }

@@ -25,7 +25,10 @@ Widget buildMenuIconUseCase(BuildContext context) {
           size: MenuIconSize.lg,
         ),
         const SizedBox(width: 32),
-        MenuIcon(icon: Icons.logout_outlined, severity: MenuIconSeverity.danger,),
+        MenuIcon(
+          icon: Icons.logout_outlined,
+          severity: MenuIconSeverity.danger,
+        ),
       ],
     ),
   );

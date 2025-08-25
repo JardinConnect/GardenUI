@@ -5,6 +5,7 @@ import 'package:widgetbook_workspace/ui/foundation/radius/radius_design_system.d
 import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.dart';
 
 enum MenuIconSize { sm, md, lg }
+
 enum MenuIconSeverity { normal, danger }
 
 /// A single menu icon used in [MenuItem].
