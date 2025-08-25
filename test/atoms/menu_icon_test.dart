@@ -8,16 +8,16 @@ void main() {
     testWidgets('renders icon correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: MenuIcon(icon: Icons.access_alarm_outlined),
-          ),
+          home: Scaffold(body: MenuIcon(icon: Icons.access_alarm_outlined)),
         ),
       );
 
       expect(find.byIcon(Icons.access_alarm_outlined), findsOneWidget);
     });
 
-    testWidgets('displays selected state correctly', (WidgetTester tester) async {
+    testWidgets('displays selected state correctly', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -29,7 +29,6 @@ void main() {
       final expectedBoxDecorationColor = GardenColors.primary.shade500;
       final expectedIconColor = GardenColors.primary.shade50;
 
-
       final containerFinder = find.descendant(
         of: find.byType(MenuIcon),
         matching: find.byType(Container),
@@ -43,11 +42,16 @@ void main() {
       final containerWidget = tester.widget<Container>(containerFinder);
       final iconWidget = tester.widget<Icon>(iconFinder);
 
-      expect((containerWidget.decoration as BoxDecoration).color, expectedBoxDecorationColor);
+      expect(
+        (containerWidget.decoration as BoxDecoration).color,
+        expectedBoxDecorationColor,
+      );
       expect(iconWidget.color, expectedIconColor);
     });
 
-    testWidgets('displays unselected state correctly', (WidgetTester tester) async {
+    testWidgets('displays unselected state correctly', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -59,7 +63,6 @@ void main() {
       final expectedBoxDecorationColor = GardenColors.primary.shade50;
       final expectedIconColor = GardenColors.primary.shade500;
 
-
       final containerFinder = find.descendant(
         of: find.byType(MenuIcon),
         matching: find.byType(Container),
@@ -73,7 +76,10 @@ void main() {
       final containerWidget = tester.widget<Container>(containerFinder);
       final iconWidget = tester.widget<Icon>(iconFinder);
 
-      expect((containerWidget.decoration as BoxDecoration).color, expectedBoxDecorationColor);
+      expect(
+        (containerWidget.decoration as BoxDecoration).color,
+        expectedBoxDecorationColor,
+      );
       expect(iconWidget.color, expectedIconColor);
     });
   });
