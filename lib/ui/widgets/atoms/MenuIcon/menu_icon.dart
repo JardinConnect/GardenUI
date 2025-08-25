@@ -19,26 +19,6 @@ class MenuIcon extends StatelessWidget {
   /// MenuIcon size.
   final MenuIconSize size;
 
-  /// Custom icon width.
-  double? width;
-
-  /// Custom icon width.
-  double? iconWidth;
-
-  /// Custom background color when [isActive] = true
-  Color? activeBackgroundColor;
-
-  /// Custom icon color when [isActive] = true
-  Color? activeIconColor;
-
-  /// Custom background color when [isActive] = false
-  Color? defaultBackgroundColor;
-
-  /// Custom icon color when isActive = false
-  Color? defaultIconColor;
-
-  BorderRadiusGeometry? radius;
-
   MenuIcon({
     super.key,
     required this.icon,
@@ -46,56 +26,59 @@ class MenuIcon extends StatelessWidget {
     this.size = MenuIconSize.md,
   });
 
-  void _initDefaultColors() {
-    activeBackgroundColor =
-        activeBackgroundColor ?? GardenColors.primary.shade500;
-    activeIconColor = activeIconColor ?? GardenColors.primary.shade50;
-    defaultBackgroundColor =
-        defaultBackgroundColor ?? GardenColors.primary.shade50;
-    defaultIconColor = defaultIconColor ?? GardenColors.primary.shade500;
-  }
-
-  void _initDefaultSizes() {
+  double get _width {
     switch (size) {
       case MenuIconSize.sm:
-        width = 16.0;
-        iconWidth = 12.0;
-        radius = GardenRadius.radiusXs;
-        break;
+        return 16.0;
       case MenuIconSize.md:
-        width = 32.0;
-        iconWidth = 24.0;
-        radius = GardenRadius.radiusSm;
-        break;
+        return 32.0;
       case MenuIconSize.lg:
-        width = 48.0;
-        iconWidth = 36.0;
-        radius = GardenRadius.radiusSm;
-        break;
+        return 48.0;
+    }
+  }
+
+  double get _iconWidth {
+    switch (size) {
+      case MenuIconSize.sm:
+        return 12.0;
+      case MenuIconSize.md:
+        return 24.0;
+      case MenuIconSize.lg:
+        return 36.0;
+    }
+  }
+
+  BorderRadiusGeometry get _radius {
+    switch (size) {
+      case MenuIconSize.sm:
+        return GardenRadius.radiusXs;
+      case MenuIconSize.md:
+      case MenuIconSize.lg:
+        return GardenRadius.radiusSm;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    _initDefaultColors();
-    _initDefaultSizes();
+    final bgColor = isActive
+        ? GardenColors.primary.shade500
+        : GardenColors.primary.shade50;
+    final iconColor = isActive
+        ? GardenColors.primary.shade50
+        : GardenColors.primary.shade500;
 
     return SizedBox(
-      width: width,
+      width: _width,
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            borderRadius: radius,
-            color: isActive ? activeBackgroundColor : defaultBackgroundColor,
+            borderRadius: _radius,
+            color: bgColor,
             boxShadow: GardenShadow.shadowSm,
           ),
-          child: Icon(
-            icon,
-            size: iconWidth,
-            color: isActive ? activeIconColor : defaultIconColor,
-          ),
+          child: Icon(icon, size: _iconWidth, color: iconColor),
         ),
       ),
     );
