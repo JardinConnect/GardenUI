@@ -6,12 +6,14 @@ import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.d
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon.dart';
 
 enum MenuItemSize { sm, md, lg }
+enum MenuItemSeverity { normal, danger }
 
 class MenuItem extends StatefulWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
   final MenuItemSize size;
+  final MenuItemSeverity severity;
 
   const MenuItem({
     super.key,
@@ -19,6 +21,7 @@ class MenuItem extends StatefulWidget {
     required this.label,
     required this.onTap,
     this.size = MenuItemSize.md,
+    this.severity = MenuItemSeverity.normal,
   });
 
   @override
@@ -52,7 +55,7 @@ class _MenuItemState extends State<MenuItem> {
 
   Color get _bgColor {
     if (_isActive || _isHovered) {
-      return GardenColors.primary.shade50;
+      return widget.severity == MenuItemSeverity.danger ? GardenColors.redAlert.shade50 : GardenColors.primary.shade50;
     } else {
       return Colors.transparent;
     }
@@ -87,6 +90,14 @@ class _MenuItemState extends State<MenuItem> {
         return MenuIconSize.md;
       case MenuItemSize.lg:
         return MenuIconSize.lg;
+    }
+  }
+
+  MenuIconSeverity get _iconSeverity {
+    if (widget.severity == MenuItemSeverity.danger) {
+      return MenuIconSeverity.danger;
+    } else {
+      return MenuIconSeverity.normal;
     }
   }
 
@@ -129,6 +140,7 @@ class _MenuItemState extends State<MenuItem> {
                     icon: widget.icon,
                     isActive: _isActive,
                     size: _iconSize,
+                    severity: _iconSeverity,
                   ),
                 ),
                 AnimatedDefaultTextStyle(

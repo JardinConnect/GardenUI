@@ -53,6 +53,14 @@ class _MenuItemShowcase extends StatelessWidget {
                 size: MenuItemSize.lg,
                 onTap: onTap,
               ),
+
+              Text('Danger', style: GardenTypography.bodyLg),
+              MenuItem(
+                icon: Icons.logout_outlined,
+                label: 'Logout',
+                onTap: onTap,
+                severity: MenuItemSeverity.danger,
+              ),
             ],
           ),
         ),
