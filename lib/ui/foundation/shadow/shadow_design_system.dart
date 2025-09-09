@@ -5,7 +5,7 @@ import '../color/color_design_system.dart';
 class GardenShadow {
   static final shadowSm = [
     BoxShadow(
-      color: GardenColors.base.shade900.withValues(alpha: 0.75),
+      color: GardenColors.base.shade900.withValues(alpha: 0.2),
       blurRadius: 4,
       offset: Offset(0, 2),
     ),
@@ -13,7 +13,7 @@ class GardenShadow {
 
   static final shadowMd = [
     BoxShadow(
-      color: GardenColors.base.shade900.withValues(alpha: 0.75),
+      color: GardenColors.base.shade900.withValues(alpha: 0.25),
       blurRadius: 8,
       offset: Offset(0, 4),
     ),
@@ -21,7 +21,7 @@ class GardenShadow {
 
   static final shadowLg = [
     BoxShadow(
-      color: GardenColors.base.shade900.withValues(alpha: 0.75),
+      color: GardenColors.base.shade900.withValues(alpha: 0.50),
       blurRadius: 16,
       offset: Offset(0, 8),
     ),
