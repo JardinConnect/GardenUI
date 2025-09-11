@@ -11,8 +11,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/examples/garden_management_example.dart'
-    as _i2;
 import 'package:widgetbook_workspace/ui/foundation/color/color_usecase.dart'
     as _i3;
 import 'package:widgetbook_workspace/ui/foundation/padding/space_usecase.dart'
@@ -45,18 +43,6 @@ import 'package:widgetbook_workspace/ui/widgets/organisms/Menu/menu_usecase.dart
     as _i17;
 
 final directories = <_i1.WidgetbookNode>[
-  _i1.WidgetbookFolder(
-    name: 'examples',
-    children: [
-      _i1.WidgetbookLeafComponent(
-        name: 'GardenManagementExample',
-        useCase: _i1.WidgetbookUseCase(
-          name: 'Complete Garden Management',
-          builder: _i2.gardenManagementCompleteUseCase,
-        ),
-      ),
-    ],
-  ),
   _i1.WidgetbookFolder(
     name: 'ui',
     children: [
