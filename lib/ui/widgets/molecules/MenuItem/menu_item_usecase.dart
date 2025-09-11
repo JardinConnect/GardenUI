@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/padding/space_design_system.dart';
 import 'package:widgetbook_workspace/ui/widgets/molecules/MenuItem/menu_item.dart';
 
 @UseCase(

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/padding/space_design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/radius/radius_design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.dart';
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon.dart';
 
 enum MenuItemSize { sm, md, lg }
@@ -15,6 +12,8 @@ class MenuItem extends StatefulWidget {
   final VoidCallback onTap;
   final MenuItemSize size;
   final MenuItemSeverity severity;
+  final bool isActive;
+  final ValueChanged<bool>? onActiveChanged;
 
   const MenuItem({
     super.key,
@@ -23,6 +22,8 @@ class MenuItem extends StatefulWidget {
     required this.onTap,
     this.size = MenuItemSize.md,
     this.severity = MenuItemSeverity.normal,
+    this.isActive = false,
+    this.onActiveChanged,
   });
 
   @override
@@ -31,7 +32,27 @@ class MenuItem extends StatefulWidget {
 
 class _MenuItemState extends State<MenuItem> {
   bool _isHovered = false;
-  bool _isActive = false;
+  late bool _internalActive;
+
+  bool get _isActive =>
+      widget.onActiveChanged != null ? widget.isActive : _internalActive;
+
+  @override
+  void initState() {
+    super.initState();
+    _internalActive = widget.isActive;
+  }
+
+  void _toggleActive() {
+    if (widget.onActiveChanged != null) {
+      widget.onActiveChanged!(!_isActive);
+    } else {
+      setState(() {
+        _internalActive = !_internalActive;
+      });
+    }
+    widget.onTap();
+  }
 
   TextStyle get _labelSize {
     switch (widget.size) {
@@ -112,8 +133,7 @@ class _MenuItemState extends State<MenuItem> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: () {
-          setState(() => _isActive = !_isActive);
-          widget.onTap();
+          _toggleActive();
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
@@ -146,11 +166,18 @@ class _MenuItemState extends State<MenuItem> {
                     severity: _iconSeverity,
                   ),
                 ),
-                AnimatedDefaultTextStyle(
-                  duration: const Duration(milliseconds: 200),
-                  style: _labelStyle,
-                  curve: Curves.easeOut,
-                  child: Text(widget.label),
+                Expanded(
+                  child: AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 200),
+                    style: _labelStyle,
+                    curve: Curves.easeOut,
+                    child: Text(
+                      widget.label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                    ),
+                  ),
                 ),
               ],
             ),

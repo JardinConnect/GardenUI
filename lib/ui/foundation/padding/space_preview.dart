@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/padding/space_design_system.dart';
 
 class PaddingPreview extends StatelessWidget {
   const PaddingPreview({super.key, required this.name, required this.styles});

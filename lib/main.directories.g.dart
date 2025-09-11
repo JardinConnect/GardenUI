@@ -29,6 +29,8 @@ import 'package:widgetbook_workspace/ui/widgets/molecules/MenuItem/menu_item_use
     as _i9;
 import 'package:widgetbook_workspace/ui/foundation/padding/space_usecase.dart'
     as _i10;
+import 'package:widgetbook_workspace/ui/widgets/organisms/Menu/menu_usecase.dart'
+    as _i11;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -156,6 +158,19 @@ final directories = <_i1.WidgetbookNode>[
                   builder: _i9.buildMenuItemUseCase,
                   designLink:
                       'https://www.figma.com/file/your-menu-item-design',
+                ),
+              ),
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'organisms',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'Menu',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i11.buildMenuUseCase,
+                  designLink: 'https://www.figma.com/file/your-menu-design',
                 ),
               ),
             ],
