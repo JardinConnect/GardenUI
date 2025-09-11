@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:widgetbook_workspace/ui/design_system.dart';
 import 'package:widgetbook_workspace/ui/widgets/molecules/TabMenu/tab_menu.dart';
 
 @UseCase(
@@ -19,40 +20,45 @@ class _TabMenuShowcase extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Basic Tab Menu',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 16),
-            const _TabMenuPreview(),
+        child: Container(
+          color: GardenColors.base.shade50,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Basic Tab Menu',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              const _TabMenuPreview(),
 
-            const SizedBox(height: 40),
-            Text(
-              'Tab Menu with Icons',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 16),
-            const _TabMenuWithIconsPreview(),
+              const SizedBox(height: 40),
+              Text(
+                'Tab Menu with Icons',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              const _TabMenuWithIconsPreview(),
 
-            const SizedBox(height: 40),
-            Text(
-              'Scrollable Tab Menu',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 16),
-            const _ScrollableTabMenuPreview(),
+              const SizedBox(height: 40),
+              Text(
+                'Scrollable Tab Menu',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              const _ScrollableTabMenuPreview(),
 
-            const SizedBox(height: 40),
-            Text(
-              'Tab Menu with Adaptive Indicators',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 16),
-            const _AdaptiveIndicatorTabMenuPreview(),
-          ],
+              const SizedBox(height: 40),
+              Text(
+                'Tab Menu with Adaptive Indicators',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16),
+              const _AdaptiveIndicatorTabMenuPreview(),
+            ],
+          ),
         ),
       ),
     );

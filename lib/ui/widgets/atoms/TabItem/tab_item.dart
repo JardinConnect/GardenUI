@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook_workspace/ui/design_system.dart';
 import 'package:widgetbook_workspace/ui/foundation/color/color_design_system.dart';
 import 'package:widgetbook_workspace/ui/foundation/typography/typography_design_system.dart';
 
@@ -41,9 +42,9 @@ class TabItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = GardenTypography.bodyLg.copyWith(
+    final textStyle = GardenTypography.bodyMd.copyWith(
       color: isSelected
-          ? GardenColors.primary.shade500
+          ? GardenColors.typography.shade400
           : GardenColors.typography.shade100,
     );
 
@@ -53,9 +54,7 @@ class TabItem extends StatelessWidget {
         if (icon != null) ...[
           Icon(
             icon,
-            color: isSelected
-                ? GardenColors.primary.shade500
-                : GardenColors.typography.shade100,
+            color: textStyle.color,
             size: 20,
           ),
           SizedBox(width: iconLabelSpacing),
@@ -81,33 +80,24 @@ class TabItem extends StatelessWidget {
                 },
               ),
             },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 4.0,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 50),
+              curve: Curves.easeInOut,
+              decoration: BoxDecoration(
+                borderRadius: GardenRadius.radiusSm,
+                color: isSelected ? GardenColors.base.shade200 : Colors.transparent,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  content,
-                  const SizedBox(height: 4),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    height: 2,
-                    width: matchIndicatorToContent ? null : indicatorWidth,
-                    constraints: matchIndicatorToContent
-                        ? BoxConstraints.tightFor(
-                            width: _getContentWidth(content, textStyle),
-                          )
-                        : null,
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? GardenColors.primary.shade500
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(1),
-                    ),
-                  ),
-                ],
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: GardenSpace.paddingMd,
+                  vertical: GardenSpace.paddingXs,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    content
+                  ],
+                ),
               ),
             ),
           ),
