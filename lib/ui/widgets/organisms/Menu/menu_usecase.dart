@@ -19,10 +19,11 @@ class _MenuShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
-        height: 900,
-        width: 900,
+        height: screenSize.height,
+        width: screenSize.width,
         color: GardenColors.base.shade50,
         child: Align(
           alignment: Alignment.topLeft,
