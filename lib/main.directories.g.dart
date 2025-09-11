@@ -17,7 +17,7 @@ import 'package:widgetbook_workspace/ui/foundation/typography/typography_usecase
     as _i3;
 import 'package:widgetbook_workspace/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
     as _i4;
-import 'package:widgetbook_workspace/ui/widgets/molecules/tab_menu_usecase.dart'
+import 'package:widgetbook_workspace/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
     as _i5;
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
     as _i6;
@@ -25,6 +25,10 @@ import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_usecase.dart'
     as _i7;
 import 'package:widgetbook_workspace/ui/foundation/radius/radius_usecase.dart'
     as _i8;
+import 'package:widgetbook_workspace/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
+    as _i9;
+import 'package:widgetbook_workspace/ui/foundation/padding/space_usecase.dart'
+    as _i10;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -85,6 +89,19 @@ final directories = <_i1.WidgetbookNode>[
               ),
             ],
           ),
+          _i1.WidgetbookFolder(
+            name: 'space',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'GardenSpace',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i10.buildDesignSystemSpaceUseCase,
+                  designLink: 'https://www.figma.com/',
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -130,6 +147,15 @@ final directories = <_i1.WidgetbookNode>[
                   name: 'Default',
                   builder: _i5.buildTabMenuUseCase,
                   designLink: 'https://www.figma.com/file/your-tab-menu-design',
+                ),
+              ),
+              _i1.WidgetbookLeafComponent(
+                name: 'MenuItem',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Default',
+                  builder: _i9.buildMenuItemUseCase,
+                  designLink:
+                      'https://www.figma.com/file/your-menu-item-design',
                 ),
               ),
             ],

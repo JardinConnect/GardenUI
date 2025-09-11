@@ -6,6 +6,8 @@ import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.d
 
 enum MenuIconSize { sm, md, lg }
 
+enum MenuIconSeverity { normal, danger }
+
 /// A single menu icon used in [MenuItem].
 ///
 /// This component represents a customisable icon in a menu item.
@@ -19,11 +21,14 @@ class MenuIcon extends StatelessWidget {
   /// MenuIcon size.
   final MenuIconSize size;
 
+  final MenuIconSeverity severity;
+
   const MenuIcon({
     super.key,
     required this.icon,
     this.isActive = false,
     this.size = MenuIconSize.md,
+    this.severity = MenuIconSeverity.normal,
   });
 
   double get _width {
@@ -58,15 +63,28 @@ class MenuIcon extends StatelessWidget {
     }
   }
 
+  Color get _bgColor {
+    if (severity == MenuIconSeverity.danger) {
+      return GardenColors.redAlert.shade500;
+    } else if (isActive) {
+      return GardenColors.primary.shade500;
+    } else {
+      return GardenColors.primary.shade50;
+    }
+  }
+
+  Color get _iconColor {
+    if (severity == MenuIconSeverity.danger) {
+      return GardenColors.base.shade50;
+    } else if (isActive) {
+      return GardenColors.primary.shade50;
+    } else {
+      return GardenColors.primary.shade500;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final bgColor = isActive
-        ? GardenColors.primary.shade500
-        : GardenColors.primary.shade50;
-    final iconColor = isActive
-        ? GardenColors.primary.shade50
-        : GardenColors.primary.shade500;
-
     return SizedBox(
       width: _width,
       child: AspectRatio(
@@ -75,10 +93,10 @@ class MenuIcon extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: _radius,
-            color: bgColor,
+            color: _bgColor,
             boxShadow: GardenShadow.shadowSm,
           ),
-          child: Icon(icon, size: _iconWidth, color: iconColor),
+          child: Icon(icon, size: _iconWidth, color: _iconColor),
         ),
       ),
     );
