@@ -21,12 +21,6 @@ class TabItem extends StatelessWidget {
   /// The spacing between icon and label when icon is provided.
   final double iconLabelSpacing;
 
-  /// Whether the indicator width should match the content width.
-  final bool matchIndicatorToContent;
-
-  /// Custom width for the indicator, used when [matchIndicatorToContent] is false.
-  final double indicatorWidth;
-
   const TabItem({
     super.key,
     required this.label,
@@ -34,8 +28,6 @@ class TabItem extends StatelessWidget {
     required this.onTap,
     this.icon,
     this.iconLabelSpacing = 8.0,
-    this.matchIndicatorToContent = true,
-    this.indicatorWidth = 24.0,
   });
 
   @override
@@ -74,9 +66,7 @@ class TabItem extends StatelessWidget {
                 },
               ),
             },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 50),
-              curve: Curves.easeInOut,
+            child: Container(
               decoration: BoxDecoration(
                 borderRadius: GardenRadius.radiusSm,
                 color: isSelected

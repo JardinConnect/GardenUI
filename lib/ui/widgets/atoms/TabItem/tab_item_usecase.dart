@@ -58,19 +58,9 @@ Widget buildTabItemUseCase(BuildContext context) {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TabItem(
-              label: 'Selected',
-              isSelected: true,
-              matchIndicatorToContent: true,
-              onTap: () {},
-            ),
+            TabItem(label: 'Selected', isSelected: true, onTap: () {}),
             const SizedBox(width: 32),
-            TabItem(
-              label: 'Unselected',
-              isSelected: false,
-              matchIndicatorToContent: true,
-              onTap: () {},
-            ),
+            TabItem(label: 'Unselected', isSelected: false, onTap: () {}),
           ],
         ),
       ],

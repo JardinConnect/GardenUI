@@ -68,7 +68,6 @@ class _TabMenuState extends State<TabMenu> {
         icon: widget.icons != null ? widget.icons![index] : null,
         isSelected: index == widget.selectedIndex,
         onTap: () => widget.onTabSelected(index),
-        matchIndicatorToContent: widget.matchIndicatorToContent,
       );
     });
 
