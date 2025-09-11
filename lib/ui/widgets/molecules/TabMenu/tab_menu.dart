@@ -94,8 +94,6 @@ class _TabMenuState extends State<TabMenu> {
   }
 
   Widget _buildFixedTabs(List<Widget> tabItems) {
-    return Row(
-      children: tabItems,
-    );
+    return Row(children: tabItems);
   }
 }
