@@ -61,15 +61,15 @@ class LevelIndicator extends StatelessWidget {
 
 @widgetbook.UseCase(name: 'Level 1', type: LevelIndicator)
 Widget levelIndicatorLevel1UseCase(BuildContext context) {
-  return Container(height: 60, child: const LevelIndicator(level: 1));
+  return SizedBox(height: 60, child: const LevelIndicator(level: 1));
 }
 
 @widgetbook.UseCase(name: 'Level 3', type: LevelIndicator)
 Widget levelIndicatorLevel3UseCase(BuildContext context) {
-  return Container(height: 60, child: const LevelIndicator(level: 3));
+  return SizedBox(height: 60, child: const LevelIndicator(level: 3));
 }
 
 @widgetbook.UseCase(name: 'Level 5', type: LevelIndicator)
 Widget levelIndicatorLevel5UseCase(BuildContext context) {
-  return Container(height: 60, child: const LevelIndicator(level: 5));
+  return SizedBox(height: 60, child: const LevelIndicator(level: 5));
 }
