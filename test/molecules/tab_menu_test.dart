@@ -59,7 +59,9 @@ void main() {
         ),
       );
 
-      final selectedTextStyle = TextStyle(color: GardenColors.primary.shade500);
+      final selectedTextStyle = TextStyle(
+        color: GardenColors.typography.shade400,
+      );
 
       final textWidget = tester.widget<Text>(find.text('Tab 2'));
       expect(textWidget.style?.color, selectedTextStyle.color);

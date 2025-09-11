@@ -63,15 +63,11 @@ class _TabMenuState extends State<TabMenu> {
   @override
   Widget build(BuildContext context) {
     final tabItems = List.generate(widget.tabs.length, (index) {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: widget.tabSpacing / 2),
-        child: TabItem(
-          label: widget.tabs[index],
-          icon: widget.icons != null ? widget.icons![index] : null,
-          isSelected: index == widget.selectedIndex,
-          onTap: () => widget.onTabSelected(index),
-          matchIndicatorToContent: widget.matchIndicatorToContent,
-        ),
+      return TabItem(
+        label: widget.tabs[index],
+        icon: widget.icons != null ? widget.icons![index] : null,
+        isSelected: index == widget.selectedIndex,
+        onTap: () => widget.onTabSelected(index),
       );
     });
 
@@ -97,9 +93,6 @@ class _TabMenuState extends State<TabMenu> {
   }
 
   Widget _buildFixedTabs(List<Widget> tabItems) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: tabItems,
-    );
+    return Row(children: tabItems);
   }
 }
