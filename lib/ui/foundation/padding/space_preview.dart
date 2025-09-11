@@ -15,14 +15,7 @@ class PaddingPreview extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          name.toUpperCase(),
-          style: GardenTypography.caption.copyWith(
-            fontWeight: FontWeight.w200,
-            fontSize: 11,
-            color: GardenTypography.caption.color?.withValues(alpha: 0.64),
-          ),
-        ),
+        Text(name.toUpperCase(), style: GardenTypography.caption),
         for (final style in styles.entries)
           Container(
             padding: EdgeInsets.all(style.value),
@@ -47,14 +40,7 @@ class GapPreview extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          name.toUpperCase(),
-          style: GardenTypography.caption.copyWith(
-            fontWeight: FontWeight.w200,
-            fontSize: 11,
-            color: GardenTypography.caption.color?.withValues(alpha: 0.64),
-          ),
-        ),
+        Text(name.toUpperCase(), style: GardenTypography.caption),
         for (final style in styles.entries)
           Row(
             spacing: style.value,
