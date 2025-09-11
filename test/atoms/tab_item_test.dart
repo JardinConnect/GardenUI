@@ -70,8 +70,8 @@ void main() {
 
       final selectedTextStyle = TextStyle(
         color: GardenColors
-            .primary
-            .shade500, // Assuming GardenColors.primary.shade500
+            .typography
+            .shade400, // Assuming GardenColors.typography.shade400
       );
 
       final textWidget = tester.widget<Text>(find.text('Test Tab'));
