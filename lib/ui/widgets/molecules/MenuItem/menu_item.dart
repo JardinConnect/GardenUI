@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/padding/space_design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/radius/radius_design_system.dart';
-import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_design_system.dart';
 import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon.dart';
 
 enum MenuItemSize { sm, md, lg }
