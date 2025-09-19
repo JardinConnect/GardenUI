@@ -41,6 +41,8 @@ import 'package:widgetbook_workspace/ui/widgets/organisms/HierarchicalMenu/hiera
     as _i15;
 import 'package:widgetbook_workspace/ui/widgets/organisms/Menu/menu_usecase.dart'
     as _i17;
+import 'package:widgetbook_workspace/ui/widgets/atoms/NotificationIcon/notification_icon.dart'
+    as _i18;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -189,6 +191,32 @@ final directories = <_i1.WidgetbookNode>[
                       builder: _i11.buildTabItemUseCase,
                       designLink: 'https://www.figma.com/file/your-tab-design',
                     ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'NotificationIcon',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'NotificationIcon',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i18.infoNotificationIconUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Alert',
+                        builder: _i18.alertNotificationIconUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Success',
+                        builder: _i18.successNotificationIconUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Warning',
+                        builder: _i18.warningNotificationIconUseCase,
+                      ),
+                    ],
                   ),
                 ],
               ),
