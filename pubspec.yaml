@@ -2,6 +2,7 @@ name: widgetbook_workspace
 description: "A new Flutter project."
 publish_to: "none"
 version: 0.1.0
+repository: https://github.com/JardinConnect/GardenUI
 
 environment:
   sdk: ^3.8.1
