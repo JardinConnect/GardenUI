@@ -65,7 +65,7 @@ class NotificationIcon extends StatelessWidget {
       child: Center(
         child: Icon(
           Icons.notifications_outlined,
-          color: GardenColors.base.shade500,
+          color: GardenColors.base.shade50,
           size: _iconWidth,
         ),
       ),
