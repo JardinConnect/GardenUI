@@ -78,7 +78,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(Notification), findsOneWidget);
+      expect(find.byType(NotificationToast), findsOneWidget);
 
       final closeButton = find.byIcon(Icons.close);
       expect(closeButton, findsOneWidget);
