@@ -201,7 +201,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'NotificationIcon',
                     useCases: [
                       _i1.WidgetbookUseCase(
-                        name: 'Default',
+                        name: 'Info',
                         builder: _i18.infoNotificationIconUseCase,
                       ),
                       _i1.WidgetbookUseCase(
