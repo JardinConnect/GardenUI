@@ -43,6 +43,8 @@ import 'package:widgetbook_workspace/ui/widgets/organisms/Menu/menu_usecase.dart
     as _i17;
 import 'package:widgetbook_workspace/ui/widgets/atoms/NotificationIcon/notification_icon.dart'
     as _i18;
+import 'package:widgetbook_workspace/ui/widgets/molecules/Notification/notification_toast.dart'
+    as _i19;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -238,6 +240,32 @@ final directories = <_i1.WidgetbookNode>[
                       _i1.WidgetbookUseCase(
                         name: 'With Children Expanded',
                         builder: _i12.hierarchicalMenuItemExpandedUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Notification Toast',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'Notification Toast',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Info',
+                        builder: _i19.infoNotificationUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Alert',
+                        builder: _i19.alertNotificationUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Success',
+                        builder: _i19.successNotificationUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Warning',
+                        builder: _i19.warningNotificationUseCase,
                       ),
                     ],
                   ),

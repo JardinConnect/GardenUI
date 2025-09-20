@@ -7,6 +7,7 @@ export 'widgets/atoms/NotificationIcon/notification_icon.dart';
 export 'widgets/molecules/TabMenu/tab_menu.dart';
 export 'widgets/molecules/MenuItem/menu_item.dart';
 export 'widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
+export 'widgets/molecules/Notification/notification_toast.dart';
 
 export 'widgets/organisms/Menu/menu.dart';
 export 'widgets/organisms/HierarchicalMenu/hierarchical_menu.dart';
