@@ -108,7 +108,7 @@ class _MenuState extends State<Menu> {
           Column(
             spacing: GardenSpace.gapMd,
             children: [
-              Image.asset("assets/images/logo.png", width: _logoWidth),
+              Image.asset("assets/images/logo.png", package: "widgetbook_workspace", width: _logoWidth),
               Divider(thickness: 1, color: GardenColors.base.shade500),
               ..._renderMenuItems(widget.items, 0),
             ],
