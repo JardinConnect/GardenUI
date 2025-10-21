@@ -30,6 +30,7 @@ class _MenuShowcase extends StatelessWidget {
           child: SizedBox(
             height: double.infinity,
             child: Menu(
+              logo: AssetImage("assets/images/logo.png"),
               items: [
                 MenuItem(
                   icon: Icons.home_outlined,

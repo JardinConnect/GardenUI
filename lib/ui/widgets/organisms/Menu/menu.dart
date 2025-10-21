@@ -8,11 +8,13 @@ class Menu extends StatefulWidget {
   final List<MenuItem> items;
   final List<MenuItem> bottomItems;
   final MenuSize size;
+  final ImageProvider logo;
 
   const Menu({
     super.key,
     required this.items,
     required this.bottomItems,
+    required this.logo,
     this.size = MenuSize.md,
   });
 
@@ -108,7 +110,7 @@ class _MenuState extends State<Menu> {
           Column(
             spacing: GardenSpace.gapMd,
             children: [
-              Image.asset("assets/images/logo.png", package: "widgetbook_workspace", width: _logoWidth),
+              Image(image: widget.logo, width: _logoWidth),
               Divider(thickness: 1, color: GardenColors.base.shade500),
               ..._renderMenuItems(widget.items, 0),
             ],
