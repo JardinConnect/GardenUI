@@ -3,12 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:widgetbook_workspace/ui/components.dart';
 
 void main() {
+  const assetLogo = "assets/images/logo.png";
   group('Menu Widget Tests', () {
     testWidgets('renders top and bottom items', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: Menu(
+              logo: AssetImage(assetLogo),
               items: [
                 MenuItem(icon: Icons.home, label: 'Home', onTap: () {}),
                 MenuItem(icon: Icons.search, label: 'Search', onTap: () {}),
@@ -34,6 +36,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: Menu(
+                logo: AssetImage(assetLogo),
                 items: [
                   MenuItem(icon: Icons.home, label: 'Home', onTap: () {}),
                 ],
@@ -64,6 +67,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: Menu(
+              logo: AssetImage(assetLogo),
               items: [
                 MenuItem(icon: Icons.home, label: 'Home', onTap: () {}),
                 MenuItem(icon: Icons.search, label: 'Search', onTap: () {}),
@@ -94,6 +98,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Menu(
+            logo: AssetImage(assetLogo),
             items: [
               MenuItem(icon: Icons.home, label: 'Home', onTap: () {}),
               MenuItem(icon: Icons.search, label: 'Search', onTap: () {}),
@@ -120,6 +125,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: Menu(
+            logo: AssetImage(assetLogo),
             items: [
               MenuItem(icon: Icons.home, label: 'Home', onTap: () {}),
               MenuItem(icon: Icons.search, label: 'Search', onTap: () {}),
