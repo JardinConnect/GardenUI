@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_workspace/ui/design_system.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 /// A single tab item used in [TabMenu].
 ///

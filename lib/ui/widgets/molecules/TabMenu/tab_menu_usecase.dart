@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/widgets/molecules/TabMenu/tab_menu.dart';
+import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu.dart';
 
 @UseCase(
   name: 'Default',

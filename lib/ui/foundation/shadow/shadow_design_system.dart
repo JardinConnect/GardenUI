@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:widgetbook_workspace/ui/foundation/radius/radius_design_system.dart';
+import 'package:garden_ui/ui/foundation/radius/radius_design_system.dart';
 
 import '../color/color_design_system.dart';
 

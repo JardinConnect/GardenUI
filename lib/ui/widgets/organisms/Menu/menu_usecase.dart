@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:widgetbook_workspace/ui/components.dart';
-import 'package:widgetbook_workspace/ui/design_system.dart';
+import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 @UseCase(
   name: 'Default',

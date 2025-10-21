@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:widgetbook_workspace/ui/design_system.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 enum LevelIndicatorSize { sm, md, lg }
 
