@@ -11,36 +11,31 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/ui/foundation/color/color_usecase.dart'
-    as _i3;
-import 'package:widgetbook_workspace/ui/foundation/padding/space_usecase.dart'
-    as _i4;
-import 'package:widgetbook_workspace/ui/foundation/radius/radius_usecase.dart'
-    as _i5;
-import 'package:widgetbook_workspace/ui/foundation/shadow/shadow_usecase.dart'
-    as _i6;
-import 'package:widgetbook_workspace/ui/foundation/typography/typography_usecase.dart'
+import 'package:garden_ui/ui/foundation/color/color_usecase.dart' as _i3;
+import 'package:garden_ui/ui/foundation/padding/space_usecase.dart' as _i4;
+import 'package:garden_ui/ui/foundation/radius/radius_usecase.dart' as _i5;
+import 'package:garden_ui/ui/foundation/shadow/shadow_usecase.dart' as _i6;
+import 'package:garden_ui/ui/foundation/typography/typography_usecase.dart'
     as _i7;
-import 'package:widgetbook_workspace/ui/widgets/atoms/AlertIndicator/alert_indicator.dart'
+import 'package:garden_ui/ui/widgets/atoms/AlertIndicator/alert_indicator.dart'
     as _i8;
-import 'package:widgetbook_workspace/ui/widgets/atoms/LevelIndicator/level_indicator.dart'
+import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator.dart'
     as _i9;
-import 'package:widgetbook_workspace/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
     as _i10;
-import 'package:widgetbook_workspace/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
     as _i11;
-import 'package:widgetbook_workspace/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart'
+import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart'
     as _i12;
-import 'package:widgetbook_workspace/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
     as _i13;
-import 'package:widgetbook_workspace/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
     as _i14;
-import 'package:widgetbook_workspace/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu.dart'
+import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu.dart'
     as _i16;
-import 'package:widgetbook_workspace/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
+import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
     as _i15;
-import 'package:widgetbook_workspace/ui/widgets/organisms/Menu/menu_usecase.dart'
-    as _i17;
+import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i17;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(

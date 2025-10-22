@@ -1,5 +1,5 @@
-name: widgetbook_workspace
-description: "A new Flutter project."
+name: garden_ui
+description: "Garden Connect UI library"
 publish_to: "none"
 version: 0.1.0
 repository: https://github.com/JardinConnect/GardenUI

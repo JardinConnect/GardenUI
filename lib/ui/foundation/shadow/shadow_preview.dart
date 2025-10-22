@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:widgetbook_workspace/ui/design_system.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 class ShadowPreview extends StatelessWidget {
   const ShadowPreview({super.key, required this.name, required this.styles});

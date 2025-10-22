@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:widgetbook_workspace/ui/components.dart';
+import 'package:garden_ui/ui/components.dart';
 
 @widgetbook.UseCase(name: 'Complete Example', type: HierarchicalMenu)
 Widget hierarchicalMenuCompleteExampleUseCase(BuildContext context) {
