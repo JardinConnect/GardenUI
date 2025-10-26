@@ -36,6 +36,8 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
     as _i15;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i17;
+import 'package:garden_ui/ui/widgets/molecules/Button/button.dart'
+as _i18;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -235,6 +237,24 @@ final directories = <_i1.WidgetbookNode>[
                       designLink:
                           'https://www.figma.com/file/your-tab-menu-design',
                     ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Button',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'Button',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i18.primaryButtonUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Danger',
+                        builder: _i18.dangerButtonUseCase,
+                      ),
+                    ],
                   ),
                 ],
               ),
