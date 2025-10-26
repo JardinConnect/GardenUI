@@ -43,14 +43,14 @@ class _NotificationToastState extends State<NotificationToast> {
     }
   }
 
-  double get _height {
+  double get _textVerticalPadding {
     switch (widget.size) {
       case NotificationSize.sm:
-        return 58;
+        return GardenSpace.paddingXs;
       case NotificationSize.lg:
-        return 90;
+        return GardenSpace.paddingMd;
       default:
-        return 74;
+        return GardenSpace.paddingSm;
     }
   }
 
@@ -134,58 +134,60 @@ class _NotificationToastState extends State<NotificationToast> {
   Widget build(BuildContext context) {
     Widget content = Container(
       width: _width,
-      height: _height,
       decoration: BoxDecoration(
         color: GardenColors.base.shade50,
         borderRadius: GardenRadius.radiusMd,
       ),
-      child: Row(
-        spacing: _rowGap,
-        children: [
-          NotificationIcon(size: _iconSize, severity: _iconSeverity),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsetsGeometry.symmetric(
-                vertical: GardenSpace.paddingXs,
-                horizontal: GardenSpace.paddingSm,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: _titleTextStyle.copyWith(
-                          fontWeight: FontWeight.bold,
+      child: IntrinsicHeight(
+        child: Row(
+          spacing: _rowGap,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            NotificationIcon(size: _iconSize, severity: _iconSeverity),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsGeometry.symmetric(
+                  vertical: _textVerticalPadding,
+                  horizontal: GardenSpace.paddingSm,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.title,
+                          style: _titleTextStyle.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      SizedBox(
-                        height: _closeIconSize,
-                        width: _closeIconSize,
-                        child: IconButton(
-                          onPressed: _onClose,
-                          icon: Icon(Icons.close, size: _closeIconSize),
-                          padding: EdgeInsets.zero,
+                        SizedBox(
+                          height: _closeIconSize,
+                          width: _closeIconSize,
+                          child: IconButton(
+                            onPressed: _onClose,
+                            icon: Icon(Icons.close, size: _closeIconSize),
+                            padding: EdgeInsets.zero,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    widget.message,
-                    style: _messageTextStyle,
-                    softWrap: true,
-                    overflow: TextOverflow.visible,
-                    maxLines: _maxLinesMessage,
-                  ),
-                ],
+                      ],
+                    ),
+                    Text(
+                      widget.message,
+                      style: _messageTextStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.visible,
+                      maxLines: _maxLinesMessage,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
     return AnimatedOpacity(

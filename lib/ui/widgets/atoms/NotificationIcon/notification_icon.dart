@@ -29,14 +29,11 @@ class NotificationIcon extends StatelessWidget {
     }
   }
 
-  double get _width {
-    switch (size) {
-      case NotificationIconSize.sm:
-        return 48;
-      case NotificationIconSize.lg:
-        return 80;
-      default:
-        return 64;
+  double get _containerHorizontalPadding {
+    if (size == NotificationIconSize.sm) {
+      return GardenSpace.paddingSm;
+    } else {
+     return GardenSpace.paddingMd;
     }
   }
 
@@ -45,16 +42,16 @@ class NotificationIcon extends StatelessWidget {
       case NotificationIconSize.sm:
         return 24;
       case NotificationIconSize.lg:
-        return 48;
-      default:
         return 32;
+      default:
+        return 28;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: _width,
+      padding: EdgeInsets.symmetric(horizontal: _containerHorizontalPadding),
       decoration: BoxDecoration(
         color: _color,
         borderRadius: BorderRadius.only(
