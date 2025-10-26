@@ -36,8 +36,7 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
     as _i15;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i17;
-import 'package:garden_ui/ui/widgets/molecules/Button/button.dart'
-as _i18;
+import 'package:garden_ui/ui/widgets/molecules/Button/button.dart' as _i18;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
