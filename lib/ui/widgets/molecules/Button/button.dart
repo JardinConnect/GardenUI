@@ -3,7 +3,7 @@ import 'package:garden_ui/ui/design_system.dart';
 import 'package:garden_ui/ui/models/button.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-class GCButton extends StatelessWidget {
+class Button extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final ButtonSeverity severity;
@@ -11,7 +11,7 @@ class GCButton extends StatelessWidget {
   final IconAlignment? iconAlignment;
   final IconData? icon;
 
-  const GCButton({
+  const Button({
     super.key,
     required this.label,
     required this.onPressed,
@@ -66,21 +66,21 @@ class GCButton extends StatelessWidget {
   }
 }
 
-@widgetbook.UseCase(name: 'Primary', type: GCButton)
+@widgetbook.UseCase(name: 'Primary', type: Button)
 Widget primaryButtonUseCase(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     spacing: GardenSpace.gapLg,
     children: [
-      GCButton(label: "Send", onPressed: () => {}),
-      GCButton(label: "Send", icon: Icons.send, onPressed: () => {}),
-      GCButton(
+      Button(label: "Send", onPressed: () => {}),
+      Button(label: "Send", icon: Icons.send, onPressed: () => {}),
+      Button(
         label: "Send",
         iconAlignment: IconAlignment.start,
         icon: Icons.send,
         onPressed: () => {},
       ),
-      GCButton(
+      Button(
         label: "Send",
         icon: Icons.send,
         minWidth: 300,
@@ -90,31 +90,31 @@ Widget primaryButtonUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Danger', type: GCButton)
+@widgetbook.UseCase(name: 'Danger', type: Button)
 Widget dangerButtonUseCase(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     spacing: GardenSpace.gapLg,
     children: [
-      GCButton(
+      Button(
         label: "Delete",
         severity: ButtonSeverity.danger,
         onPressed: () => {},
       ),
-      GCButton(
+      Button(
         label: "Delete",
         severity: ButtonSeverity.danger,
         icon: Icons.delete,
         onPressed: () => {},
       ),
-      GCButton(
+      Button(
         label: "Delete",
         iconAlignment: IconAlignment.start,
         severity: ButtonSeverity.danger,
         icon: Icons.delete,
         onPressed: () => {},
       ),
-      GCButton(
+      Button(
         label: "Delete",
         severity: ButtonSeverity.danger,
         icon: Icons.delete,
