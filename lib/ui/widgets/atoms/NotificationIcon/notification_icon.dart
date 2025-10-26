@@ -33,7 +33,7 @@ class NotificationIcon extends StatelessWidget {
     if (size == NotificationIconSize.sm) {
       return GardenSpace.paddingSm;
     } else {
-     return GardenSpace.paddingMd;
+      return GardenSpace.paddingMd;
     }
   }
 
