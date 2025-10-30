@@ -1,3 +1,4 @@
+// Atoms - Basic building blocks of the UI
 export 'widgets/atoms/AlertIndicator/alert_indicator.dart';
 export 'widgets/atoms/Button/button.dart';
 export 'widgets/atoms/Card/card.dart';
@@ -6,14 +7,17 @@ export 'widgets/atoms/MenuIcon/menu_icon.dart';
 export 'widgets/atoms/NotificationIcon/notification_icon.dart';
 export 'widgets/atoms/TabItem/tab_item.dart';
 
-export 'widgets/molecules/TabMenu/tab_menu.dart';
-export 'widgets/molecules/MenuItem/menu_item.dart';
+// Molecules - Combinations of atoms
 export 'widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
+export 'widgets/molecules/MenuItem/menu_item.dart';
 export 'widgets/molecules/Notification/notification_toast.dart';
+export 'widgets/molecules/TabMenu/tab_menu.dart';
 
-export 'widgets/organisms/Menu/menu.dart';
+// Organisms - Complex compositions
 export 'widgets/organisms/HierarchicalMenu/hierarchical_menu.dart';
+export 'widgets/organisms/Menu/menu.dart';
 
+// Models - Data structures and enums
 export 'models/button.dart';
 export 'models/hierarchical_menu_item.dart';
 export 'models/notification.dart';

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:garden_ui/ui/design_system.dart';
 import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
 
 enum AlertIndicatorSize { sm, md, lg }
 
+/// A visual alert indicator for displaying warning or error states.
+///
+/// This component displays an icon based on the alert type (none, warning, error)
+/// with customizable size.
 class AlertIndicator extends StatelessWidget {
+  /// The type of alert to display.
   final MenuAlertType alertType;
+
+  /// The size of the alert indicator.
   final AlertIndicatorSize size;
 
   const AlertIndicator({
@@ -55,22 +61,4 @@ class AlertIndicator extends StatelessWidget {
 
     return Icon(_icon, size: _iconSize, color: _color);
   }
-}
-
-@widgetbook.UseCase(name: 'Default', type: AlertIndicator)
-Widget alertIndicatorDefaultUseCase(BuildContext context) {
-  return const AlertIndicator(alertType: MenuAlertType.warning);
-}
-
-@widgetbook.UseCase(name: 'Error', type: AlertIndicator)
-Widget alertIndicatorErrorUseCase(BuildContext context) {
-  return const AlertIndicator(alertType: MenuAlertType.error);
-}
-
-@widgetbook.UseCase(name: 'Small', type: AlertIndicator)
-Widget alertIndicatorSmallUseCase(BuildContext context) {
-  return const AlertIndicator(
-    alertType: MenuAlertType.warning,
-    size: AlertIndicatorSize.sm,
-  );
 }

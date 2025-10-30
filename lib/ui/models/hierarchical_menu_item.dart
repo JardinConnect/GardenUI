@@ -80,19 +80,21 @@ class HierarchicalMenuItem {
 
   /// Retourne la couleur associée au niveau
   Color get levelColor {
+    // Note: Consider using LevelIndicator component directly instead
+    // of calculating colors here for better consistency
     switch (level) {
       case 1:
-        return Colors.blue.shade500;
+        return const Color(0xFF037f8c); // GardenColors.primary.shade500
       case 2:
-        return Colors.yellow.shade600;
+        return const Color(0xFFd6a113); // GardenColors.secondary.shade500
       case 3:
-        return Colors.green.shade500;
+        return const Color(0xFF5be51b); // GardenColors.tertiary.shade500
       case 4:
-        return Colors.purple.shade500;
+        return const Color(0xFF4a7fe9); // GardenColors.blueInfo.shade500
       case 5:
-        return Colors.cyan.shade500;
+        return const Color(0xFFedce1e); // GardenColors.yellowWarning.shade500
       default:
-        return Colors.grey.shade400;
+        return const Color(0xFFe3e5ed); // GardenColors.base.shade400
     }
   }
 }

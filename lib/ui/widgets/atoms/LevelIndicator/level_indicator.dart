@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:garden_ui/ui/design_system.dart';
 
 enum LevelIndicatorSize { sm, md, lg }
 
+/// A visual indicator representing hierarchical levels with color-coded bars.
+///
+/// This component displays a colored vertical bar whose color varies based
+/// on the level number (1-5) or a custom color.
 class LevelIndicator extends StatelessWidget {
+  /// The hierarchical level to display (1-5).
   final int level;
+
+  /// The size of the level indicator.
   final LevelIndicatorSize size;
+
+  /// Optional custom color override.
   final Color? color;
 
   const LevelIndicator({
@@ -57,19 +65,4 @@ class LevelIndicator extends StatelessWidget {
       ),
     );
   }
-}
-
-@widgetbook.UseCase(name: 'Level 1', type: LevelIndicator)
-Widget levelIndicatorLevel1UseCase(BuildContext context) {
-  return SizedBox(height: 60, child: const LevelIndicator(level: 1));
-}
-
-@widgetbook.UseCase(name: 'Level 3', type: LevelIndicator)
-Widget levelIndicatorLevel3UseCase(BuildContext context) {
-  return SizedBox(height: 60, child: const LevelIndicator(level: 3));
-}
-
-@widgetbook.UseCase(name: 'Level 5', type: LevelIndicator)
-Widget levelIndicatorLevel5UseCase(BuildContext context) {
-  return SizedBox(height: 60, child: const LevelIndicator(level: 5));
 }

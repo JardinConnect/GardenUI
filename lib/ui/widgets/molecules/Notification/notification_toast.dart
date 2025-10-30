@@ -133,7 +133,7 @@ class _NotificationToastState extends State<NotificationToast> {
             NotificationIcon(size: widget.size, severity: _iconSeverity),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: _textVerticalPadding,
                   horizontal: GardenSpace.paddingSm,
                 ),
@@ -284,7 +284,7 @@ Widget successNotificationUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'warning', type: NotificationToast)
+@widgetbook.UseCase(name: 'Warning', type: NotificationToast)
 Widget warningNotificationUseCase(BuildContext context) {
   return Column(
     spacing: GardenSpace.gapXl,

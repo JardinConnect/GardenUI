@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
 import 'package:garden_ui/ui/models/button.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
+/// A customizable button widget with optional icon and multiple severity styles.
+///
+/// The Button component provides a consistent button design with configurable
+/// label, icon, and severity levels (primary, danger).
 class Button extends StatelessWidget {
+  /// The text label displayed on the button.
   final String label;
+
+  /// Callback function executed when the button is pressed.
   final VoidCallback onPressed;
+
+  /// The severity level of the button, affecting its color scheme.
   final ButtonSeverity severity;
+
+  /// The minimum width of the button.
   final double minWidth;
+
+  /// Position of the icon relative to the label (start or end).
   final IconAlignment? iconAlignment;
+
+  /// Optional icon to display on the button.
   final IconData? icon;
 
   const Button({
@@ -64,63 +78,4 @@ class Button extends StatelessWidget {
       );
     }
   }
-}
-
-@widgetbook.UseCase(name: 'Primary', type: Button)
-Widget primaryButtonUseCase(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    spacing: GardenSpace.gapLg,
-    children: [
-      Button(label: "Send", onPressed: () => {}),
-      Button(label: "Send", icon: Icons.send, onPressed: () => {}),
-      Button(
-        label: "Send",
-        iconAlignment: IconAlignment.start,
-        icon: Icons.send,
-        onPressed: () => {},
-      ),
-      Button(
-        label: "Send",
-        icon: Icons.send,
-        minWidth: 300,
-        onPressed: () => {},
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'Danger', type: Button)
-Widget dangerButtonUseCase(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    spacing: GardenSpace.gapLg,
-    children: [
-      Button(
-        label: "Delete",
-        severity: ButtonSeverity.danger,
-        onPressed: () => {},
-      ),
-      Button(
-        label: "Delete",
-        severity: ButtonSeverity.danger,
-        icon: Icons.delete,
-        onPressed: () => {},
-      ),
-      Button(
-        label: "Delete",
-        iconAlignment: IconAlignment.start,
-        severity: ButtonSeverity.danger,
-        icon: Icons.delete,
-        onPressed: () => {},
-      ),
-      Button(
-        label: "Delete",
-        severity: ButtonSeverity.danger,
-        icon: Icons.delete,
-        minWidth: 300,
-        onPressed: () => {},
-      ),
-    ],
-  );
 }
