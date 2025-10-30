@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:widgetbook_workspace/ui/components.dart';
-import 'package:widgetbook_workspace/ui/foundation/color/color_design_system.dart';
+import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/foundation/color/color_design_system.dart';
 
 void main() {
   Color infoColor = GardenColors.blueInfo.shade500;

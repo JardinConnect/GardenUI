@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_workspace/ui/widgets/atoms/TabItem/tab_item.dart';
+import 'package:garden_ui/ui/widgets/atoms/TabItem/tab_item.dart';
 
 /// A horizontal menu of tabs with optional scrolling support.
 ///

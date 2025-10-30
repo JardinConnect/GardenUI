@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:widgetbook_workspace/ui/design_system.dart';
-import 'package:widgetbook_workspace/ui/models/hierarchical_menu_item.dart';
-import 'package:widgetbook_workspace/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
+import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
+import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
 
 /// Tailles disponibles pour le menu hiérarchique
 enum HierarchicalMenuSize { sm, md, lg }

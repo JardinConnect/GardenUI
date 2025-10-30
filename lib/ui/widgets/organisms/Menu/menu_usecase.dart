@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:widgetbook_workspace/ui/components.dart';
-import 'package:widgetbook_workspace/ui/design_system.dart';
+import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 @UseCase(
   name: 'Default',
@@ -30,6 +30,7 @@ class _MenuShowcase extends StatelessWidget {
           child: SizedBox(
             height: double.infinity,
             child: Menu(
+              logo: AssetImage("assets/images/logo.png"),
               items: [
                 MenuItem(
                   icon: Icons.home_outlined,

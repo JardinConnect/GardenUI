@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:widgetbook_workspace/ui/components.dart';
+import 'package:garden_ui/ui/components.dart';
 
 void main() {
   group('Notification Widget Tests', () {
