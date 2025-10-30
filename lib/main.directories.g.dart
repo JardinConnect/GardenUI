@@ -36,6 +36,8 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
     as _i15;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i17;
+import 'package:garden_ui/ui/widgets/atoms/TooltipIcon/tooltip_icon.dart'
+    as _i18;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -184,6 +186,28 @@ final directories = <_i1.WidgetbookNode>[
                       builder: _i11.buildTabItemUseCase,
                       designLink: 'https://www.figma.com/file/your-tab-design',
                     ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'TooltipIcon',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'TooltipIcon',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i18.tooltipIconDefaultUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Small',
+                        builder: _i18.tooltipIconSmallUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Large',
+                        builder: _i18.tooltipIconLargeUseCase,
+                      ),
+                    ],
                   ),
                 ],
               ),
