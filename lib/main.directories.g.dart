@@ -143,26 +143,12 @@ final directories = <_i1.WidgetbookNode>[
               _i1.WidgetbookFolder(
                 name: 'Card',
                 children: [
-                  _i1.WidgetbookComponent(
+                  _i1.WidgetbookLeafComponent(
                     name: 'GardenCard',
-                    useCases: [
-                      _i1.WidgetbookUseCase(
-                        name: 'Default',
-                        builder: _i8.defaultCard,
-                      ),
-                      _i1.WidgetbookUseCase(
-                        name: 'No Shadow or Border',
-                        builder: _i8.cardPlain,
-                      ),
-                      _i1.WidgetbookUseCase(
-                        name: 'With Border Only',
-                        builder: _i8.cardWithBorderOnly,
-                      ),
-                      _i1.WidgetbookUseCase(
-                        name: 'With Border and Shadow',
-                        builder: _i8.cardWithBorderAndShadow,
-                      ),
-                    ],
+                    useCase: _i1.WidgetbookUseCase(
+                      name: 'Variants',
+                      builder: _i8.buildCardUseCase,
+                    ),
                   ),
                 ],
               ),
