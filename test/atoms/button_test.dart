@@ -22,11 +22,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: Button(
-              label: 'Send',
-              icon: Icons.send,
-              onPressed: () {},
-            ),
+            body: Button(label: 'Send', icon: Icons.send, onPressed: () {}),
           ),
         ),
       );
@@ -44,7 +40,9 @@ void main() {
         ),
       );
 
-      final filledButton = tester.widget<FilledButton>(find.byType(FilledButton));
+      final filledButton = tester.widget<FilledButton>(
+        find.byType(FilledButton),
+      );
       final style = filledButton.style;
       expect(
         style?.backgroundColor?.resolve({}),
@@ -65,7 +63,9 @@ void main() {
         ),
       );
 
-      final filledButton = tester.widget<FilledButton>(find.byType(FilledButton));
+      final filledButton = tester.widget<FilledButton>(
+        find.byType(FilledButton),
+      );
       final style = filledButton.style;
       expect(
         style?.backgroundColor?.resolve({}),
