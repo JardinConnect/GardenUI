@@ -13,9 +13,7 @@ void main() {
 
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GardenCard(child: testChild),
-          ),
+          home: Scaffold(body: GardenCard(child: testChild)),
         ),
       );
 
@@ -29,10 +27,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GardenCard(
-              hasShadow: true,
-              child: Text('Shadow Test'),
-            ),
+            body: GardenCard(hasShadow: true, child: Text('Shadow Test')),
           ),
         ),
       );
@@ -57,10 +52,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GardenCard(
-              hasShadow: false,
-              child: Text('No Shadow Test'),
-            ),
+            body: GardenCard(hasShadow: false, child: Text('No Shadow Test')),
           ),
         ),
       );
@@ -84,10 +76,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GardenCard(
-              hasBorder: true,
-              child: Text('Border Test'),
-            ),
+            body: GardenCard(hasBorder: true, child: Text('Border Test')),
           ),
         ),
       );
@@ -114,10 +103,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GardenCard(
-              hasBorder: false,
-              child: Text('No Border Test'),
-            ),
+            body: GardenCard(hasBorder: false, child: Text('No Border Test')),
           ),
         ),
       );
@@ -135,40 +121,38 @@ void main() {
       expect(decoration.border, isNull);
     });
 
-    testWidgets('applies correct padding, background color, and border radius',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: GardenCard(
-              child: Text('Style Test'),
-            ),
+    testWidgets(
+      'applies correct padding, background color, and border radius',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(body: GardenCard(child: Text('Style Test'))),
           ),
-        ),
-      );
+        );
 
-      final containerFinder = find.descendant(
-        of: find.byType(GardenCard),
-        matching: find.byType(Container),
-      );
+        final containerFinder = find.descendant(
+          of: find.byType(GardenCard),
+          matching: find.byType(Container),
+        );
 
-      expect(containerFinder, findsOneWidget);
+        expect(containerFinder, findsOneWidget);
 
-      final containerWidget = tester.widget<Container>(containerFinder);
-      final decoration = containerWidget.decoration as BoxDecoration;
+        final containerWidget = tester.widget<Container>(containerFinder);
+        final decoration = containerWidget.decoration as BoxDecoration;
 
-      // Check background color
-      expect(decoration.color, equals(GardenColors.base.shade50));
+        // Check background color
+        expect(decoration.color, equals(GardenColors.base.shade50));
 
-      // Check border radius
-      expect(decoration.borderRadius, equals(GardenRadius.radiusMd));
+        // Check border radius
+        expect(decoration.borderRadius, equals(GardenRadius.radiusMd));
 
-      // Check padding
-      expect(
-        containerWidget.padding,
-        equals(EdgeInsets.all(GardenSpace.paddingMd)),
-      );
-    });
+        // Check padding
+        expect(
+          containerWidget.padding,
+          equals(EdgeInsets.all(GardenSpace.paddingMd)),
+        );
+      },
+    );
 
     testWidgets('applies both shadow and border when both are enabled', (
       WidgetTester tester,
@@ -200,4 +184,3 @@ void main() {
     });
   });
 }
-

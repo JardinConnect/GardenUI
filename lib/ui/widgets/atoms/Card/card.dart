@@ -21,10 +21,7 @@ class GardenCard extends StatelessWidget {
 
   Border? get _border {
     return hasBorder
-        ? Border.all(
-            color: GardenColors.base.shade300,
-            width: 1.0,
-          )
+        ? Border.all(color: GardenColors.base.shade300, width: 1.0)
         : null;
   }
 
@@ -42,4 +39,3 @@ class GardenCard extends StatelessWidget {
     );
   }
 }
-
