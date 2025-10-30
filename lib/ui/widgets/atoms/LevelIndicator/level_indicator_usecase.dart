@@ -17,4 +17,3 @@ Widget levelIndicatorLevel3UseCase(BuildContext context) {
 Widget levelIndicatorLevel5UseCase(BuildContext context) {
   return SizedBox(height: 60, child: const LevelIndicator(level: 5));
 }
-

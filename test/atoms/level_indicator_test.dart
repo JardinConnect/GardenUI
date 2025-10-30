@@ -7,9 +7,7 @@ void main() {
   group('LevelIndicator Widget Tests', () {
     testWidgets('renders with level 1', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 1)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 1))),
       );
 
       expect(find.byType(LevelIndicator), findsOneWidget);
@@ -19,9 +17,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 1)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 1))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -34,9 +30,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 2)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 2))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -49,9 +43,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 3)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 3))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -64,9 +56,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 4)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 4))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -79,9 +69,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 5)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 5))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -94,9 +82,7 @@ void main() {
       WidgetTester tester,
     ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 99)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 99))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -110,9 +96,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: LevelIndicator(level: 1, color: Colors.red),
-          ),
+          home: Scaffold(body: LevelIndicator(level: 1, color: Colors.red)),
         ),
       );
 
@@ -169,9 +153,7 @@ void main() {
 
     testWidgets('has fixed height of 30', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: LevelIndicator(level: 1)),
-        ),
+        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 1))),
       );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
@@ -179,4 +161,3 @@ void main() {
     });
   });
 }
-

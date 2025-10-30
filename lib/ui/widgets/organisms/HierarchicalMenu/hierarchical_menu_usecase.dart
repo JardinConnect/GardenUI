@@ -81,4 +81,3 @@ Widget hierarchicalMenuWithSelectionUseCase(BuildContext context) {
     selectedItemId: '1.1',
   );
 }
-

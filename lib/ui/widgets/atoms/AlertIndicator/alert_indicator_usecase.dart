@@ -21,4 +21,3 @@ Widget alertIndicatorSmallUseCase(BuildContext context) {
     size: AlertIndicatorSize.sm,
   );
 }
-

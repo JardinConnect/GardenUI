@@ -19,10 +19,7 @@ Widget hierarchicalMenuItemDefaultUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'With Children Expanded',
-  type: HierarchicalMenuItemWidget,
-)
+@UseCase(name: 'With Children Expanded', type: HierarchicalMenuItemWidget)
 Widget hierarchicalMenuItemExpandedUseCase(BuildContext context) {
   return HierarchicalMenuItemWidget(
     item: HierarchicalMenuItem(
@@ -37,4 +34,3 @@ Widget hierarchicalMenuItemExpandedUseCase(BuildContext context) {
     ),
   );
 }
-

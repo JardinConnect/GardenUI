@@ -43,4 +43,3 @@ Widget successNotificationIconUseCase(BuildContext context) {
 Widget warningNotificationIconUseCase(BuildContext context) {
   return _preview(NotificationIconSeverity.warning);
 }
-

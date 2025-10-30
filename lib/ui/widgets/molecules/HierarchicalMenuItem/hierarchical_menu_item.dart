@@ -218,9 +218,9 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                          if (widget.item.subtitle != null) ...[
-                            SizedBox(height: GardenSpace.gapXs / 2),
-                            Text(
+                      if (widget.item.subtitle != null) ...[
+                        SizedBox(height: GardenSpace.gapXs / 2),
+                        Text(
                           widget.item.subtitle!,
                           style: _subtitleStyle,
                           maxLines: 1,

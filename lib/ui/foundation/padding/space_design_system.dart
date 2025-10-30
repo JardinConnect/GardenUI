@@ -15,28 +15,16 @@ class GardenSpace {
   };
 
   // Icon sizes for different components
-  static const _iconSizes = {
-    'sm': 16.0,
-    'md': 20.0,
-    'lg': 24.0,
-  };
+  static const _iconSizes = {'sm': 16.0, 'md': 20.0, 'lg': 24.0};
 
   // Hierarchical menu indentation per level
   static const hierarchicalIndentPerLevel = 16.0;
 
   // Menu widths
-  static const _menuWidths = {
-    'sm': 200.0,
-    'md': 300.0,
-    'lg': 400.0,
-  };
+  static const _menuWidths = {'sm': 200.0, 'md': 300.0, 'lg': 400.0};
 
   // Logo widths
-  static const _logoWidths = {
-    'sm': 96.0,
-    'md': 156.0,
-    'lg': 256.0,
-  };
+  static const _logoWidths = {'sm': 96.0, 'md': 156.0, 'lg': 256.0};
 
   static final paddingXs = _paddings['xs']!;
   static final paddingSm = _paddings['sm']!;

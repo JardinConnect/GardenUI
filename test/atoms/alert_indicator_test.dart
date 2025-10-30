@@ -21,9 +21,7 @@ void main() {
     testWidgets('renders with error alert type', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AlertIndicator(alertType: MenuAlertType.error),
-          ),
+          home: Scaffold(body: AlertIndicator(alertType: MenuAlertType.error)),
         ),
       );
 
@@ -36,9 +34,7 @@ void main() {
     ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AlertIndicator(alertType: MenuAlertType.none),
-          ),
+          home: Scaffold(body: AlertIndicator(alertType: MenuAlertType.none)),
         ),
       );
 
@@ -61,14 +57,10 @@ void main() {
       expect(iconWidget.color, GardenColors.yellowWarning.shade500);
     });
 
-    testWidgets('applies correct color for error', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('applies correct color for error', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AlertIndicator(alertType: MenuAlertType.error),
-          ),
+          home: Scaffold(body: AlertIndicator(alertType: MenuAlertType.error)),
         ),
       );
 
@@ -125,4 +117,3 @@ void main() {
     });
   });
 }
-

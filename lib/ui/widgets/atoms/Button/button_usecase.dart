@@ -63,4 +63,3 @@ Widget dangerButtonUseCase(BuildContext context) {
     ],
   );
 }
-
