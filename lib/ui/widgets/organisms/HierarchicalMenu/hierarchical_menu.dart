@@ -1,36 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:garden_ui/ui/design_system.dart';
 import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
 import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
 
-/// Tailles disponibles pour le menu hiérarchique
+/// Available sizes for the hierarchical menu
 enum HierarchicalMenuSize { sm, md, lg }
 
-/// Menu vertical hiérarchique multi-niveaux
+/// Multi-level vertical hierarchical menu
 ///
-/// Composant permettant d'afficher une liste verticale d'éléments
-/// extensibles/collapsibles avec jusqu'à 5 niveaux de profondeur
+/// Component for displaying a vertical list of expandable/collapsible
+/// items with up to 5 levels of depth
 class HierarchicalMenu extends StatefulWidget {
-  /// Liste des éléments racine du menu
+  /// List of root menu items
   final List<HierarchicalMenuItem> items;
 
-  /// Taille du menu
+  /// Menu size
   final HierarchicalMenuSize size;
 
-  /// ID de l'élément sélectionné
+  /// ID of the selected item
   final String? selectedItemId;
 
-  /// Callback appelé lors de la sélection d'un élément
+  /// Callback called when an item is selected
   final ValueChanged<HierarchicalMenuItem>? onItemSelected;
 
-  /// Callback appelé lors du changement d'état d'expansion
+  /// Callback called when expansion state changes
   final ValueChanged<HierarchicalMenuItem>? onItemExpansionChanged;
 
-  /// Largeur maximale du menu (optionnelle)
+  /// Maximum width of the menu (optional)
   final double? maxWidth;
 
-  /// Hauteur maximale du menu (optionnelle)
+  /// Maximum height of the menu (optional)
   final double? maxHeight;
 
   const HierarchicalMenu({
@@ -85,14 +84,14 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   }
 
   void _initializeAnimations() {
-    // Nettoyer les anciens contrôleurs
+    // Clean up old controllers
     for (final controller in _itemControllers.values) {
       controller.dispose();
     }
     _itemControllers.clear();
     _itemAnimations.clear();
 
-    // Créer des contrôleurs pour chaque item
+    // Create controllers for each item
     _createAnimationsForItems(_items);
   }
 
@@ -134,11 +133,11 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   double get _defaultWidth {
     switch (widget.size) {
       case HierarchicalMenuSize.sm:
-        return 200.0;
+        return GardenSpace.menuWidthSm;
       case HierarchicalMenuSize.md:
-        return 300.0;
+        return GardenSpace.menuWidthMd;
       case HierarchicalMenuSize.lg:
-        return 400.0;
+        return GardenSpace.menuWidthLg;
     }
   }
 
@@ -194,7 +193,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
     final widgets = <Widget>[];
 
     for (final item in items) {
-      // Ajouter l'élément principal
+      // Add the main item
       widgets.add(
         HierarchicalMenuItemWidget(
           item: item,
@@ -205,7 +204,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
         ),
       );
 
-      // Ajouter les enfants avec animation si l'élément est expandé
+      // Add children with animation if the item is expanded
       if (item.hasChildren) {
         final animation = _itemAnimations[item.id];
         if (animation != null) {
@@ -228,7 +227,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
         }
       }
 
-      // Espacement entre les éléments
+      // Spacing between items
       if (item != items.last) {
         widgets.add(SizedBox(height: GardenSpace.paddingXs));
       }
@@ -257,106 +256,4 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
       ),
     );
   }
-}
-
-@widgetbook.UseCase(name: 'Default', type: HierarchicalMenu)
-Widget hierarchicalMenuDefaultUseCase(BuildContext context) {
-  return HierarchicalMenu(
-    items: [
-      HierarchicalMenuItem(
-        id: '1',
-        title: 'Serre principale',
-        subtitle: '24°C - 65%',
-        icon: Icons.home,
-        level: 1,
-        alertType: MenuAlertType.warning,
-        children: [
-          HierarchicalMenuItem(
-            id: '1.1',
-            title: 'Zone A',
-            subtitle: '22°C - 70%',
-            level: 2,
-            children: [
-              HierarchicalMenuItem(
-                id: '1.1.1',
-                title: 'Capteur température',
-                level: 3,
-                alertType: MenuAlertType.error,
-              ),
-              HierarchicalMenuItem(
-                id: '1.1.2',
-                title: 'Capteur humidité',
-                level: 3,
-              ),
-            ],
-          ),
-          HierarchicalMenuItem(
-            id: '1.2',
-            title: 'Zone B',
-            subtitle: '26°C - 60%',
-            level: 2,
-          ),
-        ],
-      ),
-      HierarchicalMenuItem(
-        id: '2',
-        title: 'Serre secondaire',
-        subtitle: '20°C - 55%',
-        icon: Icons.business,
-        level: 1,
-        children: [
-          HierarchicalMenuItem(id: '2.1', title: 'Zone unique', level: 2),
-        ],
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'Large Size', type: HierarchicalMenu)
-Widget hierarchicalMenuLargeUseCase(BuildContext context) {
-  return HierarchicalMenu(
-    size: HierarchicalMenuSize.lg,
-    items: [
-      HierarchicalMenuItem(
-        id: '1',
-        title: 'Serre principale',
-        subtitle: '24°C - 65%',
-        icon: Icons.home,
-        level: 1,
-        isExpanded: true,
-        alertType: MenuAlertType.warning,
-        children: [
-          HierarchicalMenuItem(
-            id: '1.1',
-            title: 'Zone A',
-            subtitle: '22°C - 70%',
-            level: 2,
-            isExpanded: true,
-            children: [
-              HierarchicalMenuItem(
-                id: '1.1.1',
-                title: 'Système irrigation',
-                level: 3,
-                children: [
-                  HierarchicalMenuItem(
-                    id: '1.1.1.1',
-                    title: 'Pompe principale',
-                    level: 4,
-                    children: [
-                      HierarchicalMenuItem(
-                        id: '1.1.1.1.1',
-                        title: 'Capteur débit',
-                        level: 5,
-                        alertType: MenuAlertType.error,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    ],
-  );
 }

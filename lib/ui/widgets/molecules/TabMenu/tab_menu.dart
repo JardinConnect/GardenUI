@@ -34,7 +34,7 @@ class TabMenu extends StatefulWidget {
     required this.onTabSelected,
     this.icons,
     this.scrollable = false,
-    this.matchIndicatorToContent = true, // Changed from false to true
+    this.matchIndicatorToContent = true,
     this.tabSpacing = 16.0,
   }) : assert(
          icons == null || icons.length == tabs.length,

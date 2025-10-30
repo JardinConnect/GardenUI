@@ -28,7 +28,7 @@ import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon_us
     as _i12;
 import 'package:garden_ui/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
     as _i13;
-import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart'
+import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item_usecase.dart'
     as _i14;
 import 'package:garden_ui/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
     as _i15;
@@ -36,11 +36,9 @@ import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast.d
     as _i16;
 import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
     as _i17;
-import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu.dart'
-    as _i19;
-import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_examples.dart'
+import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
     as _i18;
-import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i20;
+import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i19;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -338,20 +336,12 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'HierarchicalMenu',
                     useCases: [
                       _i1.WidgetbookUseCase(
-                        name: 'Complete Example',
-                        builder: _i18.hierarchicalMenuCompleteExampleUseCase,
-                      ),
-                      _i1.WidgetbookUseCase(
                         name: 'Default',
-                        builder: _i19.hierarchicalMenuDefaultUseCase,
+                        builder: _i18.hierarchicalMenuDefaultUseCase,
                       ),
                       _i1.WidgetbookUseCase(
-                        name: 'Large Size',
-                        builder: _i19.hierarchicalMenuLargeUseCase,
-                      ),
-                      _i1.WidgetbookUseCase(
-                        name: 'Small Size with Deep Nesting',
-                        builder: _i18.hierarchicalMenuDeepNestingUseCase,
+                        name: 'With Selected Item',
+                        builder: _i18.hierarchicalMenuWithSelectionUseCase,
                       ),
                     ],
                   ),
@@ -364,7 +354,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'Menu',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i20.buildMenuUseCase,
+                      builder: _i19.buildMenuUseCase,
                       designLink: 'https://www.figma.com/file/your-menu-design',
                     ),
                   ),
