@@ -32,7 +32,7 @@ import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical
     as _i14;
 import 'package:garden_ui/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
     as _i15;
-import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast.dart'
+import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast_usecase.dart'
     as _i16;
 import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
     as _i17;
