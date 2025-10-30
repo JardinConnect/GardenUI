@@ -4,10 +4,7 @@ import 'package:garden_ui/ui/design_system.dart';
 
 import 'card.dart';
 
-@UseCase(
-  name: 'Variants',
-  type: GardenCard,
-)
+@UseCase(name: 'Variants', type: GardenCard)
 Widget buildCardUseCase(BuildContext context) {
   return const _CardShowcase();
 }
@@ -29,10 +26,7 @@ class _CardShowcase extends StatelessWidget {
             children: [
               Text('Default (with shadow)', style: GardenTypography.bodyLg),
               const GardenCard(
-                child: Text(
-                  'Card with shadow',
-                  style: TextStyle(fontSize: 16),
-                ),
+                child: Text('Card with shadow', style: TextStyle(fontSize: 16)),
               ),
               Text('With border and shadow', style: GardenTypography.bodyLg),
               const GardenCard(
