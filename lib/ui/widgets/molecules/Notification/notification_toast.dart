@@ -3,8 +3,6 @@ import 'package:widgetbook_workspace/ui/components.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-enum NotificationSize { sm, md, lg }
-
 enum NotificationSeverity { alert, info, success, warning }
 
 class NotificationToast extends StatefulWidget {
@@ -51,17 +49,6 @@ class _NotificationToastState extends State<NotificationToast> {
         return GardenSpace.paddingMd;
       default:
         return GardenSpace.paddingSm;
-    }
-  }
-
-  NotificationIconSize get _iconSize {
-    switch (widget.size) {
-      case NotificationSize.sm:
-        return NotificationIconSize.sm;
-      case NotificationSize.lg:
-        return NotificationIconSize.lg;
-      default:
-        return NotificationIconSize.md;
     }
   }
 
@@ -143,7 +130,7 @@ class _NotificationToastState extends State<NotificationToast> {
           spacing: _rowGap,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            NotificationIcon(size: _iconSize, severity: _iconSeverity),
+            NotificationIcon(size: widget.size, severity: _iconSeverity),
             Expanded(
               child: Padding(
                 padding: EdgeInsetsGeometry.symmetric(

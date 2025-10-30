@@ -29,19 +29,19 @@ void main() {
         {
           'size': NotificationSize.sm,
           'severity': NotificationSeverity.alert,
-          'expectedIconSize': NotificationIconSize.sm,
+          'expectedIconSize': NotificationSize.sm,
           'expectedIconSeverity': NotificationIconSeverity.alert,
         },
         {
           'size': NotificationSize.md,
           'severity': NotificationSeverity.success,
-          'expectedIconSize': NotificationIconSize.md,
+          'expectedIconSize': NotificationSize.md,
           'expectedIconSeverity': NotificationIconSeverity.success,
         },
         {
           'size': NotificationSize.lg,
           'severity': NotificationSeverity.warning,
-          'expectedIconSize': NotificationIconSize.lg,
+          'expectedIconSize': NotificationSize.lg,
           'expectedIconSeverity': NotificationIconSeverity.warning,
         },
       ];

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook_workspace/ui/components.dart';
 import 'package:widgetbook_workspace/ui/design_system.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 enum NotificationIconSeverity { alert, info, success, warning }
 
-enum NotificationIconSize { sm, md, lg }
-
 class NotificationIcon extends StatelessWidget {
   final NotificationIconSeverity severity;
-  final NotificationIconSize size;
+  final NotificationSize size;
 
   const NotificationIcon({
     super.key,
     this.severity = NotificationIconSeverity.info,
-    this.size = NotificationIconSize.md,
+    this.size = NotificationSize.md,
   });
 
   Color get _color {
@@ -30,7 +29,7 @@ class NotificationIcon extends StatelessWidget {
   }
 
   double get _containerHorizontalPadding {
-    if (size == NotificationIconSize.sm) {
+    if (size == NotificationSize.sm) {
       return GardenSpace.paddingSm;
     } else {
       return GardenSpace.paddingMd;
@@ -39,9 +38,9 @@ class NotificationIcon extends StatelessWidget {
 
   double get _iconWidth {
     switch (size) {
-      case NotificationIconSize.sm:
+      case NotificationSize.sm:
         return 24;
-      case NotificationIconSize.lg:
+      case NotificationSize.lg:
         return 32;
       default:
         return 28;
@@ -77,24 +76,15 @@ Widget _preview(NotificationIconSeverity severity) {
     children: [
       SizedBox(
         height: 58,
-        child: NotificationIcon(
-          severity: severity,
-          size: NotificationIconSize.sm,
-        ),
+        child: NotificationIcon(severity: severity, size: NotificationSize.sm),
       ),
       SizedBox(
         height: 74,
-        child: NotificationIcon(
-          severity: severity,
-          size: NotificationIconSize.md,
-        ),
+        child: NotificationIcon(severity: severity, size: NotificationSize.md),
       ),
       SizedBox(
         height: 90,
-        child: NotificationIcon(
-          severity: severity,
-          size: NotificationIconSize.lg,
-        ),
+        child: NotificationIcon(severity: severity, size: NotificationSize.lg),
       ),
     ],
   );

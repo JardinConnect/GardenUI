@@ -13,3 +13,4 @@ export 'widgets/organisms/Menu/menu.dart';
 export 'widgets/organisms/HierarchicalMenu/hierarchical_menu.dart';
 
 export 'models/hierarchical_menu_item.dart';
+export 'models/notification.dart';
