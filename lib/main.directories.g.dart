@@ -40,6 +40,7 @@ import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon.da
     as _i18;
 import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast.dart'
     as _i19;
+import 'package:garden_ui/ui/widgets/atoms/Button/button.dart' as _i20;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -225,6 +226,24 @@ final directories = <_i1.WidgetbookNode>[
                       _i1.WidgetbookUseCase(
                         name: 'Warning',
                         builder: _i18.warningNotificationIconUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Button',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'Button',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i20.primaryButtonUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Danger',
+                        builder: _i20.dangerButtonUseCase,
                       ),
                     ],
                   ),
