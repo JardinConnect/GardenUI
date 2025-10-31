@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-import 'package:garden_ui/ui/enums.dart';
 
 void main() {
   group('GardenIcon Widget Tests', () {

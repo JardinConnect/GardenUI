@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:garden_ui/ui/design_system.dart';
 import 'package:garden_ui/ui/enums.dart';
 
 /// A customizable SVG icon widget from the Garden UI icon set.
@@ -76,7 +75,7 @@ class GardenIcon extends StatelessWidget {
             width: _iconSize,
             height: _iconSize,
             colorFilter: ColorFilter.mode(
-              color.withOpacity(0.2),
+              color.withValues(alpha: 0.2),
               BlendMode.srcIn,
             ),
           ),
