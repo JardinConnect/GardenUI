@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 @widgetbook.UseCase(name: 'Default', type: GardenIcon)
@@ -98,78 +99,29 @@ Widget gardenIconColorsUseCase(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Fill Percentages', type: GardenIcon)
+@widgetbook.UseCase(name: 'Fill Percentage (Interactive)', type: GardenIcon)
 Widget gardenIconFillUseCase(BuildContext context) {
+  final fillPercentage = context.knobs.double.slider(
+    label: 'Fill Percentage',
+    initialValue: 50,
+    min: 0,
+    max: 100,
+  );
+
   return Center(
-    child: Wrap(
-      spacing: 24,
-      runSpacing: 24,
-      alignment: WrapAlignment.center,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GardenIcon(
-              iconName: 'Humidite_profondeur',
-              size: GardenIconSize.lg,
-              color: GardenColors.primary.shade500,
-              fillPercentage: 0,
-            ),
-            const SizedBox(height: 8),
-            const Text('0%', style: TextStyle(fontSize: 12)),
-          ],
+        GardenIcon(
+          iconName: 'Humidite_profondeur',
+          size: GardenIconSize.lg,
+          color: GardenColors.primary.shade500,
+          fillPercentage: fillPercentage,
         ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GardenIcon(
-              iconName: 'Humidite_profondeur',
-              size: GardenIconSize.lg,
-              color: GardenColors.primary.shade500,
-              fillPercentage: 25,
-            ),
-            const SizedBox(height: 8),
-            const Text('25%', style: TextStyle(fontSize: 12)),
-          ],
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GardenIcon(
-              iconName: 'Humidite_profondeur',
-              size: GardenIconSize.lg,
-              color: GardenColors.primary.shade500,
-              fillPercentage: 50,
-            ),
-            const SizedBox(height: 8),
-            const Text('50%', style: TextStyle(fontSize: 12)),
-          ],
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GardenIcon(
-              iconName: 'Humidite_profondeur',
-              size: GardenIconSize.lg,
-              color: GardenColors.primary.shade500,
-              fillPercentage: 75,
-            ),
-            const SizedBox(height: 8),
-            const Text('75%', style: TextStyle(fontSize: 12)),
-          ],
-        ),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            GardenIcon(
-              iconName: 'Humidite_profondeur',
-              size: GardenIconSize.lg,
-              color: GardenColors.primary.shade500,
-              fillPercentage: 100,
-            ),
-            const SizedBox(height: 8),
-            const Text('100%', style: TextStyle(fontSize: 12)),
-          ],
+        const SizedBox(height: 16),
+        Text(
+          '${fillPercentage.toStringAsFixed(1)}%',
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ],
     ),

@@ -198,7 +198,7 @@ final directories = <_i1.WidgetbookNode>[
                         builder: _i10.gardenIconDefaultUseCase,
                       ),
                       _i1.WidgetbookUseCase(
-                        name: 'Fill Percentages',
+                        name: 'Fill Percentage (Interactive)',
                         builder: _i10.gardenIconFillUseCase,
                       ),
                     ],
