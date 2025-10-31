@@ -1,13 +1,16 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/enums.dart';
+import 'package:garden_ui/ui/internal/constants.dart';
 import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
 import 'package:garden_ui/ui/widgets/atoms/AlertIndicator/alert_indicator.dart';
 import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator.dart';
 
-enum HierarchicalMenuItemSize { sm, md, lg }
-
+/// A hierarchical menu item widget with expandable/collapsible functionality.
+///
+/// This widget displays a single item in a hierarchical menu structure with support
+/// for multiple levels, icons, alerts, and expansion/collapse animations.
 class HierarchicalMenuItemWidget extends StatefulWidget {
   final HierarchicalMenuItem item;
   final HierarchicalMenuItemSize size;
@@ -90,7 +93,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
   }
 
   double get _leftIndent {
-    return (widget.item.level - 1) * 16.0;
+    return (widget.item.level - 1) *
+        InternalConstants.hierarchicalIndentPerLevel;
   }
 
   TextStyle get _titleStyle {
@@ -171,10 +175,10 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
           ),
           child: Row(
             children: [
-              // Indentation pour les niveaux
+              // Indentation for levels
               SizedBox(width: _leftIndent),
 
-              // Indicateur de niveau
+              // Level indicator
               LevelIndicator(
                 level: widget.item.level,
                 size: widget.size == HierarchicalMenuItemSize.sm
@@ -186,11 +190,13 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
 
               SizedBox(width: GardenSpace.paddingSm),
 
-              // Icône principale (optionnelle)
+              // Main icon (optional)
               if (widget.item.icon != null) ...[
                 Icon(
                   widget.item.icon,
-                  size: widget.size == HierarchicalMenuItemSize.sm ? 16 : 20,
+                  size: widget.size == HierarchicalMenuItemSize.sm
+                      ? InternalConstants.iconSizeSm
+                      : InternalConstants.iconSizeMd,
                   color: widget.isSelected
                       ? GardenColors.primary.shade500
                       : GardenColors.typography.shade500,
@@ -198,7 +204,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                 SizedBox(width: GardenSpace.paddingSm),
               ],
 
-              // Contenu principal
+              // Main content
               Expanded(
                 child: Padding(
                   padding: _padding,
@@ -214,7 +220,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (widget.item.subtitle != null) ...[
-                        SizedBox(height: 2),
+                        SizedBox(height: GardenSpace.gapXs / 2),
                         Text(
                           widget.item.subtitle!,
                           style: _subtitleStyle,
@@ -227,7 +233,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                 ),
               ),
 
-              // Indicateur d'alerte
+              // Alert indicator
               AlertIndicator(
                 alertType: widget.item.alertType,
                 size: widget.size == HierarchicalMenuItemSize.sm
@@ -239,7 +245,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
 
               SizedBox(width: GardenSpace.paddingSm),
 
-              // Chevron pour les éléments avec enfants
+              // Chevron for items with children
               if (widget.item.hasChildren)
                 AnimatedBuilder(
                   animation: _rotationAnimation,
@@ -249,8 +255,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                       child: Icon(
                         Icons.keyboard_arrow_down,
                         size: widget.size == HierarchicalMenuItemSize.sm
-                            ? 16
-                            : 20,
+                            ? InternalConstants.iconSizeSm
+                            : InternalConstants.iconSizeMd,
                         color: GardenColors.typography.shade400,
                       ),
                     );
@@ -258,7 +264,9 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                 )
               else
                 SizedBox(
-                  width: widget.size == HierarchicalMenuItemSize.sm ? 16 : 20,
+                  width: widget.size == HierarchicalMenuItemSize.sm
+                      ? InternalConstants.iconSizeSm
+                      : InternalConstants.iconSizeMd,
                 ),
 
               SizedBox(width: GardenSpace.paddingSm),
@@ -268,38 +276,4 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
       ),
     );
   }
-}
-
-@widgetbook.UseCase(name: 'Default', type: HierarchicalMenuItemWidget)
-Widget hierarchicalMenuItemDefaultUseCase(BuildContext context) {
-  return HierarchicalMenuItemWidget(
-    item: HierarchicalMenuItem(
-      id: '1',
-      title: 'Serre principale',
-      subtitle: '24°C - 65%',
-      icon: Icons.home,
-      level: 1,
-      alertType: MenuAlertType.warning,
-      children: [HierarchicalMenuItem(id: '1.1', title: 'Zone A', level: 2)],
-    ),
-  );
-}
-
-@widgetbook.UseCase(
-  name: 'With Children Expanded',
-  type: HierarchicalMenuItemWidget,
-)
-Widget hierarchicalMenuItemExpandedUseCase(BuildContext context) {
-  return HierarchicalMenuItemWidget(
-    item: HierarchicalMenuItem(
-      id: '1',
-      title: 'Serre principale',
-      subtitle: '24°C - 65%',
-      icon: Icons.home,
-      level: 1,
-      isExpanded: true,
-      alertType: MenuAlertType.error,
-      children: [HierarchicalMenuItem(id: '1.1', title: 'Zone A', level: 2)],
-    ),
-  );
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-
-enum NotificationSeverity { alert, info, success, warning }
+import 'package:garden_ui/ui/enums.dart';
+import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon.dart';
 
 class NotificationToast extends StatefulWidget {
   final String title;
@@ -133,7 +131,7 @@ class _NotificationToastState extends State<NotificationToast> {
             NotificationIcon(size: widget.size, severity: _iconSeverity),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(
+                padding: EdgeInsets.symmetric(
                   vertical: _textVerticalPadding,
                   horizontal: GardenSpace.paddingSm,
                 ),
@@ -187,130 +185,4 @@ class _NotificationToastState extends State<NotificationToast> {
       ),
     );
   }
-}
-
-@widgetbook.UseCase(name: 'Info', type: NotificationToast)
-Widget infoNotificationUseCase(BuildContext context) {
-  return Center(
-    child: Column(
-      spacing: GardenSpace.gapXl,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        NotificationToast(
-          title: "Title",
-          message:
-              "Ceci est une longue notification. Ceci est une très longue notification",
-          size: NotificationSize.sm,
-          severity: NotificationSeverity.info,
-        ),
-        NotificationToast(
-          title: "Title",
-          message:
-              "Ceci est une longue notification. Ceci est une très longue notification",
-          size: NotificationSize.md,
-          severity: NotificationSeverity.info,
-        ),
-        NotificationToast(
-          title: "Title",
-          message:
-              "Ceci est une longue notification. Ceci est une très longue notification",
-          size: NotificationSize.lg,
-          severity: NotificationSeverity.info,
-        ),
-      ],
-    ),
-  );
-}
-
-@widgetbook.UseCase(name: 'Alert', type: NotificationToast)
-Widget alertNotificationUseCase(BuildContext context) {
-  return Column(
-    spacing: GardenSpace.gapXl,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.sm,
-        severity: NotificationSeverity.alert,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.md,
-        severity: NotificationSeverity.alert,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.lg,
-        severity: NotificationSeverity.alert,
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'Success', type: NotificationToast)
-Widget successNotificationUseCase(BuildContext context) {
-  return Column(
-    spacing: GardenSpace.gapXl,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.sm,
-        severity: NotificationSeverity.success,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.md,
-        severity: NotificationSeverity.success,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.lg,
-        severity: NotificationSeverity.success,
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'warning', type: NotificationToast)
-Widget warningNotificationUseCase(BuildContext context) {
-  return Column(
-    spacing: GardenSpace.gapXl,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.sm,
-        severity: NotificationSeverity.warning,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.md,
-        severity: NotificationSeverity.warning,
-      ),
-      NotificationToast(
-        title: "Title",
-        message:
-            "Ceci est une longue notification. Ceci est une très longue notification",
-        size: NotificationSize.lg,
-        severity: NotificationSeverity.warning,
-      ),
-    ],
-  );
 }

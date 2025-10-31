@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
 
+/// A simple card container with optional shadow and border.
+///
+/// This component provides a consistent card design with configurable
+/// visual properties for shadow and border. Perfect for displaying
+/// grouped content with consistent styling.
 class GardenCard extends StatelessWidget {
+  /// The content to display inside the card.
   final Widget child;
 
+  /// Whether to apply a shadow to the card.
   final bool hasShadow;
 
+  /// Whether to apply a border to the card.
   final bool hasBorder;
 
   const GardenCard({

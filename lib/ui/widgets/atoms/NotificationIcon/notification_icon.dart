@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+import 'package:garden_ui/ui/enums.dart';
 
-enum NotificationIconSeverity { alert, info, success, warning }
-
+/// An icon indicator for notifications with customizable severity and size.
+///
+/// This component displays a notification icon with colors and styling
+/// based on the severity level (alert, info, success, warning).
 class NotificationIcon extends StatelessWidget {
+  /// The severity level affecting the icon's color.
   final NotificationIconSeverity severity;
+
+  /// The size of the notification icon.
   final NotificationSize size;
 
   const NotificationIcon({
@@ -67,45 +71,4 @@ class NotificationIcon extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _preview(NotificationIconSeverity severity) {
-  return Row(
-    spacing: GardenSpace.gapMd,
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SizedBox(
-        height: 58,
-        child: NotificationIcon(severity: severity, size: NotificationSize.sm),
-      ),
-      SizedBox(
-        height: 74,
-        child: NotificationIcon(severity: severity, size: NotificationSize.md),
-      ),
-      SizedBox(
-        height: 90,
-        child: NotificationIcon(severity: severity, size: NotificationSize.lg),
-      ),
-    ],
-  );
-}
-
-@widgetbook.UseCase(name: 'Info', type: NotificationIcon)
-Widget infoNotificationIconUseCase(BuildContext context) {
-  return _preview(NotificationIconSeverity.info);
-}
-
-@widgetbook.UseCase(name: 'Alert', type: NotificationIcon)
-Widget alertNotificationIconUseCase(BuildContext context) {
-  return _preview(NotificationIconSeverity.alert);
-}
-
-@widgetbook.UseCase(name: 'Success', type: NotificationIcon)
-Widget successNotificationIconUseCase(BuildContext context) {
-  return _preview(NotificationIconSeverity.success);
-}
-
-@widgetbook.UseCase(name: 'Warning', type: NotificationIcon)
-Widget warningNotificationIconUseCase(BuildContext context) {
-  return _preview(NotificationIconSeverity.warning);
 }

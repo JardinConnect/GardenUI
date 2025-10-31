@@ -1,3 +1,7 @@
+/// Public spacing and gap constants for the Garden UI library.
+///
+/// This class provides the design system's spacing tokens that are intended
+/// for use by external projects using the library.
 class GardenSpace {
   static const _paddings = {
     'xs': 4.0,

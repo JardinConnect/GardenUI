@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
-
-enum MenuIconSize { sm, md, lg }
-
-enum MenuIconSeverity { normal, danger }
+import 'package:garden_ui/ui/enums.dart';
 
 /// A single menu icon used in [MenuItem].
 ///
