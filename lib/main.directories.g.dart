@@ -20,25 +20,27 @@ import 'package:garden_ui/ui/widgets/atoms/AlertIndicator/alert_indicator_usecas
     as _i7;
 import 'package:garden_ui/ui/widgets/atoms/Button/button_usecase.dart' as _i8;
 import 'package:garden_ui/ui/widgets/atoms/Card/card_usecase.dart' as _i9;
-import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/GardenIcon/garden_icon_usecase.dart'
     as _i10;
-import 'package:garden_ui/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator_usecase.dart'
     as _i11;
-import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/MenuIcon/menu_icon_usecase.dart'
     as _i12;
-import 'package:garden_ui/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon_usecase.dart'
     as _i13;
-import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item_usecase.dart'
+import 'package:garden_ui/ui/widgets/atoms/TabItem/tab_item_usecase.dart'
     as _i14;
-import 'package:garden_ui/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item_usecase.dart'
     as _i15;
-import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/MenuItem/menu_item_usecase.dart'
     as _i16;
-import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/Notification/notification_toast_usecase.dart'
     as _i17;
-import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
     as _i18;
-import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i19;
+import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
+    as _i19;
+import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i20;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -174,6 +176,36 @@ final directories = <_i1.WidgetbookNode>[
                 ],
               ),
               _i1.WidgetbookFolder(
+                name: 'GardenIcon',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'GardenIcon',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'All Icons',
+                        builder: _i10.gardenIconAllIconsUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'All Sizes',
+                        builder: _i10.gardenIconSizesUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Color Variants',
+                        builder: _i10.gardenIconColorsUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i10.gardenIconDefaultUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Fill Percentage (Interactive)',
+                        builder: _i10.gardenIconFillUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
                 name: 'LevelIndicator',
                 children: [
                   _i1.WidgetbookComponent(
@@ -181,15 +213,15 @@ final directories = <_i1.WidgetbookNode>[
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Level 1',
-                        builder: _i10.levelIndicatorLevel1UseCase,
+                        builder: _i11.levelIndicatorLevel1UseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Level 3',
-                        builder: _i10.levelIndicatorLevel3UseCase,
+                        builder: _i11.levelIndicatorLevel3UseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Level 5',
-                        builder: _i10.levelIndicatorLevel5UseCase,
+                        builder: _i11.levelIndicatorLevel5UseCase,
                       ),
                     ],
                   ),
@@ -202,7 +234,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'MenuIcon',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'States',
-                      builder: _i11.buildMenuIconUseCase,
+                      builder: _i12.buildMenuIconUseCase,
                       designLink: 'https://www.figma.com/file/your-menu-design',
                     ),
                   ),
@@ -216,19 +248,19 @@ final directories = <_i1.WidgetbookNode>[
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Alert',
-                        builder: _i12.alertNotificationIconUseCase,
+                        builder: _i13.alertNotificationIconUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Info',
-                        builder: _i12.infoNotificationIconUseCase,
+                        builder: _i13.infoNotificationIconUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Success',
-                        builder: _i12.successNotificationIconUseCase,
+                        builder: _i13.successNotificationIconUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Warning',
-                        builder: _i12.warningNotificationIconUseCase,
+                        builder: _i13.warningNotificationIconUseCase,
                       ),
                     ],
                   ),
@@ -241,7 +273,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'TabItem',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'States',
-                      builder: _i13.buildTabItemUseCase,
+                      builder: _i14.buildTabItemUseCase,
                       designLink: 'https://www.figma.com/file/your-tab-design',
                     ),
                   ),
@@ -260,11 +292,11 @@ final directories = <_i1.WidgetbookNode>[
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Default',
-                        builder: _i14.hierarchicalMenuItemDefaultUseCase,
+                        builder: _i15.hierarchicalMenuItemDefaultUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'With Children Expanded',
-                        builder: _i14.hierarchicalMenuItemExpandedUseCase,
+                        builder: _i15.hierarchicalMenuItemExpandedUseCase,
                       ),
                     ],
                   ),
@@ -277,7 +309,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'MenuItem',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i15.buildMenuItemUseCase,
+                      builder: _i16.buildMenuItemUseCase,
                       designLink:
                           'https://www.figma.com/file/your-menu-item-design',
                     ),
@@ -292,19 +324,19 @@ final directories = <_i1.WidgetbookNode>[
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Alert',
-                        builder: _i16.alertNotificationUseCase,
+                        builder: _i17.alertNotificationUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Info',
-                        builder: _i16.infoNotificationUseCase,
+                        builder: _i17.infoNotificationUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Success',
-                        builder: _i16.successNotificationUseCase,
+                        builder: _i17.successNotificationUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Warning',
-                        builder: _i16.warningNotificationUseCase,
+                        builder: _i17.warningNotificationUseCase,
                       ),
                     ],
                   ),
@@ -317,7 +349,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'TabMenu',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i17.buildTabMenuUseCase,
+                      builder: _i18.buildTabMenuUseCase,
                       designLink:
                           'https://www.figma.com/file/your-tab-menu-design',
                     ),
@@ -337,11 +369,11 @@ final directories = <_i1.WidgetbookNode>[
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Default',
-                        builder: _i18.hierarchicalMenuDefaultUseCase,
+                        builder: _i19.hierarchicalMenuDefaultUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'With Selected Item',
-                        builder: _i18.hierarchicalMenuWithSelectionUseCase,
+                        builder: _i19.hierarchicalMenuWithSelectionUseCase,
                       ),
                     ],
                   ),
@@ -354,7 +386,7 @@ final directories = <_i1.WidgetbookNode>[
                     name: 'Menu',
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
-                      builder: _i19.buildMenuUseCase,
+                      builder: _i20.buildMenuUseCase,
                       designLink: 'https://www.figma.com/file/your-menu-design',
                     ),
                   ),
