@@ -1,1 +1,0 @@
-enum ButtonSeverity { primary, danger }

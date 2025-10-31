@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/foundation/color/color_design_system.dart';
-import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator.dart';
 
 void main() {
   group('LevelIndicator Widget Tests', () {

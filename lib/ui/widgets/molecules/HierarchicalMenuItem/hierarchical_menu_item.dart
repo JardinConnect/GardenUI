@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/enums.dart';
+import 'package:garden_ui/ui/internal/constants.dart';
 import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
 import 'package:garden_ui/ui/widgets/atoms/AlertIndicator/alert_indicator.dart';
 import 'package:garden_ui/ui/widgets/atoms/LevelIndicator/level_indicator.dart';
-
-enum HierarchicalMenuItemSize { sm, md, lg }
 
 /// A hierarchical menu item widget with expandable/collapsible functionality.
 ///
@@ -93,7 +93,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
   }
 
   double get _leftIndent {
-    return (widget.item.level - 1) * GardenSpace.hierarchicalIndentPerLevel;
+    return (widget.item.level - 1) *
+        InternalConstants.hierarchicalIndentPerLevel;
   }
 
   TextStyle get _titleStyle {
@@ -194,8 +195,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                 Icon(
                   widget.item.icon,
                   size: widget.size == HierarchicalMenuItemSize.sm
-                      ? GardenSpace.iconSizeSm
-                      : GardenSpace.iconSizeMd,
+                      ? InternalConstants.iconSizeSm
+                      : InternalConstants.iconSizeMd,
                   color: widget.isSelected
                       ? GardenColors.primary.shade500
                       : GardenColors.typography.shade500,
@@ -254,8 +255,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                       child: Icon(
                         Icons.keyboard_arrow_down,
                         size: widget.size == HierarchicalMenuItemSize.sm
-                            ? GardenSpace.iconSizeSm
-                            : GardenSpace.iconSizeMd,
+                            ? InternalConstants.iconSizeSm
+                            : InternalConstants.iconSizeMd,
                         color: GardenColors.typography.shade400,
                       ),
                     );
@@ -264,8 +265,8 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
               else
                 SizedBox(
                   width: widget.size == HierarchicalMenuItemSize.sm
-                      ? GardenSpace.iconSizeSm
-                      : GardenSpace.iconSizeMd,
+                      ? InternalConstants.iconSizeSm
+                      : InternalConstants.iconSizeMd,
                 ),
 
               SizedBox(width: GardenSpace.paddingSm),

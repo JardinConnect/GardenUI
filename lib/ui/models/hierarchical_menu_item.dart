@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-/// Enumeration for hierarchical menu alert types
-enum MenuAlertType { none, warning, error }
+import 'package:garden_ui/ui/enums.dart';
 
 /// Data model for a hierarchical menu item
 class HierarchicalMenuItem {

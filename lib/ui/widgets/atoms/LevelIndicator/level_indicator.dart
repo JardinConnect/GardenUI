@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
-
-enum LevelIndicatorSize { sm, md, lg }
+import 'package:garden_ui/ui/enums.dart';
 
 /// A visual indicator representing hierarchical levels with color-coded bars.
 ///

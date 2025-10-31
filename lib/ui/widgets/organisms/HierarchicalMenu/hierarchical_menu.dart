@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/enums.dart';
+import 'package:garden_ui/ui/internal/constants.dart';
 import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
 import 'package:garden_ui/ui/widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
-
-/// Available sizes for the hierarchical menu
-enum HierarchicalMenuSize { sm, md, lg }
 
 /// Multi-level vertical hierarchical menu
 ///
@@ -133,11 +132,11 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   double get _defaultWidth {
     switch (widget.size) {
       case HierarchicalMenuSize.sm:
-        return GardenSpace.menuWidthSm;
+        return InternalConstants.menuWidthSm;
       case HierarchicalMenuSize.md:
-        return GardenSpace.menuWidthMd;
+        return InternalConstants.menuWidthMd;
       case HierarchicalMenuSize.lg:
-        return GardenSpace.menuWidthLg;
+        return InternalConstants.menuWidthLg;
     }
   }
 

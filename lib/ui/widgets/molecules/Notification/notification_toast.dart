@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-
-enum NotificationSeverity { alert, info, success, warning }
+import 'package:garden_ui/ui/enums.dart';
+import 'package:garden_ui/ui/widgets/atoms/NotificationIcon/notification_icon.dart';
 
 class NotificationToast extends StatefulWidget {
   final String title;

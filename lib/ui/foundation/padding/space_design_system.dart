@@ -1,3 +1,7 @@
+/// Public spacing and gap constants for the Garden UI library.
+///
+/// This class provides the design system's spacing tokens that are intended
+/// for use by external projects using the library.
 class GardenSpace {
   static const _paddings = {
     'xs': 4.0,
@@ -14,18 +18,6 @@ class GardenSpace {
     'xl': 32.0,
   };
 
-  // Icon sizes for different components
-  static const _iconSizes = {'sm': 16.0, 'md': 20.0, 'lg': 24.0};
-
-  // Hierarchical menu indentation per level
-  static const hierarchicalIndentPerLevel = 16.0;
-
-  // Menu widths
-  static const _menuWidths = {'sm': 200.0, 'md': 300.0, 'lg': 400.0};
-
-  // Logo widths
-  static const _logoWidths = {'sm': 96.0, 'md': 156.0, 'lg': 256.0};
-
   static final paddingXs = _paddings['xs']!;
   static final paddingSm = _paddings['sm']!;
   static final paddingMd = _paddings['md']!;
@@ -37,16 +29,4 @@ class GardenSpace {
   static final gapMd = _gaps['md']!;
   static final gapLg = _gaps['lg']!;
   static final gapXl = _gaps['xl']!;
-
-  static final iconSizeSm = _iconSizes['sm']!;
-  static final iconSizeMd = _iconSizes['md']!;
-  static final iconSizeLg = _iconSizes['lg']!;
-
-  static final menuWidthSm = _menuWidths['sm']!;
-  static final menuWidthMd = _menuWidths['md']!;
-  static final menuWidthLg = _menuWidths['lg']!;
-
-  static final logoWidthSm = _logoWidths['sm']!;
-  static final logoWidthMd = _logoWidths['md']!;
-  static final logoWidthLg = _logoWidths['lg']!;
 }

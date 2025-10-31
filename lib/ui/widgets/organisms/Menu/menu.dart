@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-
-enum MenuSize { sm, md, lg }
+import 'package:garden_ui/ui/internal/constants.dart';
 
 /// A vertical navigation menu with top and bottom sections.
 ///
@@ -61,11 +60,11 @@ class _MenuState extends State<Menu> {
   double get _width {
     switch (widget.size) {
       case MenuSize.sm:
-        return GardenSpace.menuWidthSm * 0.75; // 150
+        return InternalConstants.menuWidthSm * 0.75; // 150
       case MenuSize.lg:
-        return GardenSpace.menuWidthLg * 1.25; // 500
+        return InternalConstants.menuWidthLg * 1.25; // 500
       default:
-        return GardenSpace.menuWidthMd * 0.83; // 250
+        return InternalConstants.menuWidthMd * 0.83; // 250
     }
   }
 
@@ -83,11 +82,11 @@ class _MenuState extends State<Menu> {
   double get _logoWidth {
     switch (widget.size) {
       case MenuSize.sm:
-        return GardenSpace.logoWidthSm;
+        return InternalConstants.logoWidthSm;
       case MenuSize.lg:
-        return GardenSpace.logoWidthLg;
+        return InternalConstants.logoWidthLg;
       default:
-        return GardenSpace.logoWidthMd;
+        return InternalConstants.logoWidthMd;
     }
   }
 

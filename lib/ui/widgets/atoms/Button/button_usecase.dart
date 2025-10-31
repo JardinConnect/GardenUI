@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
-import 'package:garden_ui/ui/models/button.dart';
-
-import 'button.dart';
 
 @UseCase(name: 'Primary', type: Button)
 Widget primaryButtonUseCase(BuildContext context) {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:garden_ui/ui/models/hierarchical_menu_item.dart';
-
-import 'hierarchical_menu_item.dart';
+import 'package:garden_ui/ui/components.dart';
 
 @UseCase(name: 'Default', type: HierarchicalMenuItemWidget)
 Widget hierarchicalMenuItemDefaultUseCase(BuildContext context) {

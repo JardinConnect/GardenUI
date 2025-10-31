@@ -1,3 +1,6 @@
+// Enums - Type-safe variants for components
+export 'enums.dart';
+
 // Atoms - Basic building blocks of the UI
 export 'widgets/atoms/AlertIndicator/alert_indicator.dart';
 export 'widgets/atoms/Button/button.dart';
@@ -17,7 +20,7 @@ export 'widgets/molecules/TabMenu/tab_menu.dart';
 export 'widgets/organisms/HierarchicalMenu/hierarchical_menu.dart';
 export 'widgets/organisms/Menu/menu.dart';
 
-// Models - Data structures and enums
-export 'models/button.dart';
+// Models - Data structures
 export 'models/hierarchical_menu_item.dart';
-export 'models/notification.dart';
+export 'models/menu_item.dart';
+export 'models/tab_item.dart';
