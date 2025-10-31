@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/foundation/color/color_design_system.dart';
+import 'package:garden_ui/ui/internal/constants.dart';
 
 void main() {
-  group('TooltipIcon Widget Tests', () {
+  group('TooltipIconButton Widget Tests', () {
     testWidgets('renders default icon correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: TooltipIcon(onPressed: () {})),
+          home: Scaffold(body: TooltipIconButton(onPressed: () {})),
         ),
       );
 
@@ -16,7 +17,7 @@ void main() {
       expect(iconFinder, findsOneWidget);
 
       final iconWidget = tester.widget<Icon>(iconFinder);
-      expect(iconWidget.size, 16);
+      expect(iconWidget.size, InternalConstants.iconSizeMd);
       expect(iconWidget.color, GardenColors.base.shade600);
     });
 
@@ -24,7 +25,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TooltipIcon(size: TooltipSize.sm, onPressed: () {}),
+            body: TooltipIconButton(size: TooltipSize.sm, onPressed: () {}),
           ),
         ),
       );
@@ -32,7 +33,7 @@ void main() {
       final iconFinder = find.byIcon(Icons.help_outline_outlined);
       final iconWidget = tester.widget<Icon>(iconFinder);
 
-      expect(iconWidget.size, 12);
+      expect(iconWidget.size, InternalConstants.iconSizeSm);
       expect(iconWidget.color, GardenColors.base.shade600);
     });
 
@@ -40,7 +41,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TooltipIcon(size: TooltipSize.lg, onPressed: () {}),
+            body: TooltipIconButton(size: TooltipSize.lg, onPressed: () {}),
           ),
         ),
       );
@@ -48,7 +49,7 @@ void main() {
       final iconFinder = find.byIcon(Icons.help_outline_outlined);
       final iconWidget = tester.widget<Icon>(iconFinder);
 
-      expect(iconWidget.size, 20);
+      expect(iconWidget.size, InternalConstants.iconSizeLg);
       expect(iconWidget.color, GardenColors.base.shade600);
     });
 
@@ -58,7 +59,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TooltipIcon(
+            body: TooltipIconButton(
               onPressed: () {
                 pressed = true;
               },

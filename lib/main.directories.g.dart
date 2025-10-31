@@ -39,7 +39,7 @@ import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
     as _i18;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i19;
-import 'package:garden_ui/ui/widgets/atoms/TooltipIcon/tooltip_icon.dart'
+import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button.dart'
     as _i20;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
@@ -250,22 +250,22 @@ final directories = <_i1.WidgetbookNode>[
                 ],
               ),
               _i1.WidgetbookFolder(
-                name: 'TooltipIcon',
+                name: 'TooltipIconButton',
                 children: [
                   _i1.WidgetbookComponent(
-                    name: 'TooltipIcon',
+                    name: 'TooltipIconButton',
                     useCases: [
                       _i1.WidgetbookUseCase(
                         name: 'Default',
-                        builder: _i20.tooltipIconDefaultUseCase,
+                        builder: _i20.tooltipIconButtonDefaultUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Small',
-                        builder: _i20.tooltipIconSmallUseCase,
+                        builder: _i20.tooltipIconButtonSmallUseCase,
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'Large',
-                        builder: _i20.tooltipIconLargeUseCase,
+                        builder: _i20.tooltipIconButtonLargeUseCase,
                       ),
                     ],
                   ),

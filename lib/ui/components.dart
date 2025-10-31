@@ -9,7 +9,7 @@ export 'widgets/atoms/LevelIndicator/level_indicator.dart';
 export 'widgets/atoms/MenuIcon/menu_icon.dart';
 export 'widgets/atoms/NotificationIcon/notification_icon.dart';
 export 'widgets/atoms/TabItem/tab_item.dart';
-export 'widgets/atoms/TooltipIcon/tooltip_icon.dart';
+export 'widgets/atoms/TooltipIconButton/tooltip_icon_button.dart';
 
 // Molecules - Combinations of atoms
 export 'widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
