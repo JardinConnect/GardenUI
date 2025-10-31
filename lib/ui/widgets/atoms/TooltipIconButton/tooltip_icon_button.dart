@@ -9,6 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 class TooltipIconButton extends StatelessWidget {
   /// Callback called when the icon button is pressed
   final VoidCallback onPressed;
+
   /// Size of the tooltip icon button
   final TooltipSize size;
 
@@ -40,19 +41,4 @@ class TooltipIconButton extends StatelessWidget {
       onPressed: onPressed,
     );
   }
-}
-
-@widgetbook.UseCase(name: 'Default', type: TooltipIconButton)
-Widget tooltipIconButtonDefaultUseCase(BuildContext context) {
-  return TooltipIconButton(onPressed: () => {});
-}
-
-@widgetbook.UseCase(name: 'Small', type: TooltipIconButton)
-Widget tooltipIconButtonSmallUseCase(BuildContext context) {
-  return TooltipIconButton(size: TooltipSize.sm, onPressed: () => {});
-}
-
-@widgetbook.UseCase(name: 'Large', type: TooltipIconButton)
-Widget tooltipIconButtonLargeUseCase(BuildContext context) {
-  return TooltipIconButton(size: TooltipSize.lg, onPressed: () => {});
 }

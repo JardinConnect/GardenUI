@@ -39,8 +39,12 @@ import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
     as _i18;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i19;
-import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button.dart'
+import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button_usecase.dart'
     as _i20;
+import 'package:garden_ui/ui/widgets/atoms/Dialog/dialog_usecase.dart'
+as _i21;
+import 'package:garden_ui/ui/widgets/molecules/Tooltip/tooltip_usecase.dart'
+as _i22;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -171,6 +175,19 @@ final directories = <_i1.WidgetbookNode>[
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Variants',
                       builder: _i9.buildCardUseCase,
+                    ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Dialog',
+                children: [
+                  _i1.WidgetbookLeafComponent(
+                    name: 'GardenDialog',
+                    useCase: _i1.WidgetbookUseCase(
+                      name: 'Default',
+                      builder: _i21.dialogDefaultUseCase,
+                      designLink: 'https://www.figma.com/file/your-menu-design',
                     ),
                   ),
                 ],
@@ -345,6 +362,20 @@ final directories = <_i1.WidgetbookNode>[
                       designLink:
                           'https://www.figma.com/file/your-tab-menu-design',
                     ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Tooltip',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'GardenTooltip',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i22.tooltipDefaultUseCase,
+                      ),
+                    ],
                   ),
                 ],
               ),
