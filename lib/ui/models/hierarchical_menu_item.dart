@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:garden_ui/ui/enums.dart';
 
-/// Enumération pour les types d'alerte du menu hiérarchique
-enum MenuAlertType { none, warning, error }
-
-/// Modèle de données pour un élément de menu hiérarchique
+/// Data model for a hierarchical menu item
 class HierarchicalMenuItem {
-  /// Identifiant unique de l'élément
+  /// Unique identifier for the item
   final String id;
 
-  /// Titre principal de l'élément
+  /// Main title of the item
   final String title;
 
-  /// Sous-information (température, humidité, etc.)
+  /// Sub-information (temperature, humidity, etc.)
   final String? subtitle;
 
-  /// Icône de l'élément
+  /// Icon of the item
   final IconData? icon;
 
-  /// Type d'alerte (aucune, avertissement, erreur)
+  /// Alert type (none, warning, error)
   final MenuAlertType alertType;
 
-  /// Niveau de profondeur dans la hiérarchie (1-5)
+  /// Depth level in the hierarchy (1-5)
   final int level;
 
-  /// Liste des éléments enfants
+  /// List of child items
   final List<HierarchicalMenuItem> children;
 
-  /// Indique si l'élément est ouvert/fermé
+  /// Indicates if the item is expanded/collapsed
   final bool isExpanded;
 
-  /// Callback appelé lors du tap sur l'élément
+  /// Callback called when tapping on the item
   final VoidCallback? onTap;
 
-  /// Callback appelé lors de l'expansion/collapse
+  /// Callback called when expansion/collapse occurs
   final ValueChanged<bool>? onExpansionChanged;
 
   const HierarchicalMenuItem({
@@ -48,7 +46,7 @@ class HierarchicalMenuItem {
     this.onExpansionChanged,
   });
 
-  /// Crée une copie de l'élément avec les propriétés modifiées
+  /// Creates a copy of the item with modified properties
   HierarchicalMenuItem copyWith({
     String? id,
     String? title,
@@ -75,24 +73,27 @@ class HierarchicalMenuItem {
     );
   }
 
-  /// Vérifie si l'élément a des enfants
+  /// Checks if the item has children
   bool get hasChildren => children.isNotEmpty;
 
-  /// Retourne la couleur associée au niveau
+  /// Returns the color associated with the level
+  ///
+  /// Uses hardcoded color values matching the design system.
+  /// Consider using LevelIndicator component directly for better consistency.
   Color get levelColor {
     switch (level) {
       case 1:
-        return Colors.blue.shade500;
+        return const Color(0xFF037f8c); // GardenColors.primary.shade500
       case 2:
-        return Colors.yellow.shade600;
+        return const Color(0xFFd6a113); // GardenColors.secondary.shade500
       case 3:
-        return Colors.green.shade500;
+        return const Color(0xFF5be51b); // GardenColors.tertiary.shade500
       case 4:
-        return Colors.purple.shade500;
+        return const Color(0xFF4a7fe9); // GardenColors.blueInfo.shade500
       case 5:
-        return Colors.cyan.shade500;
+        return const Color(0xFFedce1e); // GardenColors.yellowWarning.shade500
       default:
-        return Colors.grey.shade400;
+        return const Color(0xFFe3e5ed); // GardenColors.base.shade400
     }
   }
 }

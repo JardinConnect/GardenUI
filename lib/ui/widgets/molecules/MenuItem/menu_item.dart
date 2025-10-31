@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/enums.dart';
 import 'package:garden_ui/ui/widgets/atoms/MenuIcon/menu_icon.dart';
-
-enum MenuItemSize { sm, md, lg }
-
-enum MenuItemSeverity { normal, danger }
 
 class MenuItem extends StatefulWidget {
   final IconData icon;

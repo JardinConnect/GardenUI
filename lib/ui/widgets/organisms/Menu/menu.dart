@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
+import 'package:garden_ui/ui/internal/constants.dart';
 
-enum MenuSize { sm, md, lg }
-
+/// A vertical navigation menu with top and bottom sections.
+///
+/// This component displays a vertical menu with a logo at the top,
+/// main navigation items, and bottom items (typically user actions or settings).
 class Menu extends StatefulWidget {
+  /// List of main navigation menu items.
   final List<MenuItem> items;
+
+  /// List of bottom menu items (typically logout, settings, etc.).
   final List<MenuItem> bottomItems;
+
+  /// Size of the menu.
   final MenuSize size;
+
+  /// Logo image provider to display at the top of the menu.
   final ImageProvider logo;
 
   const Menu({
@@ -50,11 +60,11 @@ class _MenuState extends State<Menu> {
   double get _width {
     switch (widget.size) {
       case MenuSize.sm:
-        return 150;
+        return InternalConstants.menuWidthSm * 0.75; // 150
       case MenuSize.lg:
-        return 500;
+        return InternalConstants.menuWidthLg * 1.25; // 500
       default:
-        return 250;
+        return InternalConstants.menuWidthMd * 0.83; // 250
     }
   }
 
@@ -72,11 +82,11 @@ class _MenuState extends State<Menu> {
   double get _logoWidth {
     switch (widget.size) {
       case MenuSize.sm:
-        return 96;
+        return InternalConstants.logoWidthSm;
       case MenuSize.lg:
-        return 256;
+        return InternalConstants.logoWidthLg;
       default:
-        return 156;
+        return InternalConstants.logoWidthMd;
     }
   }
 
