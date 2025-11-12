@@ -19,8 +19,6 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 - **Refactorisation complète du projet** (#26)
 - Renommage du projet : `widgetbook_workspace` → `garden_ui`
-- **Menu component** : le logo est maintenant injectable via paramètre
-- **GardenRadius** : retourne maintenant `BorderRadius` au lieu de `BorderRadiusGeometry` (#29)
 
 ---
 
@@ -64,6 +62,8 @@ Première release publique de GardenUI.
 - Warnings et erreurs de linting
 - Opacité des **shadows**
 - Export de toutes les classes du design system
+- **Menu component** : le logo est maintenant injectable via paramètre
+- **GardenRadius** : retourne maintenant `BorderRadius` au lieu de `BorderRadiusGeometry` (#28)
 
 ---
 
