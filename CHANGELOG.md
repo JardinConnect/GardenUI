@@ -1,7 +1,70 @@
-## [0.1.0]
+# Changelog
 
-- feat: add MenuIcon atom and radius/shadow constants by @mohamed-azd in #2
-- feat: add cloud hosting on widgetbook by @AxlMrt in #3
-- feat: add MenuItem molecule + GardenSpace for paddings and gaps by @mohamed-azd in #4
-- feat: add the Menu organism by @mohamed-azd in #5
-- feat: add hierarchical menu by @AxlMrt in #6
+Toutes les modifications notables de ce projet sont documentées dans ce fichier.
+
+Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
+
+---
+
+## [0.2.0] - 2025-10-30
+
+### ✨ Ajouté
+
+- Nouveau composant **Button** (atom) (#23)
+- Nouveau composant **NotificationToast** (molecule) (#18)
+- Nouveau composant **Card** (atom) (#24)
+- Nouveaux **GardenIcons** (#28)
+
+### 🔧 Modifié
+
+- **Refactorisation complète du projet** (#26)
+- Renommage du projet : `widgetbook_workspace` → `garden_ui`
+- **Menu component** : le logo est maintenant injectable via paramètre
+- **GardenRadius** : retourne maintenant `BorderRadius` au lieu de `BorderRadiusGeometry` (#29)
+
+---
+
+## [0.1.0] - 2025-09-19
+
+Première release publique de GardenUI.
+
+### ✨ Ajouté
+
+#### Atoms
+- **MenuIcon** atom avec support des états actif/inactif + tests
+- **TabItem**
+- Constantes **radius** et **shadow**
+
+#### Molecules
+- **MenuItem** molecule avec gestion de la sévérité (logout menu)
+- **TabMenu**
+
+#### Organisms
+- **Menu** organism
+- **HierarchicalMenu**
+
+#### Foundation
+- **GardenSpace** pour paddings et gaps
+- Système de **couleurs** complet
+- **Typographie** avec Google Fonts
+
+#### Infrastructure
+- **Cloud hosting** sur Widgetbook
+- **Tests** unitaires pour Menu
+- Ajout de la **licence** MIT
+- Workflows **CI/CD** (analyze_and_test, release)
+
+### 🔧 Modifié
+
+- Améliorations du design de **TabItem** et layout de **TabMenu**
+
+### 🐛 Corrigé
+
+- Workflow CI/CD (`release.yml`)
+- Warnings et erreurs de linting
+- Opacité des **shadows**
+- Export de toutes les classes du design system
+
+---
+
+👉 **[Documentation complète du changelog](docs/reference/changelog.md)**

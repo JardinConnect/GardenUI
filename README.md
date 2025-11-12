@@ -1,88 +1,211 @@
-# Documentation de l'Architecture de la Librairie GardenUI
+# GardenUI
 
-## Introduction
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Flutter](https://img.shields.io/badge/Flutter-3.8.1+-02569B.svg?logo=flutter)](https://flutter.dev)
+[![Widgetbook](https://img.shields.io/badge/Widgetbook-Enabled-9C27B0.svg)](https://widgetbook.io)
 
-La librairie de composants Flutter est structurée selon les principes du **design system** et de l'**atomic design**. Elle est pensée pour faciliter la collaboration entre développeurs et designers tout en garantissant une **évolutivité optimale**.
+**GardenUI** est une librairie de composants construite selon les principes de l'**Atomic Design** pour le projet ESP Garden Connect.
 
-La section `ui/` constitue le **cœur de la librairie**. Elle regroupe les éléments fondamentaux et les composants visuels organisés selon une hiérarchie claire : `atoms`, `molecules`, et `organisms`.
+---
 
-## Structure de l'Architecture
+## ✨ Caractéristiques principales
 
-### `features/`
+- 🎨 **Design System complet** avec design tokens (couleurs, espacements, typographie)
+- 🔹 **Atomic Design** : Architecture en 3 niveaux (Atoms, Molecules, Organisms)
+- 📚 **Catalogue Widgetbook** interactif pour visualiser tous les composants
+- 🧪 **Tests complets** : Couverture > 80%
+- 🚀 **CI/CD intégré** avec GitHub Actions
+- 📖 **Documentation DIATAXIS** complète et structurée
 
-Ce dossier contient les **fonctionnalités spécifiques** de l'application ou du projet.
+---
 
-### `ui/`
+## 🚀 Installation rapide
 
-Le dossier `ui/` regroupe tous les **éléments visuels** et **fondamentaux** du design system.  
-Il est organisé en sous-dossiers pour refléter les principes de l'**atomic design** :
+Ajoutez GardenUI dans votre `pubspec.yaml` :
 
-#### `foundation/`
+```yaml
+dependencies:
+  garden_ui:
+    git:
+      url: git@github.com:JardinConnect/GardenUI.git
+      ref: v0.2.0  # Utilisez la dernière version
+```
 
-Définit les **bases du design system**, telles que :
+Installez les dépendances :
 
-- les **couleurs**
-- les **typographies**
-- les **thèmes**
-- et autres **styles globaux**
+```bash
+flutter pub get
+```
 
-#### `widgets/`
+---
 
-Ce dossier est subdivisé en trois niveaux de composants :
+## 💡 Utilisation
 
-##### `atoms/`
+```dart
+import 'package:flutter/material.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
-- **Rôle** : Contient les **composants UI les plus simples** et fondamentaux.
-- **Exemples** : Boutons, icônes, textes, etc.
+void main() {
+  runApp(const MyApp());
+}
 
-##### `molecules/`
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-- **Rôle** : Combine plusieurs atomes pour créer des composants **légèrement plus complexes**.
-- **Exemple** : Champ de saisie avec un label.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: GardenButton(
+            label: 'Bienvenue dans GardenUI !',
+            onPressed: () => print('Bouton cliqué'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
 
-##### `organisms/`
+---
 
-- **Rôle** : Regroupe plusieurs molécules et atomes pour créer des composants **complexes et réutilisables**.
-- **Exemple** : Formulaire de connexion.
+## 📖 Documentation
 
-## Mise en route
+La documentation complète est organisée selon le modèle [DIATAXIS](https://diataxis.fr/) :
+
+### 🎓 [Tutorials](docs/tutorials/) - Apprendre en pratiquant
+
+Guides pas à pas pour démarrer avec GardenUI :
+
+- [Premiers pas avec GardenUI](docs/tutorials/getting-started.md)
+- [Créer votre premier composant](docs/tutorials/creating-first-component.md)
+- [Construire un formulaire complet](docs/tutorials/building-form.md)
+
+### 🔧 [How-to Guides](docs/how-to-guides/) - Résoudre des problèmes
+
+Solutions pratiques pour des tâches courantes :
+
+- [Utiliser GardenUI dans un projet](docs/how-to-guides/how-to-use-library.md)
+- [Créer un atom / molecule / organism](docs/how-to-guides/)
+- [Exécuter les tests](docs/how-to-guides/how-to-run-tests.md)
+- [Publier une release](docs/how-to-guides/how-to-publish-release.md)
+- [Générer le code Widgetbook](docs/how-to-guides/how-to-generate-code.md)
+
+### 📚 [Reference](docs/reference/) - Informations techniques
+
+Documentation de référence détaillée :
+
+- [Catalogue des composants](docs/reference/components-catalog.md)
+- [Design Tokens](docs/reference/design-tokens.md)
+- [Workflows CI/CD](docs/reference/ci-cd-workflows.md)
+- [Standards de code](docs/reference/coding-standards.md)
+- [Standards de tests](docs/reference/testing-standards.md)
+- [Historique des versions](docs/reference/changelog.md)
+
+### 💡 [Explanation](docs/explanation/) - Comprendre les concepts
+
+Explications conceptuelles et architecture :
+
+- [Architecture du projet](docs/explanation/architecture.md)
+- [Atomic Design expliqué](docs/explanation/atomic-design.md)
+- [Philosophie du design system](docs/explanation/design-system-philosophy.md)
+- [Guidelines de développement](docs/explanation/component-guidelines.md)
+- [Structure du projet](docs/explanation/project-structure.md)
+
+---
+
+## 🎨 Composants disponibles
+
+### Atoms
+`GardenButton` · `GardenCard` · `GardenIcon` · `MenuIcon` · `NotificationIcon` · `AlertIndicator` · `LevelIndicator` · `TabItem`
+
+### Molecules
+`MenuItem` · `HierarchicalMenuItem` · `NotificationToast` · `TabMenu`
+
+### Organisms
+`Menu` · `HierarchicalMenu`
+
+👉 [Voir le catalogue complet](docs/reference/components-catalog.md)
+
+---
+
+## 🛠️ Développement
 
 ### Prérequis
 
-- [Flutter SDK](https://flutter.dev/docs/get-started/install) (version recommandée : dernière stable)
-- [Dart SDK](https://dart.dev/get-dart) (inclus avec Flutter)
-- Un éditeur de code comme [VS Code](https://code.visualstudio.com/) ou [Android Studio](https://developer.android.com/studio)
+- Flutter SDK 3.8.1+
+- Dart SDK (inclus avec Flutter)
 
-### Installation et configuration
-
-1. Clonez le dépôt sur votre machine locale
-2. Naviguez dans le répertoire du projet
-3. Exécutez `flutter pub get` pour installer les dépendances
-
-### Génération des fichiers
-
-Le projet utilise la génération de code pour certaines fonctionnalités. Avant de lancer l'application, vous devez générer ces fichiers :
+### Lancer Widgetbook
 
 ```bash
+# Générer le code
 dart run build_runner build --delete-conflicting-outputs
+
+# Lancer Widgetbook
+flutter run -d chrome  # ou -d windows, -d macos
 ```
 
-Cette commande génère les fichiers nécessaires pour Widgetbook et d'autres fonctionnalités basées sur des annotations.
-
-### Lancement de l'application
-
-Pour lancer l'application Widgetbook, exécutez :
+### Exécuter les tests
 
 ```bash
-flutter run
+flutter test
 ```
 
-Vous pouvez spécifier la plateforme cible si nécessaire :
+### Analyse statique
 
 ```bash
-flutter run -d chrome  # Pour exécuter dans le navigateur
-flutter run -d windows # Pour exécuter sur Windows
-flutter run -d macos   # Pour exécuter sur macOS
+flutter analyze
 ```
 
-Le Widgetbook vous permettra de visualiser et d'interagir avec tous les composants UI disponibles dans la bibliothèque.
+---
+
+## 📦 Architecture
+
+GardenUI suit une architecture en couches basée sur l'Atomic Design :
+
+```
+Foundation (Design Tokens)
+    ↓
+Atoms (Composants de base)
+    ↓
+Molecules (Compositions d'atoms)
+    ↓
+Organisms (Composants complexes)
+```
+
+Chaque couche ne dépend que des couches inférieures, garantissant une architecture propre et maintenable.
+
+👉 [En savoir plus sur l'architecture](docs/explanation/architecture.md)
+
+---
+
+## 🤝 Contribuer
+
+Les contributions sont les bienvenues ! Veuillez consulter nos guidelines :
+
+- [Comment créer un atom](docs/how-to-guides/how-to-create-atom.md)
+- [Comment créer une molecule](docs/how-to-guides/how-to-create-molecule.md)
+- [Standards de code](docs/reference/coding-standards.md)
+- [Standards de tests](docs/reference/testing-standards.md)
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## 🔗 Liens utiles
+
+- [Documentation complète](docs/)
+- [Repository GitHub](https://github.com/JardinConnect/GardenUI)
+- [Widgetbook](https://widgetbook.io)
+- [Atomic Design](https://atomicdesign.bradfrost.com)
+- [DIATAXIS](https://diataxis.fr)
+
+---
+
+**Développé avec ❤️ par l'équipe Garden Connect**
