@@ -73,7 +73,6 @@ class GardenDialog extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Header
                   Container(
                     padding: EdgeInsets.symmetric(
                       vertical: GardenSpace.paddingSm,
@@ -96,7 +95,6 @@ class GardenDialog extends StatelessWidget {
                     ),
                   ),
 
-                  // Content
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(
