@@ -4,9 +4,11 @@ import 'package:garden_ui/ui/components.dart';
 
 @UseCase(name: 'Default', type: GardenDialog)
 Widget dialogDefaultUseCase(BuildContext context) {
-  return Center(
-    child: GardenDialog(
-        title: "Serre n°1",
+  return Button(
+    label: "Ouvrir",
+    onPressed: () => GardenDialog.show(
+      context,
+      title: "Serre n°1",
       content: Column(
         children: [
           Text("blabla"),

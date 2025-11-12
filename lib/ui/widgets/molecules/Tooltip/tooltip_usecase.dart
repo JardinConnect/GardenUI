@@ -13,37 +13,27 @@ Widget tooltipDefaultUseCase(BuildContext context) {
         content: SizedBox(
           width: 150,
           child: Column(
-            spacing: GardenSpace.gapMd,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            spacing: GardenSpace.gapLg,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Niveau 1", style: GardenTypography.headingSm),
-                  Text("Dernière mise à jour : il y'a 2 minutes", style: GardenTypography.bodyMd),
-                ],
+              Text(
+                "Cette cellule contient deja une alerte sur l’humidite de la surface du sol.\nVoulez-vous ecraser l’alerte precedente et sauvegarder cell-ci?",
+                style: GardenTypography.bodyLg,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: GardenSpace.gapSm,
                 children: [
-                  GardenCard(
-                    child: Center(
-                      child: Text("Carte 1"),
-                    ),
+                  Button(
+                    label: "Annuler",
+                    onPressed: () => GardenDialog.close(context),
+                    severity: ButtonSeverity.danger,
+                    minWidth: 100,
                   ),
-                  GardenCard(
-                    child: Center(
-                      child: Text("Carte 1"),
-                    ),
-                  ),
-                  GardenCard(
-                    child: Center(
-                      child: Text("Carte 1"),
-                    ),
-                  ),
-                  GardenCard(
-                    child: Center(
-                      child: Text("Carte 1"),
-                    ),
+                  Button(
+                    label: "Sauvegarder",
+                    onPressed: () => GardenDialog.close(context),
+                    minWidth: 100,
                   ),
                 ],
               ),

@@ -41,10 +41,9 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i19;
 import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button_usecase.dart'
     as _i20;
-import 'package:garden_ui/ui/widgets/atoms/Dialog/dialog_usecase.dart'
-as _i21;
+import 'package:garden_ui/ui/widgets/atoms/Dialog/dialog_usecase.dart' as _i21;
 import 'package:garden_ui/ui/widgets/molecules/Tooltip/tooltip_usecase.dart'
-as _i22;
+    as _i22;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
