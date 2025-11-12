@@ -6,6 +6,7 @@ export 'widgets/atoms/AlertIndicator/alert_indicator.dart';
 export 'widgets/atoms/Button/button.dart';
 export 'widgets/atoms/Card/card.dart';
 export 'widgets/atoms/Dialog/dialog.dart';
+export 'widgets/atoms/GardenIcon/garden_icon.dart';
 export 'widgets/atoms/LevelIndicator/level_indicator.dart';
 export 'widgets/atoms/MenuIcon/menu_icon.dart';
 export 'widgets/atoms/NotificationIcon/notification_icon.dart';

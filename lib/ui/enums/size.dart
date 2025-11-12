@@ -28,5 +28,8 @@ enum HierarchicalMenuItemSize { sm, md, lg }
 /// Size variants for hierarchical menu component
 enum HierarchicalMenuSize { sm, md, lg }
 
+/// Size variants for garden icon component
+enum GardenIconSize { sm, md, lg }
+
 /// Size variants for Tooltip component
 enum TooltipSize { sm, md, lg }
