@@ -20,6 +20,9 @@ et ce projet adhère au [Versioning Sémantique](https://semver.org/lang/fr/).
 
 - **Refactorisation du projet** (#26) : Réorganisation complète de la structure du code
 - **Renommage** : Le projet passe de `widgetbook_workspace` à `garden_ui`
+
+### 🐛 Corrigé
+
 - **Menu component** : Le logo est maintenant injectable via un paramètre au lieu d'être hardcodé
 - **GardenRadius** (#29) : Retourne désormais `BorderRadius` au lieu de `BorderRadiusGeometry` pour plus de flexibilité
 
