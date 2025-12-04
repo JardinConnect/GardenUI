@@ -79,7 +79,7 @@ class NodeCard extends StatelessWidget {
                 ],
               ),
 
-              SizedBox(height: GardenSpace.gapSm),
+              SizedBox(height: GardenSpace.gapMd),
 
               Column(
                 children: [
