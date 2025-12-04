@@ -3,6 +3,7 @@ export 'enums.dart';
 
 // Atoms - Basic building blocks of the UI
 export 'widgets/atoms/AlertIndicator/alert_indicator.dart';
+export 'widgets/atoms/BatteryIndicator/battery_indicator.dart';
 export 'widgets/atoms/Button/button.dart';
 export 'widgets/atoms/Card/card.dart';
 export 'widgets/atoms/GardenIcon/garden_icon.dart';

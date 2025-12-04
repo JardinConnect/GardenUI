@@ -41,6 +41,8 @@ import 'package:garden_ui/ui/widgets/molecules/TabMenu/tab_menu_usecase.dart'
 import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_menu_usecase.dart'
     as _i19;
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i20;
+import 'package:garden_ui/ui/widgets/atoms/BatteryIndicator/battery_indicator_usecase.dart'
+    as _i21;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -140,6 +142,28 @@ final directories = <_i1.WidgetbookNode>[
                       _i1.WidgetbookUseCase(
                         name: 'Small',
                         builder: _i7.alertIndicatorSmallUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'BatteryIndicator',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'BatteryIndicator',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i21.batteryIndicatorDefaultUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Small',
+                        builder: _i21.batteryIndicatorSmallUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Large',
+                        builder: _i21.batteryIndicatorLargeUseCase,
                       ),
                     ],
                   ),
