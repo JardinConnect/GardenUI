@@ -15,6 +15,7 @@ export 'widgets/atoms/TabItem/tab_item.dart';
 // Molecules - Combinations of atoms
 export 'widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
 export 'widgets/molecules/MenuItem/menu_item.dart';
+export 'widgets/molecules/NodeCard/node_card.dart';
 export 'widgets/molecules/Notification/notification_toast.dart';
 export 'widgets/molecules/TabMenu/tab_menu.dart';
 

@@ -43,6 +43,8 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i20;
 import 'package:garden_ui/ui/widgets/atoms/BatteryIndicator/battery_indicator_usecase.dart'
     as _i21;
+import 'package:garden_ui/ui/widgets/molecules/NodeCard/node_card_usecase.dart'
+    as _i22;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -334,6 +336,20 @@ final directories = <_i1.WidgetbookNode>[
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
                       builder: _i16.buildMenuItemUseCase,
+                      designLink:
+                          'https://www.figma.com/file/your-menu-item-design',
+                    ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'NodeCard',
+                children: [
+                  _i1.WidgetbookLeafComponent(
+                    name: 'NodeCard',
+                    useCase: _i1.WidgetbookUseCase(
+                      name: 'Default',
+                      builder: _i22.nodeCardUseCase,
                       designLink:
                           'https://www.figma.com/file/your-menu-item-design',
                     ),
