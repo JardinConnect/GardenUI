@@ -17,7 +17,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: v0.2.0  # Remplacez par le tag de version souhaité
+      ref: v0.2.0 # Remplacez par le tag de version souhaité
 ```
 
 ### Option 2 : Utiliser la dernière version de la branche main
@@ -37,7 +37,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: abc123def  # Hash du commit
+      ref: abc123def # Hash du commit
 ```
 
 ## Installer les dépendances
@@ -131,7 +131,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: v0.2.0  # Nouvelle version
+      ref: v0.2.0 # Nouvelle version
 ```
 
 ### Forcer la mise à jour du cache
@@ -177,4 +177,3 @@ Si vous avez des conflits avec d'autres packages, vérifiez la compatibilité da
 - [Premiers pas avec GardenUI](../tutorials/getting-started.md)
 - [Catalogue des composants](../reference/components-catalog.md)
 - [Workflows CI/CD](../reference/ci-cd-workflows.md)
-
