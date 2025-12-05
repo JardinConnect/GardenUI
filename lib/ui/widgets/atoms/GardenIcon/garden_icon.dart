@@ -50,6 +50,7 @@ class GardenIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final svgWidget = SvgPicture.asset(
       _assetPath,
+      package: 'garden_ui',
       width: _iconSize,
       height: _iconSize,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
@@ -72,6 +73,7 @@ class GardenIcon extends StatelessWidget {
           // Background: empty/unfilled icon
           SvgPicture.asset(
             _assetPath,
+            package: 'garden_ui',
             width: _iconSize,
             height: _iconSize,
             colorFilter: ColorFilter.mode(
