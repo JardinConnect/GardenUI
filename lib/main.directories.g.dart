@@ -48,10 +48,10 @@ import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i22;
 import 'package:garden_ui/ui/widgets/organisms/SensorAlertCard/sensor_alert_card_usecase.dart'
     as _i23;
 import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button_usecase.dart'
-as _i24;
+    as _i24;
 import 'package:garden_ui/ui/widgets/atoms/Dialog/dialog_usecase.dart' as _i25;
 import 'package:garden_ui/ui/widgets/molecules/Tooltip/tooltip_usecase.dart'
-as _i26;
+    as _i26;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
