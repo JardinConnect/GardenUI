@@ -74,44 +74,44 @@ class MyApp extends StatelessWidget {
 
 La documentation complète est organisée selon le modèle [DIATAXIS](https://diataxis.fr/) :
 
-### 🎓 [Tutorials](docs/tutorials/) - Apprendre en pratiquant
+### 🎓 [Tutorials](doc/tutorials/) - Apprendre en pratiquant
 
 Guides pas à pas pour démarrer avec GardenUI :
 
-- [Premiers pas avec GardenUI](docs/tutorials/getting-started.md)
-- [Créer votre premier composant](docs/tutorials/creating-first-component.md)
-- [Construire un formulaire complet](docs/tutorials/building-form.md)
+- [Premiers pas avec GardenUI](doc/tutorials/getting-started.md)
+- [Créer votre premier composant](doc/tutorials/creating-first-component.md)
+- [Construire un formulaire complet](doc/tutorials/building-form.md)
 
-### 🔧 [How-to Guides](docs/how-to-guides/) - Résoudre des problèmes
+### 🔧 [How-to Guides](doc/how-to-guides/) - Résoudre des problèmes
 
 Solutions pratiques pour des tâches courantes :
 
-- [Utiliser GardenUI dans un projet](docs/how-to-guides/how-to-use-library.md)
-- [Créer un atom / molecule / organism](docs/how-to-guides/)
-- [Exécuter les tests](docs/how-to-guides/how-to-run-tests.md)
-- [Publier une release](docs/how-to-guides/how-to-publish-release.md)
-- [Générer le code Widgetbook](docs/how-to-guides/how-to-generate-code.md)
+- [Utiliser GardenUI dans un projet](doc/how-to-guides/how-to-use-library.md)
+- [Créer un atom / molecule / organism](doc/how-to-guides/)
+- [Exécuter les tests](doc/how-to-guides/how-to-run-tests.md)
+- [Publier une release](doc/how-to-guides/how-to-publish-release.md)
+- [Générer le code Widgetbook](doc/how-to-guides/how-to-generate-code.md)
 
-### 📚 [Reference](docs/reference/) - Informations techniques
+### 📚 [Reference](doc/reference/) - Informations techniques
 
 Documentation de référence détaillée :
 
-- [Catalogue des composants](docs/reference/components-catalog.md)
-- [Design Tokens](docs/reference/design-tokens.md)
-- [Workflows CI/CD](docs/reference/ci-cd-workflows.md)
-- [Standards de code](docs/reference/coding-standards.md)
-- [Standards de tests](docs/reference/testing-standards.md)
-- [Historique des versions](docs/reference/changelog.md)
+- [Catalogue des composants](doc/reference/components-catalog.md)
+- [Design Tokens](doc/reference/design-tokens.md)
+- [Workflows CI/CD](doc/reference/ci-cd-workflows.md)
+- [Standards de code](doc/reference/coding-standards.md)
+- [Standards de tests](doc/reference/testing-standards.md)
+- [Historique des versions](doc/reference/changelog.md)
 
-### 💡 [Explanation](docs/explanation/) - Comprendre les concepts
+### 💡 [Explanation](doc/explanation/) - Comprendre les concepts
 
 Explications conceptuelles et architecture :
 
-- [Architecture du projet](docs/explanation/architecture.md)
-- [Atomic Design expliqué](docs/explanation/atomic-design.md)
-- [Philosophie du design system](docs/explanation/design-system-philosophy.md)
-- [Guidelines de développement](docs/explanation/component-guidelines.md)
-- [Structure du projet](docs/explanation/project-structure.md)
+- [Architecture du projet](doc/explanation/architecture.md)
+- [Atomic Design expliqué](doc/explanation/atomic-design.md)
+- [Philosophie du design system](doc/explanation/design-system-philosophy.md)
+- [Guidelines de développement](doc/explanation/component-guidelines.md)
+- [Structure du projet](doc/explanation/project-structure.md)
 
 ---
 
@@ -126,7 +126,7 @@ Explications conceptuelles et architecture :
 ### Organisms
 `Menu` · `HierarchicalMenu`
 
-👉 [Voir le catalogue complet](docs/reference/components-catalog.md)
+👉 [Voir le catalogue complet](doc/reference/components-catalog.md)
 
 ---
 
@@ -177,7 +177,7 @@ Organisms (Composants complexes)
 
 Chaque couche ne dépend que des couches inférieures, garantissant une architecture propre et maintenable.
 
-👉 [En savoir plus sur l'architecture](docs/explanation/architecture.md)
+👉 [En savoir plus sur l'architecture](doc/explanation/architecture.md)
 
 ---
 
@@ -185,10 +185,10 @@ Chaque couche ne dépend que des couches inférieures, garantissant une architec
 
 Les contributions sont les bienvenues ! Veuillez consulter nos guidelines :
 
-- [Comment créer un atom](docs/how-to-guides/how-to-create-atom.md)
-- [Comment créer une molecule](docs/how-to-guides/how-to-create-molecule.md)
-- [Standards de code](docs/reference/coding-standards.md)
-- [Standards de tests](docs/reference/testing-standards.md)
+- [Comment créer un atom](doc/how-to-guides/how-to-create-atom.md)
+- [Comment créer une molecule](doc/how-to-guides/how-to-create-molecule.md)
+- [Standards de code](doc/reference/coding-standards.md)
+- [Standards de tests](doc/reference/testing-standards.md)
 
 ---
 
@@ -200,7 +200,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 ## 🔗 Liens utiles
 
-- [Documentation complète](docs/)
+- [Documentation complète](doc/)
 - [Repository GitHub](https://github.com/JardinConnect/GardenUI)
 - [Widgetbook](https://widgetbook.io)
 - [Atomic Design](https://atomicdesign.bradfrost.com)

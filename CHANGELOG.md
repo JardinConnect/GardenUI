@@ -70,4 +70,4 @@ Première release publique de GardenUI.
 
 ---
 
-👉 **[Documentation complète du changelog](docs/reference/changelog.md)**
+👉 **[Documentation complète du changelog](doc/reference/changelog.md)**
