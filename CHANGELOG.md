@@ -4,6 +4,20 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.0] - 2025-12-05
+
+### ✨ Ajouté
+
+- **NodeCard component** (#37) : Nouveau composant molecule pour les cartes de nœuds
+- **Tooltip component** (#32) : Nouveau composant molecule pour les infobulles
+- **GardenDialog component** (#32) : Nouveau composant atom pour les boites de dialogues
+- **SensorAlertCard component** (#31) : Nouveau composant organism pour les cartes d'alerte capteur
+- **Documentation Diataxis** (#30) : Refonte de la documentation selon la méthodologie Diataxis
+
+### 🐛 Corrigé
+
+- **HierarchicalMenu** (#38) : Ajout de la gestion de l'événement `onTap`
+
 ---
 
 ## [0.2.0] - 2025-10-30
