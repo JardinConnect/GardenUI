@@ -90,6 +90,7 @@ class BatteryIndicator extends StatelessWidget {
                 Positioned.fill(
                   child: SvgPicture.asset(
                     'lib/ui/assets/icons/Icon=Batterie, Size=75.svg',
+                    package: 'garden_ui',
                     fit: BoxFit.fill,
                   ),
                 ),
