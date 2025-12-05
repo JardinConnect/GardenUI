@@ -5,5 +5,6 @@
 library;
 
 export 'enums/alert.dart';
+export 'enums/sensor_type.dart';
 export 'enums/severity.dart';
 export 'enums/size.dart';
