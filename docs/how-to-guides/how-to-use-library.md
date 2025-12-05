@@ -101,44 +101,6 @@ class MyPage extends StatelessWidget {
 }
 ```
 
-### Utiliser le menu hiérarchique avec interactions
-
-```dart
-HierarchicalMenu(
-  items: [
-    HierarchicalMenuItem(
-      id: 'serre1',
-      title: 'Serre principale',
-      subtitle: '24°C - 65%',
-      icon: Icons.home,
-      level: 1,
-      onTap: () {
-        // Action personnalisée lors du tap sur l'item
-        print('Navigation vers la serre principale');
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => SerreDetailPage(id: 'serre1'),
-        ));
-      },
-      children: [
-        HierarchicalMenuItem(
-          id: 'zone1',
-          title: 'Zone A',
-          level: 2,
-          onTap: () {
-            print('Navigation vers la zone A');
-            // Votre logique métier ici
-          },
-        ),
-      ],
-    ),
-  ],
-  onItemSelected: (item) {
-    // Callback global pour tous les taps d'items
-    print('Item sélectionné: ${item.id}');
-  },
-)
-```
-
 ### Utiliser les design tokens
 
 ```dart
