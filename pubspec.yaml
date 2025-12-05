@@ -1,7 +1,7 @@
 name: garden_ui
 description: "Garden Connect UI library"
 publish_to: "none"
-version: 0.2.0
+version: 0.3.0
 repository: https://github.com/JardinConnect/GardenUI
 
 environment:
