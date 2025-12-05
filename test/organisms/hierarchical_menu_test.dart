@@ -105,6 +105,29 @@ void main() {
       expect(tapped, isTrue);
     });
 
+    testWidgets('should call item onTap callback when tapped', (
+      WidgetTester tester,
+    ) async {
+      bool itemOnTapCalled = false;
+      final item = HierarchicalMenuItem(
+        id: 'test',
+        title: 'Test Title',
+        level: 1,
+        onTap: () {
+          itemOnTapCalled = true;
+        },
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
+        ),
+      );
+
+      await tester.tap(find.byType(HierarchicalMenuItemWidget));
+      expect(itemOnTapCalled, isTrue);
+    });
+
     testWidgets(
       'should call onExpansionChanged when tapped on item with children',
       (WidgetTester tester) async {

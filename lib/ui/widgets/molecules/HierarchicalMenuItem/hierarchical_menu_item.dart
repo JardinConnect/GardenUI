@@ -148,12 +148,18 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
   }
 
   void _handleTap() {
+    // Call the onTap callback from the item model first
+    widget.item.onTap?.call();
+
+    // Handle expansion/collapse for items with children
     if (widget.item.hasChildren) {
       final updatedItem = widget.item.copyWith(
         isExpanded: !widget.item.isExpanded,
       );
       widget.onExpansionChanged?.call(updatedItem);
     }
+
+    // Notify the parent widget about the tap
     widget.onItemTapped?.call(widget.item);
   }
 

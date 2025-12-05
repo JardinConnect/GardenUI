@@ -17,7 +17,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: v0.2.0  # Remplacez par le tag de version souhaité
+      ref: v0.2.0 # Remplacez par le tag de version souhaité
 ```
 
 ### Option 2 : Utiliser la dernière version de la branche main
@@ -37,7 +37,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: abc123def  # Hash du commit
+      ref: abc123def # Hash du commit
 ```
 
 ## Installer les dépendances
@@ -101,6 +101,44 @@ class MyPage extends StatelessWidget {
 }
 ```
 
+### Utiliser le menu hiérarchique avec interactions
+
+```dart
+HierarchicalMenu(
+  items: [
+    HierarchicalMenuItem(
+      id: 'serre1',
+      title: 'Serre principale',
+      subtitle: '24°C - 65%',
+      icon: Icons.home,
+      level: 1,
+      onTap: () {
+        // Action personnalisée lors du tap sur l'item
+        print('Navigation vers la serre principale');
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => SerreDetailPage(id: 'serre1'),
+        ));
+      },
+      children: [
+        HierarchicalMenuItem(
+          id: 'zone1',
+          title: 'Zone A',
+          level: 2,
+          onTap: () {
+            print('Navigation vers la zone A');
+            // Votre logique métier ici
+          },
+        ),
+      ],
+    ),
+  ],
+  onItemSelected: (item) {
+    // Callback global pour tous les taps d'items
+    print('Item sélectionné: ${item.id}');
+  },
+)
+```
+
 ### Utiliser les design tokens
 
 ```dart
@@ -131,7 +169,7 @@ dependencies:
   garden_ui:
     git:
       url: git@github.com:JardinConnect/GardenUI.git
-      ref: v0.2.0  # Nouvelle version
+      ref: v0.2.0 # Nouvelle version
 ```
 
 ### Forcer la mise à jour du cache
@@ -177,4 +215,3 @@ Si vous avez des conflits avec d'autres packages, vérifiez la compatibilité da
 - [Premiers pas avec GardenUI](../tutorials/getting-started.md)
 - [Catalogue des composants](../reference/components-catalog.md)
 - [Workflows CI/CD](../reference/ci-cd-workflows.md)
-
