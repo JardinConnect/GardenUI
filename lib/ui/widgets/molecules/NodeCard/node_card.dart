@@ -20,6 +20,10 @@ class NodeCard extends StatelessWidget {
   /// Light intensity value in Lux.
   final int light;
 
+  /// The maximum light intensity in Lux, used to calculate the icon's fill percentage.
+  /// Defaults to 100,000.
+  final int lightMaxValue;
+
   /// Rain intensity in percentage (0-100).
   final int rain;
 
@@ -32,8 +36,16 @@ class NodeCard extends StatelessWidget {
   /// Surface temperature in degrees Celsius.
   final double temperatureSurface;
 
+  /// The maximum surface temperature in Celsius, used to calculate the icon's fill percentage.
+  /// Defaults to 55°C.
+  final double temperatureSurfaceMaxValue;
+
   /// Deep soil temperature in degrees Celsius.
   final double temperatureDepth;
+
+  /// The maximum deep soil temperature in Celsius, used to calculate the icon's fill percentage.
+  /// Defaults to 40°C.
+  final double temperatureDepthMaxValue;
 
   const NodeCard({
     super.key,
@@ -46,17 +58,21 @@ class NodeCard extends StatelessWidget {
     required this.humidityDepth,
     required this.temperatureSurface,
     required this.temperatureDepth,
+    this.lightMaxValue = 100_000,
+    this.temperatureSurfaceMaxValue = 55,
+    this.temperatureDepthMaxValue = 40,
   });
 
   @override
   Widget build(BuildContext context) {
-    final fillTemperatureSurfacePercentage = (100 * temperatureSurface / 40)
-        .clamp(0.0, 100.0);
-    final fillTemperatureDepthPercentage = (100 * temperatureDepth / 40).clamp(
-      0.0,
-      100.0,
-    );
-    final fillLightPercentage = (100 * light / 50000).clamp(0.0, 100.0);
+    final fillTemperatureSurfacePercentage =
+        (100 * temperatureSurface / temperatureSurfaceMaxValue).clamp(
+          0.0,
+          100.0,
+        );
+    final fillTemperatureDepthPercentage =
+        (100 * temperatureDepth / temperatureDepthMaxValue).clamp(0.0, 100.0);
+    final fillLightPercentage = (100 * light / lightMaxValue).clamp(0.0, 100.0);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -89,7 +105,7 @@ class NodeCard extends StatelessWidget {
                       Expanded(
                         child: _buildSensorItem(
                           iconName: "Soleil",
-                          value: "${light}L",
+                          value: "$light lux",
                           fillPercentage: fillLightPercentage,
                           color: GardenColors.yellowWarning.shade500,
                         ),

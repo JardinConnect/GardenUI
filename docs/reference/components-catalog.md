@@ -345,8 +345,11 @@ Carte affichant l'état et les données capteurs d'un nœud spécifique (batteri
 - `name` (String, requis) : Nom du nœud
 - `batteryPercentage` (int, requis) : Niveau de batterie
 - `light` (int, requis) : Luminosité en Lux
+- `lightMaxValue` (int) : Valeur max pour la jauge de luminosité (défaut: 100 000)
 - `rain` (int, requis) : Pluie %
 - `temperatureSurface/Depth` (double, requis) : Températures
+- `temperatureSurfaceMaxValue` (double) : Température max surface (défaut: 55.0)
+- `temperatureDepthMaxValue` (double) : Température max profondeur (défaut: 40.0)
 - `humiditySurface/Depth` (int, requis) : Humidités
 
 **Exemple :**
@@ -356,6 +359,7 @@ NodeCard(
   batteryPercentage: 85,
   onPressed: () => showDetails(),
   light: 12000,
+  lightMaxValue: 50000, // Jauge remplie à ~24%
   rain: 0,
   temperatureSurface: 24.5,
   temperatureDepth: 18.0,

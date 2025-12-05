@@ -31,7 +31,7 @@ void main() {
       expect(find.text(nodeName), findsOneWidget);
 
       // Verify Sensor Values are displayed
-      expect(find.text('1500L'), findsOneWidget);
+      expect(find.text('1500 lux'), findsOneWidget);
       expect(find.text('20%'), findsOneWidget);
       expect(find.text('45%'), findsOneWidget);
       expect(find.text('50%'), findsOneWidget);
@@ -63,7 +63,7 @@ void main() {
         ),
       );
 
-      expect(find.text('400L'), findsOneWidget);
+      expect(find.text('400 lux'), findsOneWidget);
     });
 
     testWidgets('triggers onPressed callback when tapped', (
