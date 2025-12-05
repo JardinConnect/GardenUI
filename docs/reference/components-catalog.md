@@ -176,6 +176,26 @@ AlertIndicator(
 
 ---
 
+### BatteryIndicator
+
+**Emplacement :** `lib/ui/widgets/atoms/BatteryIndicator/battery_indicator.dart`
+
+Indicateur visuel du niveau de batterie avec icône remplie et pourcentage.
+
+**Propriétés :**
+- `batteryPercentage` (int) : Niveau de batterie en pourcentage (0-100)
+- `size` (BatteryIndicatorSize) : Taille de l'indicateur (sm, md, lg)
+
+**Exemple :**
+```dart
+BatteryIndicator(
+  batteryPercentage: 75,
+  size: BatteryIndicatorSize.md,
+)
+```
+
+---
+
 ### LevelIndicator
 
 **Emplacement :** `lib/ui/widgets/atoms/LevelIndicator/level_indicator.dart`
@@ -310,6 +330,37 @@ NotificationToast(
   message: 'Opération réussie !',
   type: NotificationType.success,
   onDismiss: () => hideNotification(),
+)
+```
+
+---
+
+### NodeCard
+
+**Emplacement :** `lib/ui/widgets/molecules/NodeCard/node_card.dart`
+
+Carte affichant l'état et les données capteurs d'un nœud spécifique (batterie, pluie, temp, etc.).
+
+**Propriétés :**
+- `name` (String, requis) : Nom du nœud
+- `batteryPercentage` (int, requis) : Niveau de batterie
+- `light` (int, requis) : Luminosité en Lux
+- `rain` (int, requis) : Pluie %
+- `temperatureSurface/Depth` (double, requis) : Températures
+- `humiditySurface/Depth` (int, requis) : Humidités
+
+**Exemple :**
+```dart
+NodeCard(
+  name: 'Potager Sud',
+  batteryPercentage: 85,
+  onPressed: () => showDetails(),
+  light: 12000,
+  rain: 0,
+  temperatureSurface: 24.5,
+  temperatureDepth: 18.0,
+  humiditySurface: 60,
+  humidityDepth: 80,
 )
 ```
 
