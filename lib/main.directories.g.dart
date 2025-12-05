@@ -47,6 +47,11 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i22;
 import 'package:garden_ui/ui/widgets/organisms/SensorAlertCard/sensor_alert_card_usecase.dart'
     as _i23;
+import 'package:garden_ui/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button_usecase.dart'
+    as _i24;
+import 'package:garden_ui/ui/widgets/atoms/Dialog/dialog_usecase.dart' as _i25;
+import 'package:garden_ui/ui/widgets/molecules/Tooltip/tooltip_usecase.dart'
+    as _i26;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -177,6 +182,19 @@ final directories = <_i1.WidgetbookNode>[
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Variants',
                       builder: _i9.buildCardUseCase,
+                    ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Dialog',
+                children: [
+                  _i1.WidgetbookLeafComponent(
+                    name: 'GardenDialog',
+                    useCase: _i1.WidgetbookUseCase(
+                      name: 'Default',
+                      builder: _i25.dialogDefaultUseCase,
+                      designLink: 'https://www.figma.com/file/your-menu-design',
                     ),
                   ),
                 ],
@@ -333,6 +351,28 @@ final directories = <_i1.WidgetbookNode>[
                   ),
                 ],
               ),
+              _i1.WidgetbookFolder(
+                name: 'TooltipIconButton',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'TooltipIconButton',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i24.tooltipIconButtonDefaultUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Small',
+                        builder: _i24.tooltipIconButtonSmallUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Large',
+                        builder: _i24.tooltipIconButtonLargeUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
           _i1.WidgetbookFolder(
@@ -407,6 +447,20 @@ final directories = <_i1.WidgetbookNode>[
                       designLink:
                           'https://www.figma.com/file/your-tab-menu-design',
                     ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'Tooltip',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'GardenTooltip',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i26.tooltipDefaultUseCase,
+                      ),
+                    ],
                   ),
                 ],
               ),

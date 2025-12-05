@@ -30,6 +30,49 @@ GardenButton(
 
 ---
 
+### GardenDialog
+
+**Emplacement :** `lib/ui/widgets/atoms/Dialog/dialog.dart`
+
+Boîte de dialogue modale avec en-tête et contenu personnalisable.
+
+**Propriétés :**
+- `title` (String, requis) : Titre affiché dans l'en-tête
+- `content` (Widget, requis) : Contenu principal de la modale
+- `maxWidth` (double) : Largeur maximale (défaut: 700)
+- `dismissible` (bool) : Fermeture au clic externe (défaut: true)
+
+**Exemple :**
+```dart
+GardenDialog.show(
+  context,
+  title: 'Confirmation',
+  content: Text('Voulez-vous continuer ?'),
+);
+```
+
+---
+
+### TooltipIconButton
+
+**Emplacement :** `lib/ui/widgets/atoms/TooltipIconButton/tooltip_icon_button.dart`
+
+Bouton icône "?" utilisé pour déclencher des info-bulles ou modales d'aide.
+
+**Propriétés :**
+- `onPressed` (VoidCallback, requis) : Action au clic
+- `size` (TooltipSize) : Taille de l'icône (sm, md, lg)
+
+**Exemple :**
+```dart
+TooltipIconButton(
+  onPressed: () => showHelp(),
+  size: TooltipSize.sm,
+)
+```
+
+---
+
 ### GardenCard
 
 **Emplacement :** `lib/ui/widgets/atoms/Card/card.dart`
@@ -199,6 +242,26 @@ MenuItem(
   label: 'Accueil',
   isSelected: true,
   onTap: () => navigateToHome(),
+)
+```
+
+---
+
+### GardenTooltip
+
+**Emplacement :** `lib/ui/widgets/molecules/Tooltip/tooltip.dart`
+
+Molecule combinant un `TooltipIconButton` et un `GardenDialog` pour afficher de l'aide contextuelle.
+
+**Propriétés :**
+- `title` (String, requis) : Titre de la modale d'aide
+- `content` (Widget, requis) : Contenu de l'aide
+
+**Exemple :**
+```dart
+GardenTooltip(
+  title: 'Aide',
+  content: Text('Voici des informations détaillées...'),
 )
 ```
 
