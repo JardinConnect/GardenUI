@@ -33,3 +33,6 @@ enum GardenIconSize { sm, md, lg }
 
 /// Size variants for Tooltip component
 enum TooltipSize { sm, md, lg }
+
+/// Size variants for battery indicator component
+enum BatteryIndicatorSize { sm, md, lg }
