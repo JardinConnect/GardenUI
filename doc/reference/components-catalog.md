@@ -343,7 +343,7 @@ Carte affichant l'état et les données capteurs d'un nœud spécifique (batteri
 
 **Propriétés :**
 - `name` (String, requis) : Nom du nœud
-- `batteryPercentage` (int, requis) : Niveau de batterie
+- `batteryPercentage` (int?) : Niveau de batterie (optionnel)
 - `light` (int, requis) : Luminosité en Lux
 - `rain` (int, requis) : Pluie %
 - `temperatureSurface/Depth` (double, requis) : Températures

@@ -14,6 +14,28 @@ Widget nodeCardUseCase(BuildContext context) {
     child: NodeCard(
       name: "Tomates serre nord",
       onPressed: () => {},
+      light: 25000,
+      rain: 68,
+      humiditySurface: 52,
+      humidityDepth: 43,
+      temperatureSurface: 23.8,
+      temperatureDepth: 19.2,
+    ),
+  );
+}
+
+@UseCase(
+  name: 'NodeCard',
+  type: NodeCard,
+  designLink:
+      'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
+)
+Widget nodeCardWithBatteryUseCase(BuildContext context) {
+  return SizedBox(
+    width: 320,
+    child: NodeCard(
+      name: "Tomates serre nord",
+      onPressed: () => {},
       batteryPercentage: 68,
       light: 25000,
       rain: 68,

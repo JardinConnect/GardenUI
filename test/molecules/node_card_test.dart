@@ -125,5 +125,30 @@ void main() {
 
       expect(mouseRegion.cursor, SystemMouseCursors.click);
     });
+
+    testWidgets(
+      'does not render BatteryIndicator when batteryPercentage is null',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: NodeCard(
+                name: 'Test Node',
+                batteryPercentage: null,
+                light: 1500,
+                rain: 20,
+                humiditySurface: 45,
+                humidityDepth: 50,
+                temperatureSurface: 25.5,
+                temperatureDepth: 22.0,
+                onPressed: () {},
+              ),
+            ),
+          ),
+        );
+
+        expect(find.byType(BatteryIndicator), findsNothing);
+      },
+    );
   });
 }

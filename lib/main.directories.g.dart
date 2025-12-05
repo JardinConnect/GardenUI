@@ -438,14 +438,22 @@ final directories = <_i1.WidgetbookNode>[
               _i1.WidgetbookFolder(
                 name: 'NodeCard',
                 children: [
-                  _i1.WidgetbookLeafComponent(
+                  _i1.WidgetbookComponent(
                     name: 'NodeCard',
-                    useCase: _i1.WidgetbookUseCase(
-                      name: 'Default',
-                      builder: _i28.nodeCardUseCase,
-                      designLink:
-                          'https://www.figma.com/file/your-menu-item-design',
-                    ),
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i28.nodeCardUseCase,
+                        designLink:
+                            'https://www.figma.com/file/your-menu-item-design',
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'With Battery',
+                        builder: _i28.nodeCardWithBatteryUseCase,
+                        designLink:
+                            'https://www.figma.com/file/your-menu-item-design',
+                      ),
+                    ],
                   ),
                 ],
               ),
