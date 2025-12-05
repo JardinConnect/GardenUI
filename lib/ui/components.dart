@@ -3,6 +3,7 @@ export 'enums.dart';
 
 // Atoms - Basic building blocks of the UI
 export 'widgets/atoms/AlertIndicator/alert_indicator.dart';
+export 'widgets/atoms/BatteryIndicator/battery_indicator.dart';
 export 'widgets/atoms/Button/button.dart';
 export 'widgets/atoms/Card/card.dart';
 export 'widgets/atoms/Dialog/dialog.dart';
@@ -18,6 +19,7 @@ export 'widgets/atoms/TooltipIconButton/tooltip_icon_button.dart';
 // Molecules - Combinations of atoms
 export 'widgets/molecules/HierarchicalMenuItem/hierarchical_menu_item.dart';
 export 'widgets/molecules/MenuItem/menu_item.dart';
+export 'widgets/molecules/NodeCard/node_card.dart';
 export 'widgets/molecules/Notification/notification_toast.dart';
 export 'widgets/molecules/TabMenu/tab_menu.dart';
 export 'widgets/molecules/Tooltip/tooltip.dart';

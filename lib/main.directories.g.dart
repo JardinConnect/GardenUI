@@ -52,6 +52,10 @@ import 'package:garden_ui/ui/widgets/organisms/HierarchicalMenu/hierarchical_men
 import 'package:garden_ui/ui/widgets/organisms/Menu/menu_usecase.dart' as _i25;
 import 'package:garden_ui/ui/widgets/organisms/SensorAlertCard/sensor_alert_card_usecase.dart'
     as _i26;
+import 'package:garden_ui/ui/widgets/atoms/BatteryIndicator/battery_indicator_usecase.dart'
+    as _i27;
+import 'package:garden_ui/ui/widgets/molecules/NodeCard/node_card_usecase.dart'
+    as _i28;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
 final directories = <_i1.WidgetbookNode>[
@@ -151,6 +155,28 @@ final directories = <_i1.WidgetbookNode>[
                       _i1.WidgetbookUseCase(
                         name: 'Small',
                         builder: _i7.alertIndicatorSmallUseCase,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'BatteryIndicator',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'BatteryIndicator',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i27.batteryIndicatorDefaultUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Small',
+                        builder: _i27.batteryIndicatorSmallUseCase,
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Large',
+                        builder: _i27.batteryIndicatorLargeUseCase,
                       ),
                     ],
                   ),
@@ -403,6 +429,20 @@ final directories = <_i1.WidgetbookNode>[
                     useCase: _i1.WidgetbookUseCase(
                       name: 'Default',
                       builder: _i20.buildMenuItemUseCase,
+                      designLink:
+                          'https://www.figma.com/file/your-menu-item-design',
+                    ),
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
+                name: 'NodeCard',
+                children: [
+                  _i1.WidgetbookLeafComponent(
+                    name: 'NodeCard',
+                    useCase: _i1.WidgetbookUseCase(
+                      name: 'Default',
+                      builder: _i28.nodeCardUseCase,
                       designLink:
                           'https://www.figma.com/file/your-menu-item-design',
                     ),
