@@ -413,13 +413,13 @@ final directories = <_i1.WidgetbookNode>[
                         name: 'Default',
                         builder: _i28.analyticsSummaryCardUseCase,
                         designLink:
-                        'https://www.figma.com/file/your-menu-item-design',
+                            'https://www.figma.com/file/your-menu-item-design',
                       ),
                       _i1.WidgetbookUseCase(
                         name: 'With Battery',
                         builder: _i28.analyticsSummaryCardWithBatteryUseCase,
                         designLink:
-                        'https://www.figma.com/file/your-menu-item-design',
+                            'https://www.figma.com/file/your-menu-item-design',
                       ),
                     ],
                   ),
