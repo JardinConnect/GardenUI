@@ -20,10 +20,6 @@ class NodeCard extends StatelessWidget {
   /// Light intensity value in Lux.
   final int light;
 
-  /// The maximum light intensity in Lux, used to calculate the icon's fill percentage.
-  /// Defaults to 100,000.
-  final int lightMaxValue;
-
   /// Rain intensity in percentage (0-100).
   final int rain;
 
@@ -58,7 +54,6 @@ class NodeCard extends StatelessWidget {
     required this.humidityDepth,
     required this.temperatureSurface,
     required this.temperatureDepth,
-    this.lightMaxValue = 100_000,
     this.temperatureSurfaceMaxValue = 55,
     this.temperatureDepthMaxValue = 40,
   });
@@ -72,7 +67,6 @@ class NodeCard extends StatelessWidget {
         );
     final fillTemperatureDepthPercentage =
         (100 * temperatureDepth / temperatureDepthMaxValue).clamp(0.0, 100.0);
-    final fillLightPercentage = (100 * light / lightMaxValue).clamp(0.0, 100.0);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -106,7 +100,7 @@ class NodeCard extends StatelessWidget {
                         child: _buildSensorItem(
                           iconName: "Soleil",
                           value: "$light lux",
-                          fillPercentage: fillLightPercentage,
+                          fillPercentage: 100,
                           color: GardenColors.yellowWarning.shade500,
                         ),
                       ),
