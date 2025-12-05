@@ -3,15 +3,15 @@ import 'package:garden_ui/ui/components.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 @UseCase(
-  name: 'NodeCard',
-  type: NodeCard,
+  name: 'Default',
+  type: AnalyticsSummaryCard,
   designLink:
       'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
 )
-Widget nodeCardUseCase(BuildContext context) {
+Widget analyticsSummaryCardUseCase(BuildContext context) {
   return SizedBox(
     width: 320,
-    child: NodeCard(
+    child: AnalyticsSummaryCard(
       name: "Tomates serre nord",
       onPressed: () => {},
       light: 25000,
@@ -25,15 +25,15 @@ Widget nodeCardUseCase(BuildContext context) {
 }
 
 @UseCase(
-  name: 'NodeCard',
-  type: NodeCard,
+  name: 'With battery',
+  type: AnalyticsSummaryCard,
   designLink:
       'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
 )
-Widget nodeCardWithBatteryUseCase(BuildContext context) {
+Widget analyticsSummaryCardWithBatteryUseCase(BuildContext context) {
   return SizedBox(
     width: 320,
-    child: NodeCard(
+    child: AnalyticsSummaryCard(
       name: "Tomates serre nord",
       onPressed: () => {},
       batteryPercentage: 68,

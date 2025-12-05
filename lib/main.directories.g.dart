@@ -54,7 +54,7 @@ import 'package:garden_ui/ui/widgets/organisms/SensorAlertCard/sensor_alert_card
     as _i26;
 import 'package:garden_ui/ui/widgets/atoms/BatteryIndicator/battery_indicator_usecase.dart'
     as _i27;
-import 'package:garden_ui/ui/widgets/molecules/NodeCard/node_card_usecase.dart'
+import 'package:garden_ui/ui/widgets/molecules/AnalyticsSummaryCard/analytics_summary_card_usecase.dart'
     as _i28;
 import 'package:widgetbook/widgetbook.dart' as _i1;
 
@@ -404,6 +404,28 @@ final directories = <_i1.WidgetbookNode>[
             name: 'molecules',
             children: [
               _i1.WidgetbookFolder(
+                name: 'AnalyticsSummaryCard',
+                children: [
+                  _i1.WidgetbookComponent(
+                    name: 'AnalyticsSummaryCard',
+                    useCases: [
+                      _i1.WidgetbookUseCase(
+                        name: 'Default',
+                        builder: _i28.analyticsSummaryCardUseCase,
+                        designLink:
+                        'https://www.figma.com/file/your-menu-item-design',
+                      ),
+                      _i1.WidgetbookUseCase(
+                        name: 'With Battery',
+                        builder: _i28.analyticsSummaryCardWithBatteryUseCase,
+                        designLink:
+                        'https://www.figma.com/file/your-menu-item-design',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              _i1.WidgetbookFolder(
                 name: 'HierarchicalMenuItem',
                 children: [
                   _i1.WidgetbookComponent(
@@ -432,28 +454,6 @@ final directories = <_i1.WidgetbookNode>[
                       designLink:
                           'https://www.figma.com/file/your-menu-item-design',
                     ),
-                  ),
-                ],
-              ),
-              _i1.WidgetbookFolder(
-                name: 'NodeCard',
-                children: [
-                  _i1.WidgetbookComponent(
-                    name: 'NodeCard',
-                    useCases: [
-                      _i1.WidgetbookUseCase(
-                        name: 'Default',
-                        builder: _i28.nodeCardUseCase,
-                        designLink:
-                            'https://www.figma.com/file/your-menu-item-design',
-                      ),
-                      _i1.WidgetbookUseCase(
-                        name: 'With Battery',
-                        builder: _i28.nodeCardWithBatteryUseCase,
-                        designLink:
-                            'https://www.figma.com/file/your-menu-item-design',
-                      ),
-                    ],
                   ),
                 ],
               ),

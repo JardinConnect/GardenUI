@@ -335,9 +335,9 @@ NotificationToast(
 
 ---
 
-### NodeCard
+### AnalyticsSummaryCard
 
-**Emplacement :** `lib/ui/widgets/molecules/NodeCard/node_card.dart`
+**Emplacement :** `lib/ui/widgets/molecules/AnalyticsSummaryCard/analytics_summary_card.dart`
 
 Carte affichant l'état et les données capteurs d'un nœud spécifique (batterie, pluie, temp, etc.).
 
@@ -353,7 +353,7 @@ Carte affichant l'état et les données capteurs d'un nœud spécifique (batteri
 
 **Exemple :**
 ```dart
-NodeCard(
+AnalyticsSummaryCard(
   name: 'Potager Sud',
   batteryPercentage: 85,
   onPressed: () => showDetails(),

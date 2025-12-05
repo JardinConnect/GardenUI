@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
 
-/// A card displaying the status and sensor data of a specific node.
+/// A card displaying the status and sensor data of a specific node/space.
 ///
 /// This component presents key metrics such as light, rain, humidity (surface/depth),
-/// and temperature (surface/depth) in a grid layout. It also displays the node's name
+/// and temperature (surface/depth) in a grid layout. It also displays the node/space's name
 /// and battery level (if provided). The card is interactive and can trigger an action when tapped.
-class NodeCard extends StatelessWidget {
-  /// The display name of the node.
+class AnalyticsSummaryCard extends StatelessWidget {
+  /// The display name of the node/space.
   final String name;
 
   /// The current battery level of the node in percentage (0-100).
@@ -43,7 +43,7 @@ class NodeCard extends StatelessWidget {
   /// Defaults to 40°C.
   final double temperatureDepthMaxValue;
 
-  const NodeCard({
+  const AnalyticsSummaryCard({
     super.key,
     required this.name,
     this.batteryPercentage,
