@@ -148,9 +148,6 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
   }
 
   void _handleTap() {
-    // Call the onTap callback from the item model first
-    widget.item.onTap?.call();
-
     // Handle expansion/collapse for items with children
     if (widget.item.hasChildren) {
       final updatedItem = widget.item.copyWith(
@@ -158,6 +155,9 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
       );
       widget.onExpansionChanged?.call(updatedItem);
     }
+    
+    // Call the onTap callback from the item model
+    widget.item.onTap?.call();
 
     // Notify the parent widget about the tap
     widget.onItemTapped?.call(widget.item);
@@ -212,30 +212,27 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
 
               // Main content
               Expanded(
-                child: Padding(
-                  padding: _padding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.item.title,
+                      style: _titleStyle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (widget.item.subtitle != null) ...[
+                      SizedBox(height: GardenSpace.gapXs / 2),
                       Text(
-                        widget.item.title,
-                        style: _titleStyle,
+                        widget.item.subtitle!,
+                        style: _subtitleStyle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      if (widget.item.subtitle != null) ...[
-                        SizedBox(height: GardenSpace.gapXs / 2),
-                        Text(
-                          widget.item.subtitle!,
-                          style: _subtitleStyle,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
                     ],
-                  ),
+                  ],
                 ),
               ),
 
