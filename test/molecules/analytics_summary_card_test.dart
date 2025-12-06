@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
 
 void main() {
-  group('NodeCard Widget Tests', () {
+  group('AnalyticsSummaryCard Widget Tests', () {
     testWidgets('renders correctly with provided data', (
       WidgetTester tester,
     ) async {
@@ -12,7 +12,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: NodeCard(
+            body: AnalyticsSummaryCard(
               name: nodeName,
               batteryPercentage: 80,
               light: 1500,
@@ -48,7 +48,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: NodeCard(
+            body: AnalyticsSummaryCard(
               name: 'Test Node',
               batteryPercentage: 80,
               light: 400, // < 1000
@@ -74,7 +74,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: NodeCard(
+            body: AnalyticsSummaryCard(
               name: 'Test Node',
               batteryPercentage: 80,
               light: 100,
@@ -91,7 +91,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(NodeCard));
+      await tester.tap(find.byType(AnalyticsSummaryCard));
       expect(wasPressed, isTrue);
     });
 
@@ -99,7 +99,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: NodeCard(
+            body: AnalyticsSummaryCard(
               name: 'Test Node',
               batteryPercentage: 80,
               light: 100,
@@ -117,7 +117,7 @@ void main() {
       final mouseRegion = tester.widget<MouseRegion>(
         find
             .descendant(
-              of: find.byType(NodeCard),
+              of: find.byType(AnalyticsSummaryCard),
               matching: find.byType(MouseRegion),
             )
             .first,
@@ -125,5 +125,30 @@ void main() {
 
       expect(mouseRegion.cursor, SystemMouseCursors.click);
     });
+
+    testWidgets(
+      'does not render BatteryIndicator when batteryPercentage is null',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: AnalyticsSummaryCard(
+                name: 'Test Node',
+                batteryPercentage: null,
+                light: 1500,
+                rain: 20,
+                humiditySurface: 45,
+                humidityDepth: 50,
+                temperatureSurface: 25.5,
+                temperatureDepth: 22.0,
+                onPressed: () {},
+              ),
+            ),
+          ),
+        );
+
+        expect(find.byType(BatteryIndicator), findsNothing);
+      },
+    );
   });
 }

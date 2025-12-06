@@ -4,6 +4,18 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.2] - 2025-12-05
+
+### 🐛 Corrigé
+
+- **NodeCard** (#40) : Rename NodeCard to AnalyticsSummaryCard (#40)
+
+## [0.3.1] - 2025-12-05
+
+### 🐛 Corrigé
+
+- (#39) : add package properties to render icon on frontend project
+
 ## [0.3.0] - 2025-12-05
 
 ### ✨ Ajouté
