@@ -126,6 +126,21 @@ class SensorAlertCard extends StatelessWidget {
       ),
     );
   }
+
+  Color _getSensorIconColor(SensorType sensorType) {
+    switch (sensorType) {
+      case SensorType.temperature:
+        return GardenColors.redAlert.shade500;
+      case SensorType.humiditySurface:
+        return GardenColors.blueInfo.shade400;
+      case SensorType.humidityDepth:
+        return GardenColors.blueInfo.shade600;
+      case SensorType.light:
+        return GardenColors.secondary.shade400;
+      case SensorType.rain:
+        return GardenColors.blueInfo.shade500;
+    }
+  }
 }
 
 /// Internal widget for displaying a threshold value row with alert indicator.
