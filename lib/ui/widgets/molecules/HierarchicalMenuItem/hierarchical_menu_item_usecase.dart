@@ -167,8 +167,8 @@ class _InteractiveHierarchicalMenuDemoState
         items[i] = items[i].copyWith(isExpanded: !items[i].isExpanded);
         return;
       }
-      if (items[i].children != null && items[i].children!.isNotEmpty) {
-        _toggleExpansion(items[i].children!, itemId);
+      if (items[i].children.isNotEmpty) {
+        _toggleExpansion(items[i].children, itemId);
       }
     }
   }
@@ -328,8 +328,8 @@ class _InteractiveHierarchicalMenuDemoState
           onExpansionChanged: _handleExpansionChanged,
           onItemTapped: _handleItemTapped,
         ),
-        if (item.isExpanded && item.children != null)
-          for (var child in item.children!) _buildMenuItemWithChildren(child),
+        if (item.isExpanded && item.children.isNotEmpty)
+          for (var child in item.children) _buildMenuItemWithChildren(child),
       ],
     );
   }
