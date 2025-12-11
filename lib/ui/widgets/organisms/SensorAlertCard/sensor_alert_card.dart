@@ -29,9 +29,8 @@ class SensorAlertCard extends StatelessWidget {
   /// Callback when a page dot is tapped.
   final ValueChanged<int> onPageChanged;
 
-  /// Optional custom color for the sensor icon.
-  /// If not provided, defaults to a color based on [sensorType].
-  final Color? iconColor;
+  /// Color for the sensor icon.
+  final Color iconColor;
 
   const SensorAlertCard({
     super.key,
@@ -42,7 +41,7 @@ class SensorAlertCard extends StatelessWidget {
     required this.totalPages,
     required this.currentPage,
     required this.onPageChanged,
-    this.iconColor,
+    required this.iconColor,
   });
 
   @override
@@ -82,7 +81,7 @@ class SensorAlertCard extends StatelessWidget {
               GardenIcon(
                 iconName: sensorType.iconName,
                 size: GardenIconSize.lg,
-                color: iconColor ?? _getSensorIconColor(sensorType),
+                color: iconColor,
               ),
               SizedBox(width: GardenSpace.gapLg),
 
@@ -142,21 +141,6 @@ class SensorAlertCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Color _getSensorIconColor(SensorType sensorType) {
-    switch (sensorType) {
-      case SensorType.temperature:
-        return GardenColors.redAlert.shade500;
-      case SensorType.humiditySurface:
-        return GardenColors.blueInfo.shade400;
-      case SensorType.humidityDepth:
-        return GardenColors.blueInfo.shade600;
-      case SensorType.light:
-        return GardenColors.secondary.shade400;
-      case SensorType.rain:
-        return GardenColors.blueInfo.shade500;
-    }
   }
 }
 

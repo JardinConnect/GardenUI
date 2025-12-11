@@ -452,6 +452,48 @@ HierarchicalMenu(
 
 ---
 
+### SensorAlertCard
+
+**Emplacement :** `lib/ui/widgets/organisms/SensorAlertCard/sensor_alert_card.dart`
+
+Carte affichant les seuils d'alerte d'un capteur environnemental avec toggle d'activation et pagination.
+
+**Propriétés :**
+- `sensorType` (SensorType, requis) : Type de capteur (temperature, humiditySurface, humidityDepth, light, rain)
+- `threshold` (SensorThreshold, requis) : Valeurs de seuils et types d'alerte
+- `isEnabled` (bool, requis) : État d'activation de l'alerte
+- `onToggle` (ValueChanged\<bool\>, requis) : Callback lors du changement du toggle
+- `totalPages` (int, requis) : Nombre total de pages/capteurs
+- `currentPage` (int, requis) : Index de la page courante (base 0)
+- `onPageChanged` (ValueChanged\<int\>, requis) : Callback lors du changement de page
+- `iconColor` (Color, requis) : Couleur de l'icône du capteur
+
+**Comportements :**
+- **Pagination** : Navigation entre plusieurs capteurs via les points de pagination
+
+**Exemple:**
+```dart
+SensorAlertCard(
+  sensorType: SensorType.temperature,
+  threshold: SensorThreshold(
+    thresholds: [
+      ThresholdValue(value: 40, unit: '°C', label: 'critique', alertType: MenuAlertType.error),
+      ThresholdValue(value: 30, unit: '°C', label: 'maximale', alertType: MenuAlertType.warning),
+      ThresholdValue(value: 10, unit: '°C', label: 'minimale', alertType: MenuAlertType.warning),
+      ThresholdValue(value: 0, unit: '°C', label: 'gel', alertType: MenuAlertType.error),
+    ],
+  ),
+  isEnabled: true,
+  onToggle: (value) => updateAlert(value),
+  totalPages: 3,
+  currentPage: 1,
+  onPageChanged: (index) => changePage(index),
+  iconColor: GardenColors.redAlert.shade500,
+)
+```
+
+---
+
 ## Explorer dans Widgetbook
 
 Pour visualiser et interagir avec tous ces composants :
