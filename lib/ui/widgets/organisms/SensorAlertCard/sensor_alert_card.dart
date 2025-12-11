@@ -92,9 +92,7 @@ class SensorAlertCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (var i = 0; i < threshold.thresholds.length; i++) ...[
-                      _ThresholdRow(
-                        thresholdValue: threshold.thresholds[i],
-                      ),
+                      _ThresholdRow(thresholdValue: threshold.thresholds[i]),
                       if (i < threshold.thresholds.length - 1)
                         SizedBox(height: GardenSpace.gapSm),
                     ],

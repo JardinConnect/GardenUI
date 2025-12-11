@@ -329,55 +329,54 @@ void main() {
       expect(tapCount, equals(3));
     });
 
-    testWidgets(
-      'should handle expansion and onTap callback simultaneously',
-      (WidgetTester tester) async {
-        int tapCount = 0;
-        final List<bool> expansionStates = [];
-        final items = [
-          HierarchicalMenuItem(
-            id: 'parent',
-            title: 'Parent',
-            level: 1,
-            onTap: () {
-              tapCount++;
-            },
-            children: const [
-              HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-            ],
-          ),
-        ];
+    testWidgets('should handle expansion and onTap callback simultaneously', (
+      WidgetTester tester,
+    ) async {
+      int tapCount = 0;
+      final List<bool> expansionStates = [];
+      final items = [
+        HierarchicalMenuItem(
+          id: 'parent',
+          title: 'Parent',
+          level: 1,
+          onTap: () {
+            tapCount++;
+          },
+          children: const [
+            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
+          ],
+        ),
+      ];
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: HierarchicalMenu(
-                items: items,
-                onItemExpansionChanged: (item) {
-                  expansionStates.add(item.isExpanded);
-                },
-              ),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: HierarchicalMenu(
+              items: items,
+              onItemExpansionChanged: (item) {
+                expansionStates.add(item.isExpanded);
+              },
             ),
           ),
-        );
+        ),
+      );
 
-        // First tap: expand and call onTap
-        await tester.tap(find.text('Parent'));
-        await tester.pumpAndSettle();
-        expect(tapCount, equals(1));
-        expect(expansionStates.length, equals(1));
-        expect(expansionStates[0], isTrue);
-        expect(find.text('Child'), findsOneWidget);
+      // First tap: expand and call onTap
+      await tester.tap(find.text('Parent'));
+      await tester.pumpAndSettle();
+      expect(tapCount, equals(1));
+      expect(expansionStates.length, equals(1));
+      expect(expansionStates[0], isTrue);
+      expect(find.text('Child'), findsOneWidget);
 
-        // Second tap: collapse and call onTap
-        await tester.tap(find.text('Parent'));
-        await tester.pumpAndSettle();
-        expect(tapCount, equals(2));
-        expect(expansionStates.length, equals(2));
-        expect(expansionStates[1], isFalse);
-        expect(find.text('Child'), findsNothing);
-      },
-    );
+      // Second tap: collapse and call onTap
+      await tester.tap(find.text('Parent'));
+      await tester.pumpAndSettle();
+      expect(tapCount, equals(2));
+      expect(expansionStates.length, equals(2));
+      expect(expansionStates[1], isFalse);
+      expect(find.text('Child'), findsNothing);
+    });
   });
 
   group('AlertIndicator', () {
