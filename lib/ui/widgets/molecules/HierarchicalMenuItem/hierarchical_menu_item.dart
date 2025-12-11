@@ -155,7 +155,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
       );
       widget.onExpansionChanged?.call(updatedItem);
     }
-    
+
     // Call the onTap callback from the item model
     widget.item.onTap?.call();
 

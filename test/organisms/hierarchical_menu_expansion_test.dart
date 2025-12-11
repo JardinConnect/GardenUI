@@ -4,164 +4,168 @@ import 'package:garden_ui/ui/components.dart';
 
 void main() {
   group('HierarchicalMenu - Expansion/Collapse Tests', () {
-    testWidgets(
-      'should toggle expansion state on multiple taps',
-      (WidgetTester tester) async {
-        // Track expansion state changes
-        final List<HierarchicalMenuItem> expansionChanges = [];
+    testWidgets('should toggle expansion state on multiple taps', (
+      WidgetTester tester,
+    ) async {
+      // Track expansion state changes
+      final List<HierarchicalMenuItem> expansionChanges = [];
 
-        const items = [
-          HierarchicalMenuItem(
-            id: 'parent',
-            title: 'Parent Item',
-            level: 1,
-            children: [
-              HierarchicalMenuItem(
-                id: 'child1',
-                title: 'Child 1',
-                level: 2,
-              ),
-              HierarchicalMenuItem(
-                id: 'child2',
-                title: 'Child 2',
-                level: 2,
-              ),
-            ],
-          ),
-        ];
+      const items = [
+        HierarchicalMenuItem(
+          id: 'parent',
+          title: 'Parent Item',
+          level: 1,
+          children: [
+            HierarchicalMenuItem(id: 'child1', title: 'Child 1', level: 2),
+            HierarchicalMenuItem(id: 'child2', title: 'Child 2', level: 2),
+          ],
+        ),
+      ];
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: HierarchicalMenu(
-                items: items,
-                onItemExpansionChanged: (item) {
-                  expansionChanges.add(item);
-                },
-              ),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: HierarchicalMenu(
+              items: items,
+              onItemExpansionChanged: (item) {
+                expansionChanges.add(item);
+              },
             ),
           ),
-        );
+        ),
+      );
 
-        // Verify initial state
-        expect(find.text('Parent Item'), findsOneWidget);
-        expect(find.text('Child 1'), findsNothing);
-        expect(find.text('Child 2'), findsNothing);
-        expect(expansionChanges.isEmpty, isTrue);
+      // Verify initial state
+      expect(find.text('Parent Item'), findsOneWidget);
+      expect(find.text('Child 1'), findsNothing);
+      expect(find.text('Child 2'), findsNothing);
+      expect(expansionChanges.isEmpty, isTrue);
 
-        // Tap 1: Expand
-        await tester.tap(find.text('Parent Item'));
-        await tester.pumpAndSettle();
+      // Tap 1: Expand
+      await tester.tap(find.text('Parent Item'));
+      await tester.pumpAndSettle();
 
-        expect(expansionChanges.length, equals(1));
-        expect(expansionChanges[0].isExpanded, isTrue,
-            reason: 'First tap should expand the item');
-        expect(find.text('Child 1'), findsOneWidget,
-            reason: 'Children should be visible after expansion');
-        expect(find.text('Child 2'), findsOneWidget);
+      expect(expansionChanges.length, equals(1));
+      expect(
+        expansionChanges[0].isExpanded,
+        isTrue,
+        reason: 'First tap should expand the item',
+      );
+      expect(
+        find.text('Child 1'),
+        findsOneWidget,
+        reason: 'Children should be visible after expansion',
+      );
+      expect(find.text('Child 2'), findsOneWidget);
 
-        // Tap 2: Collapse
-        await tester.tap(find.text('Parent Item'));
-        await tester.pumpAndSettle();
+      // Tap 2: Collapse
+      await tester.tap(find.text('Parent Item'));
+      await tester.pumpAndSettle();
 
-        expect(expansionChanges.length, equals(2));
-        expect(expansionChanges[1].isExpanded, isFalse,
-            reason: 'Second tap should collapse the item');
-        expect(find.text('Child 1'), findsNothing,
-            reason: 'Children should be hidden after collapse');
-        expect(find.text('Child 2'), findsNothing);
+      expect(expansionChanges.length, equals(2));
+      expect(
+        expansionChanges[1].isExpanded,
+        isFalse,
+        reason: 'Second tap should collapse the item',
+      );
+      expect(
+        find.text('Child 1'),
+        findsNothing,
+        reason: 'Children should be hidden after collapse',
+      );
+      expect(find.text('Child 2'), findsNothing);
 
-        // Tap 3: Expand again
-        await tester.tap(find.text('Parent Item'));
-        await tester.pumpAndSettle();
+      // Tap 3: Expand again
+      await tester.tap(find.text('Parent Item'));
+      await tester.pumpAndSettle();
 
-        expect(expansionChanges.length, equals(3));
-        expect(expansionChanges[2].isExpanded, isTrue,
-            reason: 'Third tap should expand the item again');
-        expect(find.text('Child 1'), findsOneWidget);
-        expect(find.text('Child 2'), findsOneWidget);
+      expect(expansionChanges.length, equals(3));
+      expect(
+        expansionChanges[2].isExpanded,
+        isTrue,
+        reason: 'Third tap should expand the item again',
+      );
+      expect(find.text('Child 1'), findsOneWidget);
+      expect(find.text('Child 2'), findsOneWidget);
 
-        // Tap 4: Collapse again
-        await tester.tap(find.text('Parent Item'));
-        await tester.pumpAndSettle();
+      // Tap 4: Collapse again
+      await tester.tap(find.text('Parent Item'));
+      await tester.pumpAndSettle();
 
-        expect(expansionChanges.length, equals(4));
-        expect(expansionChanges[3].isExpanded, isFalse,
-            reason: 'Fourth tap should collapse the item again');
-        expect(find.text('Child 1'), findsNothing);
-        expect(find.text('Child 2'), findsNothing);
-      },
-    );
+      expect(expansionChanges.length, equals(4));
+      expect(
+        expansionChanges[3].isExpanded,
+        isFalse,
+        reason: 'Fourth tap should collapse the item again',
+      );
+      expect(find.text('Child 1'), findsNothing);
+      expect(find.text('Child 2'), findsNothing);
+    });
 
-    testWidgets(
-      'should handle nested expansion correctly',
-      (WidgetTester tester) async {
-        const items = [
-          HierarchicalMenuItem(
-            id: 'level1',
-            title: 'Level 1',
-            level: 1,
-            children: [
-              HierarchicalMenuItem(
-                id: 'level2',
-                title: 'Level 2',
-                level: 2,
-                children: [
-                  HierarchicalMenuItem(
-                    id: 'level3',
-                    title: 'Level 3',
-                    level: 3,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ];
+    testWidgets('should handle nested expansion correctly', (
+      WidgetTester tester,
+    ) async {
+      const items = [
+        HierarchicalMenuItem(
+          id: 'level1',
+          title: 'Level 1',
+          level: 1,
+          children: [
+            HierarchicalMenuItem(
+              id: 'level2',
+              title: 'Level 2',
+              level: 2,
+              children: [
+                HierarchicalMenuItem(id: 'level3', title: 'Level 3', level: 3),
+              ],
+            ),
+          ],
+        ),
+      ];
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(body: HierarchicalMenu(items: items)),
-          ),
-        );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: HierarchicalMenu(items: items)),
+        ),
+      );
 
-        // Initially, only level 1 should be visible
-        expect(find.text('Level 1'), findsOneWidget);
-        expect(find.text('Level 2'), findsNothing);
-        expect(find.text('Level 3'), findsNothing);
+      // Initially, only level 1 should be visible
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsNothing);
+      expect(find.text('Level 3'), findsNothing);
 
-        // Expand level 1
-        await tester.tap(find.text('Level 1'));
-        await tester.pumpAndSettle();
+      // Expand level 1
+      await tester.tap(find.text('Level 1'));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Level 1'), findsOneWidget);
-        expect(find.text('Level 2'), findsOneWidget);
-        expect(find.text('Level 3'), findsNothing);
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsNothing);
 
-        // Expand level 2
-        await tester.tap(find.text('Level 2'));
-        await tester.pumpAndSettle();
+      // Expand level 2
+      await tester.tap(find.text('Level 2'));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Level 1'), findsOneWidget);
-        expect(find.text('Level 2'), findsOneWidget);
-        expect(find.text('Level 3'), findsOneWidget);
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsOneWidget);
 
-        // Collapse level 2
-        await tester.tap(find.text('Level 2'));
-        await tester.pumpAndSettle();
+      // Collapse level 2
+      await tester.tap(find.text('Level 2'));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Level 1'), findsOneWidget);
-        expect(find.text('Level 2'), findsOneWidget);
-        expect(find.text('Level 3'), findsNothing);
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsNothing);
 
-        // Collapse level 1
-        await tester.tap(find.text('Level 1'));
-        await tester.pumpAndSettle();
+      // Collapse level 1
+      await tester.tap(find.text('Level 1'));
+      await tester.pumpAndSettle();
 
-        expect(find.text('Level 1'), findsOneWidget);
-        expect(find.text('Level 2'), findsNothing);
-        expect(find.text('Level 3'), findsNothing);
-      },
-    );
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsNothing);
+      expect(find.text('Level 3'), findsNothing);
+    });
 
     testWidgets(
       'should call onTap callback on every tap regardless of expansion',
@@ -178,11 +182,7 @@ void main() {
               tapCount++;
             },
             children: const [
-              HierarchicalMenuItem(
-                id: 'child',
-                title: 'Child',
-                level: 2,
-              ),
+              HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
             ],
           ),
         ];
@@ -205,10 +205,16 @@ void main() {
           await tester.tap(find.text('Test Item'));
           await tester.pumpAndSettle();
 
-          expect(tapCount, equals(i),
-              reason: 'onTap should be called on tap $i');
-          expect(expansionChangeCount, equals(i),
-              reason: 'onExpansionChanged should be called on tap $i');
+          expect(
+            tapCount,
+            equals(i),
+            reason: 'onTap should be called on tap $i',
+          );
+          expect(
+            expansionChangeCount,
+            equals(i),
+            reason: 'onExpansionChanged should be called on tap $i',
+          );
         }
       },
     );
@@ -222,11 +228,7 @@ void main() {
             title: 'Parent 1',
             level: 1,
             children: [
-              HierarchicalMenuItem(
-                id: 'child1',
-                title: 'Child 1',
-                level: 2,
-              ),
+              HierarchicalMenuItem(id: 'child1', title: 'Child 1', level: 2),
             ],
           ),
           HierarchicalMenuItem(
@@ -234,11 +236,7 @@ void main() {
             title: 'Parent 2',
             level: 1,
             children: [
-              HierarchicalMenuItem(
-                id: 'child2',
-                title: 'Child 2',
-                level: 2,
-              ),
+              HierarchicalMenuItem(id: 'child2', title: 'Child 2', level: 2),
             ],
           ),
         ];

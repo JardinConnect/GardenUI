@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 void main() {
   group('SensorAlertCard Widget Tests', () {
@@ -31,6 +32,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -69,6 +71,7 @@ void main() {
               totalPages: 5,
               currentPage: 1,
               onPageChanged: (index) {},
+              iconColor: GardenColors.blueInfo.shade400,
             ),
           ),
         ),
@@ -107,6 +110,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -145,6 +149,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -188,6 +193,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -228,6 +234,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -269,6 +276,7 @@ void main() {
               onPageChanged: (index) {
                 changedPage = index;
               },
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -312,6 +320,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -348,6 +357,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -383,6 +393,7 @@ void main() {
               totalPages: 5,
               currentPage: 4,
               onPageChanged: (index) {},
+              iconColor: GardenColors.blueInfo.shade500,
             ),
           ),
         ),
@@ -419,6 +430,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -460,6 +472,7 @@ void main() {
               totalPages: 5,
               currentPage: 0,
               onPageChanged: (index) {},
+              iconColor: GardenColors.secondary.shade400,
             ),
           ),
         ),
@@ -514,6 +527,7 @@ void main() {
               totalPages: 5,
               currentPage: 2,
               onPageChanged: (index) {},
+              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),

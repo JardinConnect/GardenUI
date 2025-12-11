@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 @widgetbook.UseCase(
   name: 'Temperature with warnings (2 thresholds)',
@@ -33,6 +34,7 @@ Widget sensorAlertCardTemperatureUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 3,
       onPageChanged: (index) {},
+      iconColor: GardenColors.redAlert.shade500,
     ),
   );
 }
@@ -67,6 +69,7 @@ Widget sensorAlertCardHumidityUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 1,
       onPageChanged: (index) {},
+      iconColor: GardenColors.blueInfo.shade400,
     ),
   );
 }
@@ -104,6 +107,7 @@ Widget sensorAlertCardLightThreeThresholdsUseCase(BuildContext context) {
       totalPages: 3,
       currentPage: 0,
       onPageChanged: (index) {},
+      iconColor: GardenColors.secondary.shade400,
     ),
   );
 }
@@ -150,6 +154,7 @@ Widget sensorAlertCardTemperatureFourThresholdsUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 2,
       onPageChanged: (index) {},
+      iconColor: GardenColors.redAlert.shade500,
     ),
   );
 }
@@ -181,6 +186,7 @@ Widget sensorAlertCardDisabledUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 2,
       onPageChanged: (index) {},
+      iconColor: GardenColors.redAlert.shade500,
     ),
   );
 }
@@ -212,6 +218,39 @@ Widget sensorAlertCardNoAlertsUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 4,
       onPageChanged: (index) {},
+      iconColor: GardenColors.blueInfo.shade500,
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Custom icon color', type: SensorAlertCard)
+Widget sensorAlertCardCustomIconColorUseCase(BuildContext context) {
+  return SizedBox(
+    width: 400,
+    child: SensorAlertCard(
+      sensorType: SensorType.temperature,
+      threshold: const SensorThreshold(
+        thresholds: [
+          ThresholdValue(
+            value: 35,
+            unit: '°C',
+            label: 'maximale',
+            alertType: MenuAlertType.warning,
+          ),
+          ThresholdValue(
+            value: 2,
+            unit: '°C',
+            label: 'minimale',
+            alertType: MenuAlertType.warning,
+          ),
+        ],
+      ),
+      isEnabled: true,
+      onToggle: (value) {},
+      totalPages: 5,
+      currentPage: 0,
+      onPageChanged: (index) {},
+      iconColor: GardenColors.primary.shade500,
     ),
   );
 }
@@ -253,6 +292,7 @@ class _InteractiveSensorAlertCardState
           ),
         ],
       ),
+      iconColor: GardenColors.redAlert.shade500,
     ),
     _SensorData(
       type: SensorType.humiditySurface,
@@ -272,6 +312,7 @@ class _InteractiveSensorAlertCardState
           ),
         ],
       ),
+      iconColor: GardenColors.blueInfo.shade400,
     ),
     _SensorData(
       type: SensorType.humidityDepth,
@@ -291,6 +332,7 @@ class _InteractiveSensorAlertCardState
           ),
         ],
       ),
+      iconColor: GardenColors.blueInfo.shade600,
     ),
     _SensorData(
       type: SensorType.light,
@@ -316,6 +358,7 @@ class _InteractiveSensorAlertCardState
           ),
         ],
       ),
+      iconColor: GardenColors.secondary.shade400,
     ),
     _SensorData(
       type: SensorType.rain,
@@ -335,6 +378,7 @@ class _InteractiveSensorAlertCardState
           ),
         ],
       ),
+      iconColor: GardenColors.blueInfo.shade500,
     ),
   ];
 
@@ -357,6 +401,7 @@ class _InteractiveSensorAlertCardState
           currentPage = index;
         });
       },
+      iconColor: currentSensor.iconColor,
     );
   }
 }
@@ -364,6 +409,11 @@ class _InteractiveSensorAlertCardState
 class _SensorData {
   final SensorType type;
   final SensorThreshold threshold;
+  final Color iconColor;
 
-  _SensorData({required this.type, required this.threshold});
+  _SensorData({
+    required this.type,
+    required this.threshold,
+    required this.iconColor,
+  });
 }

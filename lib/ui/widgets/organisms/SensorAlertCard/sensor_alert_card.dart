@@ -29,6 +29,9 @@ class SensorAlertCard extends StatelessWidget {
   /// Callback when a page dot is tapped.
   final ValueChanged<int> onPageChanged;
 
+  /// Color for the sensor icon.
+  final Color iconColor;
+
   const SensorAlertCard({
     super.key,
     required this.sensorType,
@@ -38,6 +41,7 @@ class SensorAlertCard extends StatelessWidget {
     required this.totalPages,
     required this.currentPage,
     required this.onPageChanged,
+    required this.iconColor,
   });
 
   @override
@@ -77,37 +81,49 @@ class SensorAlertCard extends StatelessWidget {
               GardenIcon(
                 iconName: sensorType.iconName,
                 size: GardenIconSize.lg,
-                color: GardenColors.redAlert.shade500,
+                color: iconColor,
               ),
               SizedBox(width: GardenSpace.gapLg),
 
-              // Threshold values (2-column grid)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  for (var i = 0; i < threshold.thresholds.length; i += 2)
-                    Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _ThresholdRow(
-                              thresholdValue: threshold.thresholds[i],
-                            ),
-                            if (i + 1 < threshold.thresholds.length) ...[
-                              SizedBox(width: GardenSpace.gapLg),
+              // Threshold values
+              if (threshold.thresholds.length <= 2)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < threshold.thresholds.length; i++) ...[
+                      _ThresholdRow(thresholdValue: threshold.thresholds[i]),
+                      if (i < threshold.thresholds.length - 1)
+                        SizedBox(height: GardenSpace.gapSm),
+                    ],
+                  ],
+                )
+              else
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < threshold.thresholds.length; i += 2)
+                      Column(
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               _ThresholdRow(
-                                thresholdValue: threshold.thresholds[i + 1],
+                                thresholdValue: threshold.thresholds[i],
                               ),
+                              if (i + 1 < threshold.thresholds.length) ...[
+                                SizedBox(width: GardenSpace.gapLg),
+                                _ThresholdRow(
+                                  thresholdValue: threshold.thresholds[i + 1],
+                                ),
+                              ],
                             ],
-                          ],
-                        ),
-                        if (i + 2 < threshold.thresholds.length)
-                          SizedBox(height: GardenSpace.gapSm),
-                      ],
-                    ),
-                ],
-              ),
+                          ),
+                          if (i + 2 < threshold.thresholds.length)
+                            SizedBox(height: GardenSpace.gapSm),
+                        ],
+                      ),
+                  ],
+                ),
             ],
           ),
           SizedBox(height: GardenSpace.gapMd),
