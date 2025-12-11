@@ -94,6 +94,30 @@ GardenCard(
 
 ---
 
+### GardenToggle
+
+**Emplacement :** `lib/ui/widgets/atoms/GardenToggle/garden_toggle.dart`
+
+Composant de type switch contrôlé permettant d'activer ou désactiver une fonctionnalité, avec support d'icônes optionnelles.
+
+**Propriétés :**
+- `isEnabled` (bool, requis) : État actuel du switch
+- `onToggle` (ValueChanged\<bool\>, requis) : Callback appelé au changement d'état
+- `enabledIcon` (IconData?) : Icône affichée quand activé
+- `disabledIcon` (IconData?) : Icône affichée quand désactivé
+
+**Exemple :**
+```dart
+GardenToggle(
+  isEnabled: true,
+  onToggle: (value) => setState(() => isEnabled = value),
+  enabledIcon: Icons.check,
+  disabledIcon: Icons.close,
+)
+```
+
+---
+
 ### GardenIcon
 
 **Emplacement :** `lib/ui/widgets/atoms/GardenIcon/garden_icon.dart`

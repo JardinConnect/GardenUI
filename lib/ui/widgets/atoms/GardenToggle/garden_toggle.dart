@@ -12,21 +12,65 @@ class GardenToggle extends StatelessWidget {
   /// Callback when the toggle is switched.
   final ValueChanged<bool> onToggle;
 
+  /// Optional icon to display when the toggle is enabled.
+  final IconData? enabledIcon;
+
+  /// Optional icon to display when the toggle is disabled.
+  final IconData? disabledIcon;
+
   const GardenToggle({
     super.key,
     required this.isEnabled,
     required this.onToggle,
+    this.enabledIcon,
+    this.disabledIcon,
   });
+
+  double? get _iconWeight {
+    return GardenTypography.bodyLg.fontWeight?.value.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Switch(
       value: isEnabled,
       onChanged: onToggle,
-      activeColor: GardenColors.primary.shade500,
-      activeTrackColor: GardenColors.primary.shade200,
-      inactiveThumbColor: GardenColors.base.shade400,
-      inactiveTrackColor: GardenColors.base.shade300,
+      thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.selected) && enabledIcon != null) {
+          return Icon(
+            enabledIcon,
+            color: GardenColors.primary.shade500,
+            weight: _iconWeight,
+          );
+        }
+        if (!states.contains(WidgetState.selected) && disabledIcon != null) {
+          return Icon(
+            disabledIcon,
+            color: GardenColors.base.shade50,
+            weight: _iconWeight,
+          );
+        }
+        return null;
+      }),
+      thumbColor: WidgetStateProperty.resolveWith<Color?>((
+        Set<WidgetState> states,
+      ) {
+        if (states.contains(WidgetState.selected) && enabledIcon != null) {
+          return GardenColors.base.shade50;
+        }
+        if (!states.contains(WidgetState.selected) && disabledIcon != null) {
+          return GardenColors.primary.shade500;
+        }
+        return null;
+      }),
+      activeColor: GardenColors.base.shade50,
+      activeTrackColor: GardenColors.primary.shade500,
+      inactiveTrackColor: GardenColors.base.shade50,
+      inactiveThumbColor: GardenColors.primary.shade500,
+      trackOutlineColor: WidgetStateProperty.all(GardenColors.primary.shade500),
+      trackOutlineWidth: WidgetStateProperty.all(2.0),
     );
   }
 }

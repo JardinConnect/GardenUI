@@ -18,6 +18,11 @@ Widget gardenToggleInteractiveUseCase(BuildContext context) {
   return const _InteractiveToggle();
 }
 
+@widgetbook.UseCase(name: 'Interactive with icons', type: GardenToggle)
+Widget gardenToggleInteractiveWithIconsUseCase(BuildContext context) {
+  return const _InteractiveToggleWithIcons();
+}
+
 class _InteractiveToggle extends StatefulWidget {
   const _InteractiveToggle();
 
@@ -32,6 +37,33 @@ class _InteractiveToggleState extends State<_InteractiveToggle> {
   Widget build(BuildContext context) {
     return GardenToggle(
       isEnabled: isEnabled,
+      onToggle: (value) {
+        setState(() {
+          isEnabled = value;
+        });
+      },
+    );
+  }
+}
+
+class _InteractiveToggleWithIcons extends StatefulWidget {
+  const _InteractiveToggleWithIcons();
+
+  @override
+  State<_InteractiveToggleWithIcons> createState() =>
+      _InteractiveToggleWithIconsState();
+}
+
+class _InteractiveToggleWithIconsState
+    extends State<_InteractiveToggleWithIcons> {
+  bool isEnabled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GardenToggle(
+      isEnabled: isEnabled,
+      enabledIcon: Icons.check_outlined,
+      disabledIcon: Icons.close,
       onToggle: (value) {
         setState(() {
           isEnabled = value;

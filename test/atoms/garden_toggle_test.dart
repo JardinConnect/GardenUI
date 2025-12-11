@@ -77,5 +77,49 @@ void main() {
       final switchWidget = tester.widget<Switch>(find.byType(Switch));
       expect(switchWidget.value, false);
     });
+
+    testWidgets('shows enabled icon when provided and enabled', (
+      WidgetTester tester,
+    ) async {
+      const icon = Icons.check;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: GardenToggle(
+              isEnabled: true,
+              onToggle: (_) {},
+              enabledIcon: icon,
+            ),
+          ),
+        ),
+      );
+
+      final switchWidget = tester.widget<Switch>(find.byType(Switch));
+      final resolvedIcon = switchWidget.thumbIcon?.resolve({
+        WidgetState.selected,
+      });
+      expect(resolvedIcon?.icon, icon);
+    });
+
+    testWidgets('shows disabled icon when provided and disabled', (
+      WidgetTester tester,
+    ) async {
+      const icon = Icons.close;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: GardenToggle(
+              isEnabled: false,
+              onToggle: (_) {},
+              disabledIcon: icon,
+            ),
+          ),
+        ),
+      );
+
+      final switchWidget = tester.widget<Switch>(find.byType(Switch));
+      final resolvedIcon = switchWidget.thumbIcon?.resolve({});
+      expect(resolvedIcon?.icon, icon);
+    });
   });
 }
