@@ -272,6 +272,10 @@ final directories = <_i1.WidgetbookNode>[
                         name: 'Interactive',
                         builder: _i12.gardenToggleInteractiveUseCase,
                       ),
+                      _i1.WidgetbookUseCase(
+                        name: 'Interactive with icons',
+                        builder: _i12.gardenToggleInteractiveWithIconsUseCase,
+                      ),
                     ],
                   ),
                 ],
