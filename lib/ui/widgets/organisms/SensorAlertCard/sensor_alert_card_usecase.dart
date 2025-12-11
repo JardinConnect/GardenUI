@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import 'package:garden_ui/ui/components.dart';
+import 'package:garden_ui/ui/design_system.dart';
 
 @widgetbook.UseCase(
   name: 'Temperature with warnings (2 thresholds)',
@@ -212,6 +213,38 @@ Widget sensorAlertCardNoAlertsUseCase(BuildContext context) {
       totalPages: 5,
       currentPage: 4,
       onPageChanged: (index) {},
+    ),
+  );
+}
+
+@widgetbook.UseCase(name: 'Custom icon color', type: SensorAlertCard)
+Widget sensorAlertCardCustomIconColorUseCase(BuildContext context) {
+  return SizedBox(
+    width: 400,
+    child: SensorAlertCard(
+      sensorType: SensorType.temperature,
+      threshold: const SensorThreshold(
+        thresholds: [
+          ThresholdValue(
+            value: 35,
+            unit: '°C',
+            label: 'maximale',
+            alertType: MenuAlertType.warning,
+          ),
+          ThresholdValue(
+            value: 2,
+            unit: '°C',
+            label: 'minimale',
+            alertType: MenuAlertType.warning,
+          ),
+        ],
+      ),
+      isEnabled: true,
+      onToggle: (value) {},
+      totalPages: 5,
+      currentPage: 0,
+      onPageChanged: (index) {},
+      iconColor: GardenColors.secondary.shade500,
     ),
   );
 }

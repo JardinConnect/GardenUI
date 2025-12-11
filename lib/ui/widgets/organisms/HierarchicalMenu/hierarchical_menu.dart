@@ -204,7 +204,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
       );
 
       // Add children with animation if the item is expanded
-      if (item.hasChildren) {
+      if (item.hasChildren && item.isExpanded) {
         final animation = _itemAnimations[item.id];
         if (animation != null) {
           widgets.add(
