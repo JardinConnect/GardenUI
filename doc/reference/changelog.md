@@ -7,6 +7,22 @@ et ce projet adhère au [Versioning Sémantique](https://semver.org/lang/fr/).
 
 ---
 
+## [0.3.4] - 2025-12-12
+
+### 🔧 Modifié
+- **GardenToggle** (#42) : feat(GardenToggle) : add "enabledIcon" and "disabledIcon" parameters + update widget colors
+
+### 🐛 Corrigé
+
+- **HierarchicalMenu** (#43) : fix: hierarchical menu ontap handling
+- **SensorAlertCard** (#43) : fix: sensor alert card display
+
+## [0.3.3] - 2025-12-06
+
+### 🐛 Corrigé
+
+- **HierarchicalMenu** (#41) : fix: hierarchical menu
+
 ## [0.3.2] - 2025-12-05
 
 ### 🐛 Corrigé
