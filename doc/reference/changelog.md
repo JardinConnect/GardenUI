@@ -6,6 +6,10 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 et ce projet adhère au [Versioning Sémantique](https://semver.org/lang/fr/).
 
 ---
+## [0.3.5] - 2026-01-16
+
+### 🔧 Modifié
+- **AnalyticsSummaryCard** (#55) : add filter to AnalyticsSummaryCard widget
 
 ## [0.3.4] - 2025-12-12
 
