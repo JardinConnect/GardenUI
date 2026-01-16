@@ -46,3 +46,27 @@ Widget analyticsSummaryCardWithBatteryUseCase(BuildContext context) {
     ),
   );
 }
+
+@UseCase(
+  name: 'With filter',
+  type: AnalyticsSummaryCard,
+  designLink:
+  'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
+)
+Widget analyticsSummaryCardWithFilterUseCase(BuildContext context) {
+  return SizedBox(
+    width: 320,
+    child: AnalyticsSummaryCard(
+      name: "Tomates serre nord",
+      onPressed: () => {},
+      filter: AnalyticType.soilTemperature,
+      batteryPercentage: 68,
+      light: 25000,
+      rain: 68,
+      humiditySurface: 52,
+      humidityDepth: 43,
+      temperatureSurface: 23.8,
+      temperatureDepth: 19.2,
+    ),
+  );
+}

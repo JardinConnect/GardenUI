@@ -43,6 +43,9 @@ class AnalyticsSummaryCard extends StatelessWidget {
   /// Defaults to 40°C.
   final double temperatureDepthMaxValue;
 
+  /// A filter by analytic type. If a filter is present, only concerned value will be displayed.
+  final AnalyticType? filter;
+
   const AnalyticsSummaryCard({
     super.key,
     required this.name,
@@ -56,7 +59,27 @@ class AnalyticsSummaryCard extends StatelessWidget {
     required this.temperatureDepth,
     this.temperatureSurfaceMaxValue = 55,
     this.temperatureDepthMaxValue = 40,
+    this.filter,
   });
+
+  double? get _filteredValue {
+    switch (filter) {
+      case AnalyticType.light:
+        return light.toDouble();
+      case AnalyticType.airTemperature:
+        return temperatureSurface;
+      case AnalyticType.soilTemperature:
+        return temperatureDepth;
+      case AnalyticType.airHumidity:
+        return rain.toDouble();
+      case AnalyticType.soilHumidity:
+        return humiditySurface.toDouble();
+      case AnalyticType.deepSoilHumidity:
+        return humidityDepth.toDouble();
+      default:
+        return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,73 +117,151 @@ class AnalyticsSummaryCard extends StatelessWidget {
 
               SizedBox(height: GardenSpace.gapMd),
 
-              Column(
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Soleil",
-                          value: "$light lux",
-                          fillPercentage: 100,
-                          color: GardenColors.yellowWarning.shade500,
-                        ),
-                      ),
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Pluie",
-                          value: "$rain%",
-                          fillPercentage: rain.toDouble(),
-                          color: GardenColors.blueInfo.shade400,
-                        ),
-                      ),
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Humidite_surface",
-                          value: "$humiditySurface%",
-                          fillPercentage: humiditySurface.toDouble(),
-                          color: GardenColors.blueInfo.shade400,
-                        ),
-                      ),
-                    ],
+                  Visibility(
+                    visible: filter == null,
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    child: _buildAllSensorsContent(
+                      fillTemperatureSurfacePercentage,
+                      fillTemperatureDepthPercentage,
+                    ),
                   ),
-                  SizedBox(height: GardenSpace.gapSm),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Thermometre",
-                          value: "$temperatureSurface°C",
-                          fillPercentage: fillTemperatureSurfacePercentage,
-                          color: GardenColors.redAlert.shade500,
-                        ),
-                      ),
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Thermometre",
-                          value: "$temperatureDepth°C",
-                          fillPercentage: fillTemperatureDepthPercentage,
-                          color: Colors.brown,
-                        ),
-                      ),
-                      Expanded(
-                        child: _buildSensorItem(
-                          iconName: "Humidite_profondeur",
-                          value: "$humidityDepth%",
-                          fillPercentage: humidityDepth.toDouble(),
-                          color: GardenColors.blueInfo.shade400,
-                        ),
-                      ),
-                    ],
-                  ),
+                  if (filter != null) _buildFilteredContent(fillTemperatureSurfacePercentage, fillTemperatureDepthPercentage),
                 ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildAllSensorsContent(
+    double fillTemperatureSurfacePercentage,
+    double fillTemperatureDepthPercentage,
+  ) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Soleil",
+                value: "$light lux",
+                fillPercentage: 100,
+                color: GardenColors.yellowWarning.shade500,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Pluie",
+                value: "$rain%",
+                fillPercentage: rain.toDouble(),
+                color: GardenColors.blueInfo.shade400,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Humidite_surface",
+                value: "$humiditySurface%",
+                fillPercentage: humiditySurface.toDouble(),
+                color: GardenColors.blueInfo.shade400,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: GardenSpace.gapSm),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Thermometre",
+                value: "$temperatureSurface°C",
+                fillPercentage: fillTemperatureSurfacePercentage,
+                color: GardenColors.redAlert.shade500,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Thermometre",
+                value: "$temperatureDepth°C",
+                fillPercentage: fillTemperatureDepthPercentage,
+                color: Colors.brown,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Humidite_profondeur",
+                value: "$humidityDepth%",
+                fillPercentage: humidityDepth.toDouble(),
+                color: GardenColors.blueInfo.shade400,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  double _getFilteredFillPercentage(double fillTemperatureSurfacePercentage, double fillTemperatureDepthPercentage) {
+    switch(filter) {
+      case AnalyticType.light:
+        return 100;
+      case AnalyticType.airTemperature:
+        return fillTemperatureSurfacePercentage;
+      case AnalyticType.soilTemperature:
+        return fillTemperatureDepthPercentage;
+      case AnalyticType.airHumidity:
+        return rain.toDouble();
+      case AnalyticType.soilHumidity:
+        return humiditySurface.toDouble();
+      case AnalyticType.deepSoilHumidity:
+        return humidityDepth.toDouble();
+      default:
+        return 0;
+    }
+  }
+
+  Widget _buildFilteredContent(
+    double fillTemperatureSurfacePercentage,
+    double fillTemperatureDepthPercentage,
+  ) {
+    final isTemperature =
+        filter == AnalyticType.airTemperature ||
+        filter == AnalyticType.soilTemperature;
+
+    final displayValue =
+        isTemperature
+            ? _filteredValue!.toStringAsFixed(1)
+            : _filteredValue!.toInt().toString();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: GardenSpace.gapMd,
+      children: [
+        GardenIcon(
+          iconName: filter!.iconName,
+          color: filter!.iconColor,
+          size: GardenIconSize.lg,
+          fillPercentage: _getFilteredFillPercentage(
+            fillTemperatureSurfacePercentage,
+            fillTemperatureDepthPercentage,
+          ),
+        ),
+        Text(
+          '$displayValue${filter!.unit}',
+          style: GardenTypography.headingXl.copyWith(
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ],
     );
   }
 
