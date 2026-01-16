@@ -51,7 +51,7 @@ Widget analyticsSummaryCardWithBatteryUseCase(BuildContext context) {
   name: 'With filter',
   type: AnalyticsSummaryCard,
   designLink:
-  'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
+      'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
 )
 Widget analyticsSummaryCardWithFilterUseCase(BuildContext context) {
   return SizedBox(

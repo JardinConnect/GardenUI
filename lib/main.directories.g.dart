@@ -429,7 +429,7 @@ final directories = <_i1.WidgetbookNode>[
                         name: 'With filter',
                         builder: _i20.analyticsSummaryCardWithFilterUseCase,
                         designLink:
-                        'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
+                            'https://www.figma.com/design/F4eYqIvQgbgcuG9Ev4kVuC/MockUp?node-id=777-5617&t=QeqXtK992GxqKHXp-4',
                       ),
                     ],
                   ),

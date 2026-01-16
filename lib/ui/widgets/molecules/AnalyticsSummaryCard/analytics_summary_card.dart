@@ -130,7 +130,11 @@ class AnalyticsSummaryCard extends StatelessWidget {
                       fillTemperatureDepthPercentage,
                     ),
                   ),
-                  if (filter != null) _buildFilteredContent(fillTemperatureSurfacePercentage, fillTemperatureDepthPercentage),
+                  if (filter != null)
+                    _buildFilteredContent(
+                      fillTemperatureSurfacePercentage,
+                      fillTemperatureDepthPercentage,
+                    ),
                 ],
               ),
             ],
@@ -209,8 +213,11 @@ class AnalyticsSummaryCard extends StatelessWidget {
     );
   }
 
-  double _getFilteredFillPercentage(double fillTemperatureSurfacePercentage, double fillTemperatureDepthPercentage) {
-    switch(filter) {
+  double _getFilteredFillPercentage(
+    double fillTemperatureSurfacePercentage,
+    double fillTemperatureDepthPercentage,
+  ) {
+    switch (filter) {
       case AnalyticType.light:
         return 100;
       case AnalyticType.airTemperature:
@@ -236,10 +243,9 @@ class AnalyticsSummaryCard extends StatelessWidget {
         filter == AnalyticType.airTemperature ||
         filter == AnalyticType.soilTemperature;
 
-    final displayValue =
-        isTemperature
-            ? _filteredValue!.toStringAsFixed(1)
-            : _filteredValue!.toInt().toString();
+    final displayValue = isTemperature
+        ? _filteredValue!.toStringAsFixed(1)
+        : _filteredValue!.toInt().toString();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
