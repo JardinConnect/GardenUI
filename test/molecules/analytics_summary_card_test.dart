@@ -150,5 +150,69 @@ void main() {
         expect(find.byType(BatteryIndicator), findsNothing);
       },
     );
+
+    testWidgets('renders filtered view correctly for Temperature (decimal)', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AnalyticsSummaryCard(
+              name: 'Test Node',
+              batteryPercentage: 80,
+              light: 1500,
+              rain: 20,
+              humiditySurface: 45,
+              humidityDepth: 50,
+              temperatureSurface: 25.5,
+              temperatureDepth: 22.0,
+              filter: AnalyticType.airTemperature,
+              onPressed: () {},
+            ),
+          ),
+        ),
+      );
+
+      // Should find the large text with correct formatting and style
+      expect(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Text &&
+              widget.data == '25.5°C' &&
+              widget.style?.fontWeight == FontWeight.w900,
+        ),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets(
+      'renders filtered view correctly for Light (integer without space)',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: AnalyticsSummaryCard(
+                name: 'Test Node',
+                batteryPercentage: 80,
+                light: 1500,
+                rain: 20,
+                humiditySurface: 45,
+                humidityDepth: 50,
+                temperatureSurface: 25.5,
+                temperatureDepth: 22.0,
+                filter: AnalyticType.light,
+                onPressed: () {},
+              ),
+            ),
+          ),
+        );
+
+        // Filtered view should show "1500lux" (integer, no space)
+        expect(find.text('1500lux'), findsOneWidget);
+
+        // Grid view (hidden but in tree) has "1500 lux"
+        expect(find.text('1500 lux'), findsOneWidget);
+      },
+    );
   });
 }
