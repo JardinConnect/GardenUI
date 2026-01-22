@@ -4,6 +4,11 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.6] - 2026-01-22
+
+### 🔧 Modifié
+- **AnalyticsSummaryCard** : Rename AnalyticType enum to AnalyticsSummaryFilter
+
 ## [0.3.5] - 2026-01-16
 
 ### 🔧 Modifié
