@@ -4,7 +4,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/design_system.dart';
 
-enum AnalyticType {
+enum AnalyticsSummaryFilter {
   light,
   airTemperature,
   soilTemperature,
@@ -14,45 +14,45 @@ enum AnalyticType {
 
   String get iconName {
     switch (this) {
-      case AnalyticType.airHumidity:
+      case AnalyticsSummaryFilter.airHumidity:
         return 'Pluie';
-      case AnalyticType.soilHumidity:
+      case AnalyticsSummaryFilter.soilHumidity:
         return 'Humidite_surface';
-      case AnalyticType.deepSoilHumidity:
+      case AnalyticsSummaryFilter.deepSoilHumidity:
         return 'Humidite_profondeur';
-      case AnalyticType.airTemperature:
-      case AnalyticType.soilTemperature:
+      case AnalyticsSummaryFilter.airTemperature:
+      case AnalyticsSummaryFilter.soilTemperature:
         return 'Thermometre';
-      case AnalyticType.light:
+      case AnalyticsSummaryFilter.light:
         return 'Soleil';
     }
   }
 
   Color get iconColor {
     switch (this) {
-      case AnalyticType.airHumidity:
-      case AnalyticType.soilHumidity:
-      case AnalyticType.deepSoilHumidity:
+      case AnalyticsSummaryFilter.airHumidity:
+      case AnalyticsSummaryFilter.soilHumidity:
+      case AnalyticsSummaryFilter.deepSoilHumidity:
         return GardenColors.blueInfo.shade400;
-      case AnalyticType.airTemperature:
+      case AnalyticsSummaryFilter.airTemperature:
         return GardenColors.redAlert.shade500;
-      case AnalyticType.soilTemperature:
+      case AnalyticsSummaryFilter.soilTemperature:
         return Colors.brown;
-      case AnalyticType.light:
+      case AnalyticsSummaryFilter.light:
         return GardenColors.yellowWarning.shade500;
     }
   }
 
   String get unit {
     switch (this) {
-      case AnalyticType.airHumidity:
-      case AnalyticType.soilHumidity:
-      case AnalyticType.deepSoilHumidity:
+      case AnalyticsSummaryFilter.airHumidity:
+      case AnalyticsSummaryFilter.soilHumidity:
+      case AnalyticsSummaryFilter.deepSoilHumidity:
         return '%';
-      case AnalyticType.airTemperature:
-      case AnalyticType.soilTemperature:
+      case AnalyticsSummaryFilter.airTemperature:
+      case AnalyticsSummaryFilter.soilTemperature:
         return '°C';
-      case AnalyticType.light:
+      case AnalyticsSummaryFilter.light:
         return 'lux';
     }
   }

@@ -44,7 +44,7 @@ class AnalyticsSummaryCard extends StatelessWidget {
   final double temperatureDepthMaxValue;
 
   /// A filter by analytic type. If a filter is present, only concerned value will be displayed.
-  final AnalyticType? filter;
+  final AnalyticsSummaryFilter? filter;
 
   const AnalyticsSummaryCard({
     super.key,
@@ -64,17 +64,17 @@ class AnalyticsSummaryCard extends StatelessWidget {
 
   double? get _filteredValue {
     switch (filter) {
-      case AnalyticType.light:
+      case AnalyticsSummaryFilter.light:
         return light.toDouble();
-      case AnalyticType.airTemperature:
+      case AnalyticsSummaryFilter.airTemperature:
         return temperatureSurface;
-      case AnalyticType.soilTemperature:
+      case AnalyticsSummaryFilter.soilTemperature:
         return temperatureDepth;
-      case AnalyticType.airHumidity:
+      case AnalyticsSummaryFilter.airHumidity:
         return rain.toDouble();
-      case AnalyticType.soilHumidity:
+      case AnalyticsSummaryFilter.soilHumidity:
         return humiditySurface.toDouble();
-      case AnalyticType.deepSoilHumidity:
+      case AnalyticsSummaryFilter.deepSoilHumidity:
         return humidityDepth.toDouble();
       default:
         return null;
@@ -218,17 +218,17 @@ class AnalyticsSummaryCard extends StatelessWidget {
     double fillTemperatureDepthPercentage,
   ) {
     switch (filter) {
-      case AnalyticType.light:
+      case AnalyticsSummaryFilter.light:
         return 100;
-      case AnalyticType.airTemperature:
+      case AnalyticsSummaryFilter.airTemperature:
         return fillTemperatureSurfacePercentage;
-      case AnalyticType.soilTemperature:
+      case AnalyticsSummaryFilter.soilTemperature:
         return fillTemperatureDepthPercentage;
-      case AnalyticType.airHumidity:
+      case AnalyticsSummaryFilter.airHumidity:
         return rain.toDouble();
-      case AnalyticType.soilHumidity:
+      case AnalyticsSummaryFilter.soilHumidity:
         return humiditySurface.toDouble();
-      case AnalyticType.deepSoilHumidity:
+      case AnalyticsSummaryFilter.deepSoilHumidity:
         return humidityDepth.toDouble();
       default:
         return 0;
@@ -240,8 +240,8 @@ class AnalyticsSummaryCard extends StatelessWidget {
     double fillTemperatureDepthPercentage,
   ) {
     final isTemperature =
-        filter == AnalyticType.airTemperature ||
-        filter == AnalyticType.soilTemperature;
+        filter == AnalyticsSummaryFilter.airTemperature ||
+        filter == AnalyticsSummaryFilter.soilTemperature;
 
     final displayValue = isTemperature
         ? _filteredValue!.toStringAsFixed(1)

@@ -374,7 +374,7 @@ Carte affichant l'état et les données capteurs d'un nœud spécifique (batteri
 - `temperatureSurfaceMaxValue` (double) : Température max surface (défaut: 55.0)
 - `temperatureDepthMaxValue` (double) : Température max profondeur (défaut: 40.0)
 - `humiditySurface/Depth` (int, requis) : Humidités
-- `filter` (AnalyticType, optionnel) : Filtre, permettant de n'afficher que la donnée concernée
+- `filter` (AnalyticsSummaryFilter, optionnel) : Filtre, permettant de n'afficher que la donnée concernée
 
 **Exemple :**
 ```dart
@@ -388,7 +388,7 @@ AnalyticsSummaryCard(
   temperatureDepth: 18.0,
   humiditySurface: 60,
   humidityDepth: 80,
-  filter: AnalyticType.light,
+  filter: AnalyticsSummaryFilter.light,
 )
 ```
 

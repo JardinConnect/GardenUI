@@ -59,7 +59,7 @@ Widget analyticsSummaryCardWithFilterUseCase(BuildContext context) {
     child: AnalyticsSummaryCard(
       name: "Tomates serre nord",
       onPressed: () => {},
-      filter: AnalyticType.soilTemperature,
+      filter: AnalyticsSummaryFilter.soilTemperature,
       batteryPercentage: 68,
       light: 25000,
       rain: 68,
