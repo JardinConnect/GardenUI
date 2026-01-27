@@ -48,7 +48,7 @@ class HierarchicalMenu extends StatefulWidget {
 
 class _HierarchicalMenuState extends State<HierarchicalMenu>
     with TickerProviderStateMixin {
-  late List<HierarchicalMenuItem> _items;
+  late Map<String, bool> _expansionState;
   late AnimationController _expansionController;
   final Map<String, AnimationController> _itemControllers = {};
   final Map<String, Animation<double>> _itemAnimations = {};
@@ -56,7 +56,8 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   @override
   void initState() {
     super.initState();
-    _items = List.from(widget.items);
+    _expansionState = {};
+    _initializeExpansionState(widget.items);
     _expansionController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -68,7 +69,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   void didUpdateWidget(HierarchicalMenu oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.items != oldWidget.items) {
-      _items = List.from(widget.items);
+      _initializeExpansionState(widget.items);
       _initializeAnimations();
     }
   }
@@ -82,6 +83,16 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
     super.dispose();
   }
 
+  void _initializeExpansionState(List<HierarchicalMenuItem> items) {
+    for (final item in items) {
+      _expansionState[item.id] ??= item.isExpanded;
+
+      if (item.hasChildren) {
+        _initializeExpansionState(item.children);
+      }
+    }
+  }
+
   void _initializeAnimations() {
     // Clean up old controllers
     for (final controller in _itemControllers.values) {
@@ -90,8 +101,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
     _itemControllers.clear();
     _itemAnimations.clear();
 
-    // Create controllers for each item
-    _createAnimationsForItems(_items);
+    _createAnimationsForItems(widget.items);
   }
 
   void _createAnimationsForItems(List<HierarchicalMenuItem> items) {
@@ -107,7 +117,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
           curve: Curves.easeInOut,
         );
 
-        if (item.isExpanded) {
+        if (_expansionState[item.id] == true) {
           controller.value = 1.0;
         }
       }
@@ -153,49 +163,39 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
 
   void _handleItemExpansionChanged(HierarchicalMenuItem item) {
     setState(() {
-      _items = _updateItemInTree(_items, item);
+      final currentState = _expansionState[item.id] ?? false;
+      _expansionState[item.id] = !currentState;
     });
 
     final controller = _itemControllers[item.id];
     if (controller != null) {
-      if (item.isExpanded) {
+      if (_expansionState[item.id] == true) {
         controller.forward();
       } else {
         controller.reverse();
       }
     }
 
-    widget.onItemExpansionChanged?.call(item);
+    final updatedItem = item.copyWith(isExpanded: _expansionState[item.id]);
+    widget.onItemExpansionChanged?.call(updatedItem);
   }
 
   void _handleItemTapped(HierarchicalMenuItem item) {
     widget.onItemSelected?.call(item);
   }
 
-  List<HierarchicalMenuItem> _updateItemInTree(
-    List<HierarchicalMenuItem> items,
-    HierarchicalMenuItem updatedItem,
-  ) {
-    return items.map((item) {
-      if (item.id == updatedItem.id) {
-        return updatedItem;
-      } else if (item.hasChildren) {
-        return item.copyWith(
-          children: _updateItemInTree(item.children, updatedItem),
-        );
-      }
-      return item;
-    }).toList();
-  }
-
   List<Widget> _buildMenuItems(List<HierarchicalMenuItem> items) {
     final widgets = <Widget>[];
 
     for (final item in items) {
+      final isExpanded = _expansionState[item.id] ?? false;
+
+      final itemWithState = item.copyWith(isExpanded: isExpanded);
+
       // Add the main item
       widgets.add(
         HierarchicalMenuItemWidget(
-          item: item,
+          item: itemWithState,
           size: _itemSize,
           isSelected: item.id == widget.selectedItemId,
           onExpansionChanged: _handleItemExpansionChanged,
@@ -204,7 +204,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
       );
 
       // Add children with animation if the item is expanded
-      if (item.hasChildren && item.isExpanded) {
+      if (item.hasChildren && isExpanded) {
         final animation = _itemAnimations[item.id];
         if (animation != null) {
           widgets.add(
@@ -212,7 +212,11 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
               animation: animation,
               builder: (context, child) {
                 return ClipRect(
-                  child: Align(heightFactor: animation.value, child: child),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    heightFactor: animation.value,
+                    child: child,
+                  ),
                 );
               },
               child: Column(
@@ -250,7 +254,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
         padding: _padding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: _buildMenuItems(_items),
+          children: _buildMenuItems(widget.items),
         ),
       ),
     );
