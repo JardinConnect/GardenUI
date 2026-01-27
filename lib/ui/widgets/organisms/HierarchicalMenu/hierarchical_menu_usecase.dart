@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:garden_ui/ui/components.dart';
 
-void _showSnackBar(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-}
-
 @UseCase(name: 'Default', type: HierarchicalMenu)
 Widget hierarchicalMenuDefaultUseCase(BuildContext context) {
   return HierarchicalMenu(
@@ -87,7 +83,6 @@ Widget hierarchicalMenuWithSelectionUseCase(BuildContext context) {
       ),
     ],
     selectedItemId: '1.1',
-    onItemSelected: (item) =>
-        _showSnackBar(context, 'Item sélectionné: ${item.title}'),
+    onItemSelected: (item) => debugPrint('Item sélectionné: ${item.title}')
   );
 }

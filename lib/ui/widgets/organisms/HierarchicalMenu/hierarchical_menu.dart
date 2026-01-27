@@ -49,6 +49,7 @@ class HierarchicalMenu extends StatefulWidget {
 class _HierarchicalMenuState extends State<HierarchicalMenu>
     with TickerProviderStateMixin {
   late Map<String, bool> _expansionState;
+  late String? _internalSelectedItemId;
   late AnimationController _expansionController;
   final Map<String, AnimationController> _itemControllers = {};
   final Map<String, Animation<double>> _itemAnimations = {};
@@ -57,6 +58,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   void initState() {
     super.initState();
     _expansionState = {};
+    _internalSelectedItemId = widget.selectedItemId;
     _initializeExpansionState(widget.items);
     _expansionController = AnimationController(
       duration: const Duration(milliseconds: 300),
@@ -68,6 +70,14 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   @override
   void didUpdateWidget(HierarchicalMenu oldWidget) {
     super.didUpdateWidget(oldWidget);
+
+    // Mise à jour de l'item sélectionné si changé de l'extérieur
+    if (widget.selectedItemId != oldWidget.selectedItemId) {
+      setState(() {
+        _internalSelectedItemId = widget.selectedItemId;
+      });
+    }
+
     if (widget.items != oldWidget.items) {
       _initializeExpansionState(widget.items);
       _initializeAnimations();
@@ -181,6 +191,12 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   }
 
   void _handleItemTapped(HierarchicalMenuItem item) {
+    // Mise à jour de l'état interne de sélection
+    setState(() {
+      _internalSelectedItemId = item.id;
+    });
+
+    // Notification au parent
     widget.onItemSelected?.call(item);
   }
 
@@ -189,7 +205,6 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
 
     for (final item in items) {
       final isExpanded = _expansionState[item.id] ?? false;
-
       final itemWithState = item.copyWith(isExpanded: isExpanded);
 
       // Add the main item
@@ -197,7 +212,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
         HierarchicalMenuItemWidget(
           item: itemWithState,
           size: _itemSize,
-          isSelected: item.id == widget.selectedItemId,
+          isSelected: item.id == _internalSelectedItemId,
           onExpansionChanged: _handleItemExpansionChanged,
           onItemTapped: _handleItemTapped,
         ),

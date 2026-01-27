@@ -258,7 +258,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
               ),
             ),
 
-            // Zone cliquable pour le chevron (expansion/collapse)
+            // Zone cliquable pour le chevron (expansion/collapse) - AGRANDIE
             if (widget.item.hasChildren)
               MouseRegion(
                 onEnter: (_) => setState(() => _isChevronHovered = true),
@@ -273,6 +273,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                           : Colors.transparent,
                       borderRadius: GardenRadius.radiusXs,
                     ),
+                    padding: EdgeInsets.all(GardenSpace.paddingXs / 2),
                     child: AnimatedBuilder(
                       animation: _rotationAnimation,
                       builder: (context, child) {
@@ -294,14 +295,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                 ),
               )
             else
-              SizedBox(
-                width: widget.size == HierarchicalMenuItemSize.sm
-                    ? InternalConstants.iconSizeSm + (GardenSpace.paddingXs * 2)
-                    : InternalConstants.iconSizeMd +
-                          (GardenSpace.paddingXs * 2),
-              ),
-
-            SizedBox(width: GardenSpace.paddingSm),
+              SizedBox.shrink(),
           ],
         ),
       ),
