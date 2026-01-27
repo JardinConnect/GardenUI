@@ -57,6 +57,7 @@ class LevelIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: _width,
+      height: 30,
       decoration: BoxDecoration(
         color: _color,
         borderRadius: BorderRadius.circular(_width / 2),
