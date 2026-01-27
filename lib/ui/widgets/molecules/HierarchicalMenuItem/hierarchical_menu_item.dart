@@ -269,7 +269,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
                   child: Container(
                     decoration: BoxDecoration(
                       color: _isChevronHovered
-                          ? GardenColors.base.shade200.withOpacity(0.5)
+                          ? GardenColors.base.shade200
                           : Colors.transparent,
                       borderRadius: GardenRadius.radiusXs,
                     ),
