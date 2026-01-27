@@ -65,7 +65,7 @@ class GardenToggle extends StatelessWidget {
         }
         return null;
       }),
-      activeThumbColor: GardenColors.base.shade50,
+      activeColor: GardenColors.base.shade50,
       activeTrackColor: GardenColors.primary.shade500,
       inactiveTrackColor: GardenColors.base.shade50,
       inactiveThumbColor: GardenColors.primary.shade500,
