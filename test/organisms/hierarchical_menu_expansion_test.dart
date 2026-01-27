@@ -5,8 +5,8 @@ import 'package:garden_ui/ui/components.dart';
 void main() {
   group('HierarchicalMenu - Expansion/Collapse Tests', () {
     testWidgets('should toggle expansion state on multiple taps', (
-      WidgetTester tester,
-    ) async {
+        WidgetTester tester,
+        ) async {
       // Track expansion state changes
       final List<HierarchicalMenuItem> expansionChanges = [];
 
@@ -43,7 +43,7 @@ void main() {
 
       // Tap 1: Expand
       await tester.tap(find.text('Parent Item'));
-      await tester.pumpAndSettle();
+      await tester.pump(); // Use pump() instead of pumpAndSettle() for immediate state check
 
       expect(expansionChanges.length, equals(1));
       expect(
@@ -51,6 +51,8 @@ void main() {
         isTrue,
         reason: 'First tap should expand the item',
       );
+
+      await tester.pumpAndSettle(); // Now wait for animations
       expect(
         find.text('Child 1'),
         findsOneWidget,
@@ -60,7 +62,7 @@ void main() {
 
       // Tap 2: Collapse
       await tester.tap(find.text('Parent Item'));
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       expect(expansionChanges.length, equals(2));
       expect(
@@ -68,6 +70,8 @@ void main() {
         isFalse,
         reason: 'Second tap should collapse the item',
       );
+
+      await tester.pumpAndSettle();
       expect(
         find.text('Child 1'),
         findsNothing,
@@ -77,7 +81,7 @@ void main() {
 
       // Tap 3: Expand again
       await tester.tap(find.text('Parent Item'));
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       expect(expansionChanges.length, equals(3));
       expect(
@@ -85,12 +89,14 @@ void main() {
         isTrue,
         reason: 'Third tap should expand the item again',
       );
+
+      await tester.pumpAndSettle();
       expect(find.text('Child 1'), findsOneWidget);
       expect(find.text('Child 2'), findsOneWidget);
 
       // Tap 4: Collapse again
       await tester.tap(find.text('Parent Item'));
-      await tester.pumpAndSettle();
+      await tester.pump();
 
       expect(expansionChanges.length, equals(4));
       expect(
@@ -98,13 +104,15 @@ void main() {
         isFalse,
         reason: 'Fourth tap should collapse the item again',
       );
+
+      await tester.pumpAndSettle();
       expect(find.text('Child 1'), findsNothing);
       expect(find.text('Child 2'), findsNothing);
     });
 
     testWidgets('should handle nested expansion correctly', (
-      WidgetTester tester,
-    ) async {
+        WidgetTester tester,
+        ) async {
       const items = [
         HierarchicalMenuItem(
           id: 'level1',
@@ -136,6 +144,7 @@ void main() {
 
       // Expand level 1
       await tester.tap(find.text('Level 1'));
+      await tester.pump();
       await tester.pumpAndSettle();
 
       expect(find.text('Level 1'), findsOneWidget);
@@ -144,6 +153,7 @@ void main() {
 
       // Expand level 2
       await tester.tap(find.text('Level 2'));
+      await tester.pump();
       await tester.pumpAndSettle();
 
       expect(find.text('Level 1'), findsOneWidget);
@@ -152,6 +162,7 @@ void main() {
 
       // Collapse level 2
       await tester.tap(find.text('Level 2'));
+      await tester.pump();
       await tester.pumpAndSettle();
 
       expect(find.text('Level 1'), findsOneWidget);
@@ -160,6 +171,7 @@ void main() {
 
       // Collapse level 1
       await tester.tap(find.text('Level 1'));
+      await tester.pump();
       await tester.pumpAndSettle();
 
       expect(find.text('Level 1'), findsOneWidget);
@@ -169,7 +181,7 @@ void main() {
 
     testWidgets(
       'should call onTap callback on every tap regardless of expansion',
-      (WidgetTester tester) async {
+          (WidgetTester tester) async {
         int tapCount = 0;
         int expansionChangeCount = 0;
 
@@ -203,7 +215,7 @@ void main() {
         // Multiple taps should call onTap each time
         for (int i = 1; i <= 5; i++) {
           await tester.tap(find.text('Test Item'));
-          await tester.pumpAndSettle();
+          await tester.pump(); // Trigger callbacks immediately
 
           expect(
             tapCount,
@@ -215,13 +227,15 @@ void main() {
             equals(i),
             reason: 'onExpansionChanged should be called on tap $i',
           );
+
+          await tester.pumpAndSettle(); // Wait for animations to complete
         }
       },
     );
 
     testWidgets(
       'should maintain separate expansion states for multiple items',
-      (WidgetTester tester) async {
+          (WidgetTester tester) async {
         const items = [
           HierarchicalMenuItem(
             id: 'parent1',
@@ -249,6 +263,7 @@ void main() {
 
         // Expand parent 1
         await tester.tap(find.text('Parent 1'));
+        await tester.pump();
         await tester.pumpAndSettle();
 
         expect(find.text('Child 1'), findsOneWidget);
@@ -256,6 +271,7 @@ void main() {
 
         // Expand parent 2
         await tester.tap(find.text('Parent 2'));
+        await tester.pump();
         await tester.pumpAndSettle();
 
         expect(find.text('Child 1'), findsOneWidget);
@@ -263,6 +279,7 @@ void main() {
 
         // Collapse parent 1
         await tester.tap(find.text('Parent 1'));
+        await tester.pump();
         await tester.pumpAndSettle();
 
         expect(find.text('Child 1'), findsNothing);
@@ -270,6 +287,7 @@ void main() {
 
         // Collapse parent 2
         await tester.tap(find.text('Parent 2'));
+        await tester.pump();
         await tester.pumpAndSettle();
 
         expect(find.text('Child 1'), findsNothing);
