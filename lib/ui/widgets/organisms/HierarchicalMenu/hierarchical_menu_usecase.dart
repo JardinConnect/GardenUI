@@ -83,6 +83,6 @@ Widget hierarchicalMenuWithSelectionUseCase(BuildContext context) {
       ),
     ],
     selectedItemId: '1.1',
-    onItemSelected: (item) => debugPrint('Item sélectionné: ${item.title}')
+    onItemSelected: (item) => debugPrint('Item sélectionné: ${item.title}'),
   );
 }
