@@ -5,8 +5,8 @@ import 'package:garden_ui/ui/components.dart';
 void main() {
   group('HierarchicalMenu - Expansion/Collapse Tests', () {
     testWidgets('should toggle expansion state on multiple taps', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       // Track expansion state changes
       final List<HierarchicalMenuItem> expansionChanges = [];
 
@@ -43,7 +43,8 @@ void main() {
 
       // Tap 1: Expand
       await tester.tap(find.text('Parent Item'));
-      await tester.pump(); // Use pump() instead of pumpAndSettle() for immediate state check
+      await tester
+          .pump(); // Use pump() instead of pumpAndSettle() for immediate state check
 
       expect(expansionChanges.length, equals(1));
       expect(
@@ -111,8 +112,8 @@ void main() {
     });
 
     testWidgets('should handle nested expansion correctly', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       const items = [
         HierarchicalMenuItem(
           id: 'level1',
@@ -181,7 +182,7 @@ void main() {
 
     testWidgets(
       'should call onTap callback on every tap regardless of expansion',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         int tapCount = 0;
         int expansionChangeCount = 0;
 
@@ -235,7 +236,7 @@ void main() {
 
     testWidgets(
       'should maintain separate expansion states for multiple items',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         const items = [
           HierarchicalMenuItem(
             id: 'parent1',
