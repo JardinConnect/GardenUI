@@ -24,11 +24,7 @@ Widget hierarchicalMenuDefaultUseCase(BuildContext context) {
             subtitle: '22°C',
             level: 2,
             children: [
-              HierarchicalMenuItem(
-                id: '1.1.1',
-                title: 'Secteur 1',
-                level: 3,
-              ),
+              HierarchicalMenuItem(id: '1.1.1', title: 'Secteur 1', level: 3),
               HierarchicalMenuItem(
                 id: '1.1.2',
                 title: 'Secteur 2',
