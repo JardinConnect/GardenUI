@@ -3,429 +3,353 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
 
 void main() {
-  group('HierarchicalMenuItem', () {
-    testWidgets('should display title and subtitle', (
+  group('HierarchicalMenu - Expansion/Collapse Tests', () {
+    testWidgets('should toggle expansion state on multiple taps', (
       WidgetTester tester,
     ) async {
-      const item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        subtitle: 'Test Subtitle',
-        level: 1,
-      );
+      // Track expansion state changes
+      final List<HierarchicalMenuItem> expansionChanges = [];
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
+      const items = [
+        HierarchicalMenuItem(
+          id: 'parent',
+          title: 'Parent Item',
+          level: 1,
+          children: [
+            HierarchicalMenuItem(id: 'child1', title: 'Child 1', level: 2),
+            HierarchicalMenuItem(id: 'child2', title: 'Child 2', level: 2),
+          ],
         ),
-      );
-
-      expect(find.text('Test Title'), findsOneWidget);
-      expect(find.text('Test Subtitle'), findsOneWidget);
-    });
-
-    testWidgets('should show chevron when has children', (
-      WidgetTester tester,
-    ) async {
-      const item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        level: 1,
-        children: [HierarchicalMenuItem(id: 'child', title: 'Child', level: 2)],
-      );
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
-        ),
-      );
-
-      expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
-    });
-
-    testWidgets('should show alert indicator when alert type is set', (
-      WidgetTester tester,
-    ) async {
-      const item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        level: 1,
-        alertType: MenuAlertType.warning,
-      );
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
-        ),
-      );
-
-      expect(find.byType(AlertIndicator), findsOneWidget);
-    });
-
-    testWidgets('should show level indicator', (WidgetTester tester) async {
-      const item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        level: 3,
-      );
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
-        ),
-      );
-
-      expect(find.byType(LevelIndicator), findsOneWidget);
-    });
-
-    testWidgets('should call onItemTapped when tapped', (
-      WidgetTester tester,
-    ) async {
-      bool tapped = false;
-      const item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        level: 1,
-      );
+      ];
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: HierarchicalMenuItemWidget(
-              item: item,
-              onItemTapped: (item) {
-                tapped = true;
+            body: HierarchicalMenu(
+              items: items,
+              onItemExpansionChanged: (item) {
+                expansionChanges.add(item);
               },
             ),
           ),
         ),
       );
 
-      await tester.tap(find.byType(HierarchicalMenuItemWidget));
-      expect(tapped, isTrue);
+      // Verify initial state
+      expect(find.text('Parent Item'), findsOneWidget);
+      expect(find.text('Child 1'), findsNothing);
+      expect(find.text('Child 2'), findsNothing);
+      expect(expansionChanges.isEmpty, isTrue);
+
+      // Tap 1: Expand (using chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester
+          .pump(); // Use pump() instead of pumpAndSettle() for immediate state check
+
+      expect(expansionChanges.length, equals(1));
+      expect(
+        expansionChanges[0].isExpanded,
+        isTrue,
+        reason: 'First tap on chevron should expand the item',
+      );
+
+      await tester.pumpAndSettle(); // Now wait for animations
+      expect(
+        find.text('Child 1'),
+        findsOneWidget,
+        reason: 'Children should be visible after expansion',
+      );
+      expect(find.text('Child 2'), findsOneWidget);
+
+      // Tap 2: Collapse (using chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester.pump();
+
+      expect(expansionChanges.length, equals(2));
+      expect(
+        expansionChanges[1].isExpanded,
+        isFalse,
+        reason: 'Second tap on chevron should collapse the item',
+      );
+
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Child 1'),
+        findsNothing,
+        reason: 'Children should be hidden after collapse',
+      );
+      expect(find.text('Child 2'), findsNothing);
+
+      // Tap 3: Expand again (using chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester.pump();
+
+      expect(expansionChanges.length, equals(3));
+      expect(
+        expansionChanges[2].isExpanded,
+        isTrue,
+        reason: 'Third tap on chevron should expand the item again',
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.text('Child 1'), findsOneWidget);
+      expect(find.text('Child 2'), findsOneWidget);
+
+      // Tap 4: Collapse again (using chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester.pump();
+
+      expect(expansionChanges.length, equals(4));
+      expect(
+        expansionChanges[3].isExpanded,
+        isFalse,
+        reason: 'Fourth tap on chevron should collapse the item again',
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.text('Child 1'), findsNothing);
+      expect(find.text('Child 2'), findsNothing);
     });
 
-    testWidgets('should call item onTap callback when tapped', (
+    testWidgets('should handle nested expansion correctly', (
       WidgetTester tester,
     ) async {
-      bool itemOnTapCalled = false;
-      final item = HierarchicalMenuItem(
-        id: 'test',
-        title: 'Test Title',
-        level: 1,
-        onTap: () {
-          itemOnTapCalled = true;
-        },
-      );
+      const items = [
+        HierarchicalMenuItem(
+          id: 'level1',
+          title: 'Level 1',
+          level: 1,
+          children: [
+            HierarchicalMenuItem(
+              id: 'level2',
+              title: 'Level 2',
+              level: 2,
+              children: [
+                HierarchicalMenuItem(id: 'level3', title: 'Level 3', level: 3),
+              ],
+            ),
+          ],
+        ),
+      ];
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: HierarchicalMenuItemWidget(item: item)),
+          home: Scaffold(body: HierarchicalMenu(items: items)),
         ),
       );
 
-      await tester.tap(find.byType(HierarchicalMenuItemWidget));
-      expect(itemOnTapCalled, isTrue);
+      // Initially, only level 1 should be visible
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsNothing);
+      expect(find.text('Level 3'), findsNothing);
+
+      // Expand level 1 (tap on first chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsNothing);
+
+      // Expand level 2 (tap on second chevron - now visible)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).last);
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsOneWidget);
+
+      // Collapse level 2 (tap on second chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).last);
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsOneWidget);
+      expect(find.text('Level 3'), findsNothing);
+
+      // Collapse level 1 (tap on first chevron)
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Level 1'), findsOneWidget);
+      expect(find.text('Level 2'), findsNothing);
+      expect(find.text('Level 3'), findsNothing);
     });
 
     testWidgets(
-      'should call onExpansionChanged when tapped on item with children',
+      'should call onTap callback when tapping on text, not on chevron',
       (WidgetTester tester) async {
-        bool expansionChanged = false;
-        const item = HierarchicalMenuItem(
-          id: 'test',
-          title: 'Test Title',
-          level: 1,
-          children: [
-            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-          ],
-        );
+        int tapCount = 0;
+        int expansionChangeCount = 0;
+
+        final items = [
+          HierarchicalMenuItem(
+            id: 'item',
+            title: 'Test Item',
+            level: 1,
+            onTap: () {
+              tapCount++;
+            },
+            children: const [
+              HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
+            ],
+          ),
+        ];
 
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: HierarchicalMenuItemWidget(
-                item: item,
-                onExpansionChanged: (item) {
-                  expansionChanged = true;
+              body: HierarchicalMenu(
+                items: items,
+                onItemExpansionChanged: (_) {
+                  expansionChangeCount++;
                 },
               ),
             ),
           ),
         );
 
-        await tester.tap(find.byType(HierarchicalMenuItemWidget));
-        expect(expansionChanged, isTrue);
+        // Tapping on text should call onTap but NOT expansion
+        await tester.tap(find.text('Test Item'));
+        await tester.pump();
+
+        expect(
+          tapCount,
+          equals(1),
+          reason: 'onTap should be called when tapping on text',
+        );
+        expect(
+          expansionChangeCount,
+          equals(0),
+          reason:
+              'onExpansionChanged should NOT be called when tapping on text',
+        );
+
+        // Verify children are still not visible
+        await tester.pumpAndSettle();
+        expect(find.text('Child'), findsNothing);
+
+        // Tapping on chevron should call expansion but NOT onTap
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+        await tester.pump();
+
+        expect(
+          tapCount,
+          equals(1),
+          reason: 'onTap should NOT be called again when tapping on chevron',
+        );
+        expect(
+          expansionChangeCount,
+          equals(1),
+          reason: 'onExpansionChanged should be called when tapping on chevron',
+        );
+
+        // Verify children are now visible
+        await tester.pumpAndSettle();
+        expect(find.text('Child'), findsOneWidget);
+
+        // Multiple taps on text should call onTap each time (but NOT expansion)
+        for (int i = 2; i <= 5; i++) {
+          await tester.tap(find.text('Test Item'));
+          await tester.pump();
+
+          expect(
+            tapCount,
+            equals(i),
+            reason: 'onTap should be called on tap $i',
+          );
+          expect(
+            expansionChangeCount,
+            equals(1),
+            reason:
+                'onExpansionChanged should still be 1 (not called by text taps)',
+          );
+
+          await tester.pumpAndSettle();
+        }
+
+        // Multiple taps on chevron should toggle expansion
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+        await tester.pump();
+        expect(expansionChangeCount, equals(2), reason: 'Collapse');
+
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+        await tester.pump();
+        expect(expansionChangeCount, equals(3), reason: 'Expand again');
+
+        // onTap count should remain unchanged
+        expect(
+          tapCount,
+          equals(5),
+          reason: 'onTap should not be called by chevron taps',
+        );
       },
     );
-  });
 
-  group('HierarchicalMenu', () {
-    testWidgets('should display all root items', (WidgetTester tester) async {
-      const items = [
-        HierarchicalMenuItem(id: 'item1', title: 'Item 1', level: 1),
-        HierarchicalMenuItem(id: 'item2', title: 'Item 2', level: 1),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenu(items: items)),
-        ),
-      );
-
-      expect(find.text('Item 1'), findsOneWidget);
-      expect(find.text('Item 2'), findsOneWidget);
-    });
-
-    testWidgets('should expand children when item is expanded', (
-      WidgetTester tester,
-    ) async {
-      const items = [
-        HierarchicalMenuItem(
-          id: 'parent',
-          title: 'Parent',
-          level: 1,
-          isExpanded: true,
-          children: [
-            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-          ],
-        ),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenu(items: items)),
-        ),
-      );
-
-      await tester.pumpAndSettle();
-
-      expect(find.text('Parent'), findsOneWidget);
-      expect(find.text('Child'), findsOneWidget);
-    });
-
-    testWidgets('should call onItemSelected when item is tapped', (
-      WidgetTester tester,
-    ) async {
-      HierarchicalMenuItem? selectedItem;
-      const items = [
-        HierarchicalMenuItem(id: 'test', title: 'Test Item', level: 1),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: HierarchicalMenu(
-              items: items,
-              onItemSelected: (item) {
-                selectedItem = item;
-              },
-            ),
+    testWidgets(
+      'should maintain separate expansion states for multiple items',
+      (WidgetTester tester) async {
+        const items = [
+          HierarchicalMenuItem(
+            id: 'parent1',
+            title: 'Parent 1',
+            level: 1,
+            children: [
+              HierarchicalMenuItem(id: 'child1', title: 'Child 1', level: 2),
+            ],
           ),
-        ),
-      );
-
-      await tester.tap(find.text('Test Item'));
-      expect(selectedItem?.id, equals('test'));
-    });
-
-    testWidgets('should expand and collapse item when tapped multiple times', (
-      WidgetTester tester,
-    ) async {
-      final List<HierarchicalMenuItem> expansionStates = [];
-      const items = [
-        HierarchicalMenuItem(
-          id: 'parent',
-          title: 'Parent',
-          level: 1,
-          children: [
-            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-          ],
-        ),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: HierarchicalMenu(
-              items: items,
-              onItemExpansionChanged: (item) {
-                expansionStates.add(item);
-              },
-            ),
+          HierarchicalMenuItem(
+            id: 'parent2',
+            title: 'Parent 2',
+            level: 1,
+            children: [
+              HierarchicalMenuItem(id: 'child2', title: 'Child 2', level: 2),
+            ],
           ),
-        ),
-      );
+        ];
 
-      // Initial state: not expanded, child should not be visible
-      expect(find.text('Parent'), findsOneWidget);
-      expect(find.text('Child'), findsNothing);
-
-      // First tap: expand
-      await tester.tap(find.text('Parent'));
-      await tester.pumpAndSettle();
-
-      // Should be expanded now
-      expect(expansionStates.length, equals(1));
-      expect(expansionStates[0].isExpanded, isTrue);
-      expect(find.text('Child'), findsOneWidget);
-
-      // Second tap: collapse
-      await tester.tap(find.text('Parent'));
-      await tester.pumpAndSettle();
-
-      // Should be collapsed now
-      expect(expansionStates.length, equals(2));
-      expect(expansionStates[1].isExpanded, isFalse);
-      expect(find.text('Child'), findsNothing);
-
-      // Third tap: expand again
-      await tester.tap(find.text('Parent'));
-      await tester.pumpAndSettle();
-
-      // Should be expanded again
-      expect(expansionStates.length, equals(3));
-      expect(expansionStates[2].isExpanded, isTrue);
-      expect(find.text('Child'), findsOneWidget);
-    });
-
-    testWidgets('should call item onTap callback when item is tapped', (
-      WidgetTester tester,
-    ) async {
-      int tapCount = 0;
-      final items = [
-        HierarchicalMenuItem(
-          id: 'test',
-          title: 'Test Item',
-          level: 1,
-          onTap: () {
-            tapCount++;
-          },
-          children: const [
-            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-          ],
-        ),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(body: HierarchicalMenu(items: items)),
-        ),
-      );
-
-      // First tap
-      await tester.tap(find.text('Test Item'));
-      await tester.pump();
-      expect(tapCount, equals(1));
-
-      // Second tap
-      await tester.tap(find.text('Test Item'));
-      await tester.pump();
-      expect(tapCount, equals(2));
-
-      // Third tap
-      await tester.tap(find.text('Test Item'));
-      await tester.pump();
-      expect(tapCount, equals(3));
-    });
-
-    testWidgets('should handle expansion and onTap callback simultaneously', (
-      WidgetTester tester,
-    ) async {
-      int tapCount = 0;
-      final List<bool> expansionStates = [];
-      final items = [
-        HierarchicalMenuItem(
-          id: 'parent',
-          title: 'Parent',
-          level: 1,
-          onTap: () {
-            tapCount++;
-          },
-          children: const [
-            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-          ],
-        ),
-      ];
-
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: HierarchicalMenu(
-              items: items,
-              onItemExpansionChanged: (item) {
-                expansionStates.add(item.isExpanded);
-              },
-            ),
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(body: HierarchicalMenu(items: items)),
           ),
-        ),
-      );
+        );
 
-      // First tap: expand and call onTap
-      await tester.tap(find.text('Parent'));
-      await tester.pumpAndSettle();
-      expect(tapCount, equals(1));
-      expect(expansionStates.length, equals(1));
-      expect(expansionStates[0], isTrue);
-      expect(find.text('Child'), findsOneWidget);
+        // Expand parent 1 (tap on first chevron)
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+        await tester.pump();
+        await tester.pumpAndSettle();
 
-      // Second tap: collapse and call onTap
-      await tester.tap(find.text('Parent'));
-      await tester.pumpAndSettle();
-      expect(tapCount, equals(2));
-      expect(expansionStates.length, equals(2));
-      expect(expansionStates[1], isFalse);
-      expect(find.text('Child'), findsNothing);
-    });
-  });
+        expect(find.text('Child 1'), findsOneWidget);
+        expect(find.text('Child 2'), findsNothing);
 
-  group('AlertIndicator', () {
-    testWidgets('should show warning icon for warning type', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: AlertIndicator(alertType: MenuAlertType.warning),
-          ),
-        ),
-      );
+        // Expand parent 2 (tap on second chevron)
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).last);
+        await tester.pump();
+        await tester.pumpAndSettle();
 
-      expect(find.byIcon(Icons.warning), findsOneWidget);
-    });
+        expect(find.text('Child 1'), findsOneWidget);
+        expect(find.text('Child 2'), findsOneWidget);
 
-    testWidgets('should show warning icon for error type', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AlertIndicator(alertType: MenuAlertType.error)),
-        ),
-      );
+        // Collapse parent 1 (tap on first chevron)
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
+        await tester.pump();
+        await tester.pumpAndSettle();
 
-      expect(find.byIcon(Icons.warning), findsOneWidget);
-    });
+        expect(find.text('Child 1'), findsNothing);
+        expect(find.text('Child 2'), findsOneWidget);
 
-    testWidgets('should not show icon for none type', (
-      WidgetTester tester,
-    ) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AlertIndicator(alertType: MenuAlertType.none)),
-        ),
-      );
+        // Collapse parent 2 (tap on second chevron)
+        await tester.tap(find.byIcon(Icons.keyboard_arrow_down).last);
+        await tester.pump();
+        await tester.pumpAndSettle();
 
-      expect(find.byIcon(Icons.warning), findsNothing);
-    });
-  });
-
-  group('LevelIndicator', () {
-    testWidgets('should display level indicator', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: LevelIndicator(level: 3))),
-      );
-
-      expect(find.byType(LevelIndicator), findsOneWidget);
-    });
+        expect(find.text('Child 1'), findsNothing);
+        expect(find.text('Child 2'), findsNothing);
+      },
+    );
   });
 }

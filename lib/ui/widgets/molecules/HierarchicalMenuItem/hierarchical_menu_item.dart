@@ -35,6 +35,7 @@ class HierarchicalMenuItemWidget extends StatefulWidget {
 class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
     with SingleTickerProviderStateMixin {
   bool _isHovered = false;
+  bool _isChevronHovered = false;
   late AnimationController _rotationController;
   late Animation<double> _rotationAnimation;
 
@@ -147,20 +148,20 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
     }
   }
 
-  void _handleTap() {
-    // Handle expansion/collapse for items with children
+  void _handleContentTap() {
+    // Item selection only (no expansion)
+    widget.item.onTap?.call();
+    widget.onItemTapped?.call(widget.item);
+  }
+
+  void _handleChevronTap() {
+    // Expansion/collapse only
     if (widget.item.hasChildren) {
       final updatedItem = widget.item.copyWith(
         isExpanded: !widget.item.isExpanded,
       );
       widget.onExpansionChanged?.call(updatedItem);
     }
-
-    // Call the onTap callback from the item model
-    widget.item.onTap?.call();
-
-    // Notify the parent widget about the tap
-    widget.onItemTapped?.call(widget.item);
   }
 
   @override
@@ -168,113 +169,134 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: _handleTap,
-        child: Container(
-          padding: _padding,
-          decoration: BoxDecoration(
-            color: _backgroundColor,
-            borderRadius: GardenRadius.radiusSm,
-            border: widget.isSelected
-                ? Border.all(color: GardenColors.primary.shade200, width: 1)
-                : null,
-          ),
-          child: Row(
-            children: [
-              // Indentation for levels
-              SizedBox(width: _leftIndent),
+      child: Container(
+        padding: _padding,
+        decoration: BoxDecoration(
+          color: _backgroundColor,
+          borderRadius: GardenRadius.radiusSm,
+          border: widget.isSelected
+              ? Border.all(color: GardenColors.primary.shade200, width: 1)
+              : null,
+        ),
+        child: Row(
+          children: [
+            // Indentation for levels
+            SizedBox(width: _leftIndent),
 
-              // Level indicator
-              LevelIndicator(
-                level: widget.item.level,
-                size: widget.size == HierarchicalMenuItemSize.sm
-                    ? LevelIndicatorSize.sm
-                    : widget.size == HierarchicalMenuItemSize.lg
-                    ? LevelIndicatorSize.lg
-                    : LevelIndicatorSize.md,
-              ),
-
-              SizedBox(width: GardenSpace.paddingSm),
-
-              // Main icon (optional)
-              if (widget.item.icon != null) ...[
-                Icon(
-                  widget.item.icon,
-                  size: widget.size == HierarchicalMenuItemSize.sm
-                      ? InternalConstants.iconSizeSm
-                      : InternalConstants.iconSizeMd,
-                  color: widget.isSelected
-                      ? GardenColors.primary.shade500
-                      : GardenColors.typography.shade500,
-                ),
-                SizedBox(width: GardenSpace.paddingSm),
-              ],
-
-              // Main content
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
+            // Clickable zone for selection (everything except chevron)
+            Expanded(
+              child: GestureDetector(
+                onTap: _handleContentTap,
+                behavior: HitTestBehavior.opaque,
+                child: Row(
                   children: [
-                    Text(
-                      widget.item.title,
-                      style: _titleStyle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    // Level indicator
+                    LevelIndicator(
+                      level: widget.item.level,
+                      size: widget.size == HierarchicalMenuItemSize.sm
+                          ? LevelIndicatorSize.sm
+                          : widget.size == HierarchicalMenuItemSize.lg
+                          ? LevelIndicatorSize.lg
+                          : LevelIndicatorSize.md,
                     ),
-                    if (widget.item.subtitle != null) ...[
-                      SizedBox(height: GardenSpace.gapXs / 2),
-                      Text(
-                        widget.item.subtitle!,
-                        style: _subtitleStyle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ],
-                ),
-              ),
 
-              // Alert indicator
-              AlertIndicator(
-                alertType: widget.item.alertType,
-                size: widget.size == HierarchicalMenuItemSize.sm
-                    ? AlertIndicatorSize.sm
-                    : widget.size == HierarchicalMenuItemSize.lg
-                    ? AlertIndicatorSize.lg
-                    : AlertIndicatorSize.md,
-              ),
+                    SizedBox(width: GardenSpace.paddingSm),
 
-              SizedBox(width: GardenSpace.paddingSm),
-
-              // Chevron for items with children
-              if (widget.item.hasChildren)
-                AnimatedBuilder(
-                  animation: _rotationAnimation,
-                  builder: (context, child) {
-                    return Transform.rotate(
-                      angle: _rotationAnimation.value * math.pi,
-                      child: Icon(
-                        Icons.keyboard_arrow_down,
+                    // Main icon (optional)
+                    if (widget.item.icon != null) ...[
+                      Icon(
+                        widget.item.icon,
                         size: widget.size == HierarchicalMenuItemSize.sm
                             ? InternalConstants.iconSizeSm
                             : InternalConstants.iconSizeMd,
-                        color: GardenColors.typography.shade400,
+                        color: widget.isSelected
+                            ? GardenColors.primary.shade500
+                            : GardenColors.typography.shade500,
                       ),
-                    );
-                  },
-                )
-              else
-                SizedBox(
-                  width: widget.size == HierarchicalMenuItemSize.sm
-                      ? InternalConstants.iconSizeSm
-                      : InternalConstants.iconSizeMd,
-                ),
+                      SizedBox(width: GardenSpace.paddingSm),
+                    ],
 
-              SizedBox(width: GardenSpace.paddingSm),
-            ],
-          ),
+                    // Main content
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            widget.item.title,
+                            style: _titleStyle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          if (widget.item.subtitle != null) ...[
+                            SizedBox(height: GardenSpace.gapXs / 2),
+                            Text(
+                              widget.item.subtitle!,
+                              style: _subtitleStyle,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+
+                    // Alert indicator
+                    AlertIndicator(
+                      alertType: widget.item.alertType,
+                      size: widget.size == HierarchicalMenuItemSize.sm
+                          ? AlertIndicatorSize.sm
+                          : widget.size == HierarchicalMenuItemSize.lg
+                          ? AlertIndicatorSize.lg
+                          : AlertIndicatorSize.md,
+                    ),
+
+                    SizedBox(width: GardenSpace.paddingSm),
+                  ],
+                ),
+              ),
+            ),
+
+            // Clickable zone for chevron (expansion/collapse) - ENLARGED
+            if (widget.item.hasChildren)
+              MouseRegion(
+                onEnter: (_) => setState(() => _isChevronHovered = true),
+                onExit: (_) => setState(() => _isChevronHovered = false),
+                child: GestureDetector(
+                  onTap: _handleChevronTap,
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: _isChevronHovered
+                          ? GardenColors.base.shade200
+                          : Colors.transparent,
+                      borderRadius: GardenRadius.radiusXs,
+                    ),
+                    padding: EdgeInsets.all(GardenSpace.paddingXs / 2),
+                    child: AnimatedBuilder(
+                      animation: _rotationAnimation,
+                      builder: (context, child) {
+                        return Transform.rotate(
+                          angle: _rotationAnimation.value * math.pi,
+                          child: Icon(
+                            Icons.keyboard_arrow_down,
+                            size: widget.size == HierarchicalMenuItemSize.sm
+                                ? InternalConstants.iconSizeSm
+                                : InternalConstants.iconSizeMd,
+                            color: _isChevronHovered
+                                ? GardenColors.typography.shade600
+                                : GardenColors.typography.shade400,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              )
+            else
+              SizedBox.shrink(),
+          ],
         ),
       ),
     );
