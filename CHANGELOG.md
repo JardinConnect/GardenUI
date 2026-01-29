@@ -4,6 +4,12 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.7] - 2026-01-29
+
+### 🔧 Modifié
+- **HierarchicalMenuItemWidget** : Fix slide animation when opening/closing submenus
+- **HierarchicalMenu** : Fix slide animation when opening/closing submenus
+
 ## [0.3.6] - 2026-01-22
 
 ### 🔧 Modifié
