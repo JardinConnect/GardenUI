@@ -16,11 +16,14 @@ class GardenCard extends StatelessWidget {
   /// Whether to apply a border to the card.
   final bool hasBorder;
 
+  final Color? backgroundColor;
+
   const GardenCard({
     super.key,
     required this.child,
     this.hasShadow = true,
     this.hasBorder = false,
+    this.backgroundColor,
   });
 
   List<BoxShadow>? get _boxShadow {
@@ -38,7 +41,7 @@ class GardenCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(GardenSpace.paddingMd),
       decoration: BoxDecoration(
-        color: GardenColors.base.shade50,
+        color: backgroundColor ?? GardenColors.base.shade50,
         borderRadius: GardenRadius.radiusMd,
         boxShadow: _boxShadow,
         border: _border,
