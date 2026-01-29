@@ -4,6 +4,11 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.8] - 2026-01-29
+
+### 🔧 Modifié
+- **GardenCard** : Add backgroundColor to GardenCard
+
 ## [0.3.7] - 2026-01-29
 
 ### 🔧 Modifié
