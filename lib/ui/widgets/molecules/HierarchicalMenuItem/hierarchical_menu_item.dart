@@ -149,13 +149,13 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
   }
 
   void _handleContentTap() {
-    // Sélection de l'item uniquement (pas d'expansion)
+    // Item selection only (no expansion)
     widget.item.onTap?.call();
     widget.onItemTapped?.call(widget.item);
   }
 
   void _handleChevronTap() {
-    // Expansion/collapse uniquement
+    // Expansion/collapse only
     if (widget.item.hasChildren) {
       final updatedItem = widget.item.copyWith(
         isExpanded: !widget.item.isExpanded,
@@ -183,7 +183,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
             // Indentation for levels
             SizedBox(width: _leftIndent),
 
-            // Zone cliquable pour la sélection (tout sauf le chevron)
+            // Clickable zone for selection (everything except chevron)
             Expanded(
               child: GestureDetector(
                 onTap: _handleContentTap,
@@ -258,7 +258,7 @@ class _HierarchicalMenuItemWidgetState extends State<HierarchicalMenuItemWidget>
               ),
             ),
 
-            // Zone cliquable pour le chevron (expansion/collapse) - AGRANDIE
+            // Clickable zone for chevron (expansion/collapse) - ENLARGED
             if (widget.item.hasChildren)
               MouseRegion(
                 onEnter: (_) => setState(() => _isChevronHovered = true),

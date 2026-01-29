@@ -71,7 +71,7 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   void didUpdateWidget(HierarchicalMenu oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    // Mise à jour de l'item sélectionné si changé de l'extérieur
+    // Update selected item if changed externally
     if (widget.selectedItemId != oldWidget.selectedItemId) {
       setState(() {
         _internalSelectedItemId = widget.selectedItemId;
@@ -191,12 +191,12 @@ class _HierarchicalMenuState extends State<HierarchicalMenu>
   }
 
   void _handleItemTapped(HierarchicalMenuItem item) {
-    // Mise à jour de l'état interne de sélection
+    // Update internal selection state
     setState(() {
       _internalSelectedItemId = item.id;
     });
 
-    // Notification au parent
+    // Notify parent widget
     widget.onItemSelected?.call(item);
   }
 
