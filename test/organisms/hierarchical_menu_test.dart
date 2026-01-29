@@ -5,8 +5,8 @@ import 'package:garden_ui/ui/components.dart';
 void main() {
   group('HierarchicalMenu - Expansion/Collapse Tests', () {
     testWidgets('should toggle expansion state on multiple taps', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       // Track expansion state changes
       final List<HierarchicalMenuItem> expansionChanges = [];
 
@@ -112,8 +112,8 @@ void main() {
     });
 
     testWidgets('should handle nested expansion correctly', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       const items = [
         HierarchicalMenuItem(
           id: 'level1',
@@ -182,7 +182,7 @@ void main() {
 
     testWidgets(
       'should call onTap callback when tapping on text, not on chevron',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         int tapCount = 0;
         int expansionChangeCount = 0;
 
@@ -225,7 +225,8 @@ void main() {
         expect(
           expansionChangeCount,
           equals(0),
-          reason: 'onExpansionChanged should NOT be called when tapping on text',
+          reason:
+              'onExpansionChanged should NOT be called when tapping on text',
         );
 
         // Verify children are still not visible
@@ -264,7 +265,8 @@ void main() {
           expect(
             expansionChangeCount,
             equals(1),
-            reason: 'onExpansionChanged should still be 1 (not called by text taps)',
+            reason:
+                'onExpansionChanged should still be 1 (not called by text taps)',
           );
 
           await tester.pumpAndSettle();
@@ -290,7 +292,7 @@ void main() {
 
     testWidgets(
       'should maintain separate expansion states for multiple items',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         const items = [
           HierarchicalMenuItem(
             id: 'parent1',

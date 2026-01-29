@@ -5,8 +5,8 @@ import 'package:garden_ui/ui/components.dart';
 void main() {
   group('HierarchicalMenu - Expansion/Collapse Tests', () {
     testWidgets('should toggle expansion state on multiple taps', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       // Track expansion state changes
       final List<HierarchicalMenuItem> expansionChanges = [];
 
@@ -112,8 +112,8 @@ void main() {
     });
 
     testWidgets('should handle nested expansion correctly', (
-        WidgetTester tester,
-        ) async {
+      WidgetTester tester,
+    ) async {
       const items = [
         HierarchicalMenuItem(
           id: 'level1',
@@ -182,7 +182,7 @@ void main() {
 
     testWidgets(
       'should call onTap callback when tapping on text, not chevron',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         int tapCount = 0;
         int expansionChangeCount = 0;
 
@@ -225,7 +225,8 @@ void main() {
         expect(
           expansionChangeCount,
           equals(0),
-          reason: 'onExpansionChanged should NOT be called when tapping on text',
+          reason:
+              'onExpansionChanged should NOT be called when tapping on text',
         );
 
         // Verify children are still not visible
@@ -274,7 +275,7 @@ void main() {
 
     testWidgets(
       'should maintain separate expansion states for multiple items',
-          (WidgetTester tester) async {
+      (WidgetTester tester) async {
         const items = [
           HierarchicalMenuItem(
             id: 'parent1',
@@ -334,59 +335,58 @@ void main() {
       },
     );
 
-    testWidgets(
-      'should not show chevron for items without children',
-          (WidgetTester tester) async {
-        const items = [
-          HierarchicalMenuItem(
-            id: 'parent',
-            title: 'Parent with Children',
-            level: 1,
-            children: [
-              HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
-            ],
-          ),
-          HierarchicalMenuItem(
-            id: 'standalone',
-            title: 'Standalone Item',
-            level: 1,
-          ),
-        ];
+    testWidgets('should not show chevron for items without children', (
+      WidgetTester tester,
+    ) async {
+      const items = [
+        HierarchicalMenuItem(
+          id: 'parent',
+          title: 'Parent with Children',
+          level: 1,
+          children: [
+            HierarchicalMenuItem(id: 'child', title: 'Child', level: 2),
+          ],
+        ),
+        HierarchicalMenuItem(
+          id: 'standalone',
+          title: 'Standalone Item',
+          level: 1,
+        ),
+      ];
 
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(body: HierarchicalMenu(items: items)),
-          ),
-        );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: HierarchicalMenu(items: items)),
+        ),
+      );
 
-        // Should find exactly one chevron (only for parent with children)
-        expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
+      // Should find exactly one chevron (only for parent with children)
+      expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
 
-        // Verify we can tap on standalone item without issues
-        int tapCount = 0;
-        await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: HierarchicalMenu(
-                items: [
-                  HierarchicalMenuItem(
-                    id: 'standalone',
-                    title: 'Standalone Item',
-                    level: 1,
-                    onTap: () => tapCount++,
-                  ),
-                ],
-              ),
+      // Verify we can tap on standalone item without issues
+      int tapCount = 0;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: HierarchicalMenu(
+              items: [
+                HierarchicalMenuItem(
+                  id: 'standalone',
+                  title: 'Standalone Item',
+                  level: 1,
+                  onTap: () => tapCount++,
+                ),
+              ],
             ),
           ),
-        );
+        ),
+      );
 
-        await tester.tap(find.text('Standalone Item'));
-        await tester.pump();
+      await tester.tap(find.text('Standalone Item'));
+      await tester.pump();
 
-        expect(tapCount, equals(1));
-        expect(find.byIcon(Icons.keyboard_arrow_down), findsNothing);
-      },
-    );
+      expect(tapCount, equals(1));
+      expect(find.byIcon(Icons.keyboard_arrow_down), findsNothing);
+    });
   });
 }
