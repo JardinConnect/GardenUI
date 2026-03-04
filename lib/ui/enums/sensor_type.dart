@@ -6,8 +6,11 @@ library;
 
 /// Types of environmental sensors
 enum SensorType {
-  /// Temperature sensor
-  temperature,
+  /// Temperature sensor of the air
+  airTemperature,
+
+  /// Temperature sensor of the soil
+  soilTemperature,
 
   /// Surface humidity sensor
   humiditySurface,
@@ -27,8 +30,10 @@ extension SensorTypeExtension on SensorType {
   /// Returns the display name for the sensor type in French
   String get displayName {
     switch (this) {
-      case SensorType.temperature:
-        return 'température';
+      case SensorType.airTemperature:
+        return 'température air';
+      case SensorType.soilTemperature:
+        return 'température sol';
       case SensorType.humiditySurface:
         return 'humidité surface';
       case SensorType.humidityDepth:
@@ -43,7 +48,8 @@ extension SensorTypeExtension on SensorType {
   /// Returns the icon name to use with GardenIcon
   String get iconName {
     switch (this) {
-      case SensorType.temperature:
+      case SensorType.airTemperature:
+      case SensorType.soilTemperature:
         return 'Thermometre';
       case SensorType.humiditySurface:
         return 'Humidite_surface';

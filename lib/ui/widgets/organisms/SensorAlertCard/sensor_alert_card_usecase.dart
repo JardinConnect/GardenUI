@@ -12,7 +12,8 @@ Widget sensorAlertCardTemperatureUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
-      sensorType: SensorType.temperature,
+      title: 'Sensor Alert soil temperature',
+      sensorType: SensorType.soilTemperature,
       threshold: const SensorThreshold(
         thresholds: [
           ThresholdValue(
@@ -47,6 +48,7 @@ Widget sensorAlertCardHumidityUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
+      title: 'Sensor Alert humidity surface',
       sensorType: SensorType.humiditySurface,
       threshold: const SensorThreshold(
         thresholds: [
@@ -79,6 +81,7 @@ Widget sensorAlertCardLightThreeThresholdsUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
+      title: 'Sensor Alert light',
       sensorType: SensorType.light,
       threshold: const SensorThreshold(
         thresholds: [
@@ -120,7 +123,8 @@ Widget sensorAlertCardTemperatureFourThresholdsUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
-      sensorType: SensorType.temperature,
+      title: 'Sensor Alert air temperature',
+      sensorType: SensorType.airTemperature,
       threshold: const SensorThreshold(
         thresholds: [
           ThresholdValue(
@@ -164,7 +168,8 @@ Widget sensorAlertCardDisabledUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
-      sensorType: SensorType.temperature,
+      title: 'Sensor Alert temperature',
+      sensorType: SensorType.soilTemperature,
       threshold: const SensorThreshold(
         thresholds: [
           ThresholdValue(
@@ -196,6 +201,7 @@ Widget sensorAlertCardNoAlertsUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
+      title: 'Sensor Alert rain',
       sensorType: SensorType.rain,
       threshold: const SensorThreshold(
         thresholds: [
@@ -228,7 +234,8 @@ Widget sensorAlertCardCustomIconColorUseCase(BuildContext context) {
   return SizedBox(
     width: 400,
     child: SensorAlertCard(
-      sensorType: SensorType.temperature,
+      title: 'Sensor Alert air temperature',
+      sensorType: SensorType.airTemperature,
       threshold: const SensorThreshold(
         thresholds: [
           ThresholdValue(
@@ -275,7 +282,7 @@ class _InteractiveSensorAlertCardState
 
   final List<_SensorData> sensors = [
     _SensorData(
-      type: SensorType.temperature,
+      type: SensorType.airTemperature,
       threshold: const SensorThreshold(
         thresholds: [
           ThresholdValue(
@@ -386,6 +393,7 @@ class _InteractiveSensorAlertCardState
   Widget build(BuildContext context) {
     final currentSensor = sensors[currentPage];
     return SensorAlertCard(
+      title: 'Alert for ${currentSensor.type.name}',
       sensorType: currentSensor.type,
       threshold: currentSensor.threshold,
       isEnabled: isEnabled,
