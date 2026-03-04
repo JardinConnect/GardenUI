@@ -8,6 +8,9 @@ import 'package:garden_ui/ui/design_system.dart';
 /// environmental sensor, along with alert indicators, an enable/disable toggle,
 /// and pagination dots for navigating between multiple sensors or views.
 class SensorAlertCard extends StatelessWidget {
+  // The title of the card
+  final String title;
+
   /// The type of sensor being displayed.
   final SensorType sensorType;
 
@@ -34,6 +37,7 @@ class SensorAlertCard extends StatelessWidget {
 
   const SensorAlertCard({
     super.key,
+    required this.title,
     required this.sensorType,
     required this.threshold,
     required this.isEnabled,
@@ -57,7 +61,7 @@ class SensorAlertCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Alerte ${sensorType.displayName}',
+                title,
                 style: GardenTypography.bodyLg.copyWith(
                   color: GardenColors.typography.shade900,
                   fontWeight: FontWeight.w600,
