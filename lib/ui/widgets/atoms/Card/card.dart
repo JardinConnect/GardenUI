@@ -18,12 +18,16 @@ class GardenCard extends StatelessWidget {
 
   final Color? backgroundColor;
 
+  /// Optional tap callback. If provided, the card becomes clickable.
+  final VoidCallback? onTap;
+
   const GardenCard({
     super.key,
     required this.child,
     this.hasShadow = true,
     this.hasBorder = false,
     this.backgroundColor,
+    this.onTap,
   });
 
   List<BoxShadow>? get _boxShadow {
@@ -38,15 +42,21 @@ class GardenCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(GardenSpace.paddingMd),
-      decoration: BoxDecoration(
-        color: backgroundColor ?? GardenColors.base.shade50,
-        borderRadius: GardenRadius.radiusMd,
-        boxShadow: _boxShadow,
-        border: _border,
+    return MouseRegion(
+      cursor: onTap != null ? SystemMouseCursors.click : MouseCursor.defer,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(GardenSpace.paddingMd),
+          decoration: BoxDecoration(
+            color: backgroundColor ?? GardenColors.base.shade50,
+            borderRadius: GardenRadius.radiusMd,
+            boxShadow: _boxShadow,
+            border: _border,
+          ),
+          child: child,
+        ),
       ),
-      child: child,
     );
   }
 }

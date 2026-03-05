@@ -8,7 +8,7 @@ import 'package:garden_ui/ui/design_system.dart';
 /// environmental sensor, along with alert indicators, an enable/disable toggle,
 /// and pagination dots for navigating between multiple sensors or views.
 class SensorAlertCard extends StatelessWidget {
-  // The title of the card
+  /// The title of the card
   final String title;
 
   /// The type of sensor being displayed.
@@ -35,6 +35,9 @@ class SensorAlertCard extends StatelessWidget {
   /// Color for the sensor icon.
   final Color iconColor;
 
+  /// Optional callback when the card is tapped.
+  final VoidCallback? onTap;
+
   const SensorAlertCard({
     super.key,
     required this.title,
@@ -46,6 +49,7 @@ class SensorAlertCard extends StatelessWidget {
     required this.currentPage,
     required this.onPageChanged,
     required this.iconColor,
+    this.onTap,
   });
 
   @override
@@ -53,6 +57,7 @@ class SensorAlertCard extends StatelessWidget {
     return GardenCard(
       hasShadow: true,
       hasBorder: false,
+      onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
