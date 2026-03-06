@@ -10,7 +10,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert soil temperature',
+              sensorType: SensorType.soilTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -39,7 +40,7 @@ void main() {
       );
 
       expect(find.byType(SensorAlertCard), findsOneWidget);
-      expect(find.text('Alerte température'), findsOneWidget);
+      expect(find.text('Alert soil temperature'), findsOneWidget);
       expect(find.text('35°C'), findsOneWidget);
       expect(find.text('2°C'), findsOneWidget);
     });
@@ -49,6 +50,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
+              title: 'Alert surface humidity',
               sensorType: SensorType.humiditySurface,
               threshold: const SensorThreshold(
                 thresholds: [
@@ -78,7 +80,7 @@ void main() {
       );
 
       expect(find.byType(SensorAlertCard), findsOneWidget);
-      expect(find.text('Alerte humidité surface'), findsOneWidget);
+      expect(find.text('Alert surface humidity'), findsOneWidget);
       expect(find.text('90%'), findsOneWidget);
       expect(find.text('10%'), findsOneWidget);
     });
@@ -88,7 +90,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -127,7 +130,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -169,7 +173,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -212,7 +217,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -252,7 +258,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -298,7 +305,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -335,7 +343,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -371,6 +380,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
+              title: 'Alert rain',
               sensorType: SensorType.rain,
               threshold: const SensorThreshold(
                 thresholds: [
@@ -400,7 +410,7 @@ void main() {
       );
 
       expect(find.byType(SensorAlertCard), findsOneWidget);
-      expect(find.text('Alerte pluie'), findsOneWidget);
+      expect(find.text('Alert rain'), findsOneWidget);
     });
 
     testWidgets('wraps content in GardenCard', (WidgetTester tester) async {
@@ -408,7 +418,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(
@@ -444,6 +455,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
+              title: 'Alert light intensity',
               sensorType: SensorType.light,
               threshold: const SensorThreshold(
                 thresholds: [
@@ -493,7 +505,8 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              sensorType: SensorType.temperature,
+              title: 'Alert air temperature',
+              sensorType: SensorType.airTemperature,
               threshold: const SensorThreshold(
                 thresholds: [
                   ThresholdValue(

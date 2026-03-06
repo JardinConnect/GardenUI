@@ -81,6 +81,7 @@ Conteneur avec élévation et coins arrondis pour grouper du contenu.
 
 **Propriétés :**
 - `child` (Widget, requis) : Contenu de la carte
+- `onTap` (VoidCallback?) : Action au tap sur la carte
 
 **Exemple :**
 ```dart
@@ -485,7 +486,7 @@ HierarchicalMenu(
 Carte affichant les seuils d'alerte d'un capteur environnemental avec toggle d'activation et pagination.
 
 **Propriétés :**
-- `sensorType` (SensorType, requis) : Type de capteur (temperature, humiditySurface, humidityDepth, light, rain)
+- `sensorType` (SensorType, requis) : Type de capteur (airTemperature, soilTemperature, humiditySurface, humidityDepth, light, rain)
 - `threshold` (SensorThreshold, requis) : Valeurs de seuils et types d'alerte
 - `isEnabled` (bool, requis) : État d'activation de l'alerte
 - `onToggle` (ValueChanged\<bool\>, requis) : Callback lors du changement du toggle
@@ -493,6 +494,7 @@ Carte affichant les seuils d'alerte d'un capteur environnemental avec toggle d'a
 - `currentPage` (int, requis) : Index de la page courante (base 0)
 - `onPageChanged` (ValueChanged\<int\>, requis) : Callback lors du changement de page
 - `iconColor` (Color, requis) : Couleur de l'icône du capteur
+- `title` (String?) : Titre personnalisé de la carte
 
 **Comportements :**
 - **Pagination** : Navigation entre plusieurs capteurs via les points de pagination
