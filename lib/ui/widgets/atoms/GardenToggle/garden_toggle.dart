@@ -36,8 +36,8 @@ class GardenToggle extends StatelessWidget {
       value: isEnabled,
       onChanged: onToggle,
       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
-          Set<WidgetState> states,
-          ) {
+        Set<WidgetState> states,
+      ) {
         if (states.contains(WidgetState.selected) && enabledIcon != null) {
           return Icon(
             enabledIcon,
@@ -55,8 +55,8 @@ class GardenToggle extends StatelessWidget {
         return null;
       }),
       thumbColor: WidgetStateProperty.resolveWith<Color?>((
-          Set<WidgetState> states,
-          ) {
+        Set<WidgetState> states,
+      ) {
         if (states.contains(WidgetState.selected) && enabledIcon != null) {
           return GardenColors.base.shade50;
         }
