@@ -22,7 +22,7 @@ class GardenToggle extends StatelessWidget {
     super.key,
     required this.isEnabled,
     required this.onToggle,
-    this.enabledIcon = Icons.check,
+    this.enabledIcon,
     this.disabledIcon,
   });
 
@@ -36,13 +36,13 @@ class GardenToggle extends StatelessWidget {
       value: isEnabled,
       onChanged: onToggle,
       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
-        Set<WidgetState> states,
-      ) {
-        if (states.contains(WidgetState.selected)) {
+          Set<WidgetState> states,
+          ) {
+        if (states.contains(WidgetState.selected) && enabledIcon != null) {
           return Icon(
-            enabledIcon ?? Icons.check,
-            color: GardenColors.primary.shade600,
-            weight: 1000,
+            enabledIcon,
+            color: GardenColors.primary.shade500,
+            weight: _iconWeight,
           );
         }
         if (!states.contains(WidgetState.selected) && disabledIcon != null) {
@@ -54,10 +54,9 @@ class GardenToggle extends StatelessWidget {
         }
         return null;
       }),
-
       thumbColor: WidgetStateProperty.resolveWith<Color?>((
-        Set<WidgetState> states,
-      ) {
+          Set<WidgetState> states,
+          ) {
         if (states.contains(WidgetState.selected) && enabledIcon != null) {
           return GardenColors.base.shade50;
         }
