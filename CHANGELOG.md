@@ -4,6 +4,12 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.9] - 2026-03-06
+
+### 🔧 Modifié
+- **GardenCard** : Add title parameter to GardenCard
+- **SensorType** : Add new sensor types (soilTemperature, airTemperature)
+
 ## [0.3.8] - 2026-01-29
 
 ### 🔧 Modifié

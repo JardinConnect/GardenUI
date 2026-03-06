@@ -5,6 +5,23 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
 et ce projet adhère au [Versioning Sémantique](https://semver.org/lang/fr/).
 
+## [0.3.9] - 2026-03-06
+
+### 🔧 Modifié
+- **GardenCard** : Add title parameter to GardenCard
+- **SensorType** : Add new sensor types (soilTemperature, airTemperature)s
+
+## [0.3.8] - 2026-01-29
+
+### 🔧 Modifié
+- **GardenCard** : Add backgroundColor to GardenCard
+
+## [0.3.7] - 2026-01-29
+
+### 🔧 Modifié
+- **HierarchicalMenuItemWidget** : Fix slide animation when opening/closing submenus
+- **HierarchicalMenu** : Fix slide animation when opening/closing submenus
+
 ## [0.3.6] - 2026-01-22
 
 ### 🔧 Modifié
