@@ -39,7 +39,9 @@ class _GardenCardState extends State<GardenCard> {
 
   List<BoxShadow>? get _boxShadow {
     if (!widget.hasShadow) return null;
-    return _isHovered && widget.onTap != null ? GardenShadow.shadowMd : GardenShadow.shadowSm;
+    return _isHovered && widget.onTap != null
+        ? GardenShadow.shadowMd
+        : GardenShadow.shadowSm;
   }
 
   Border? get _border {
@@ -51,9 +53,15 @@ class _GardenCardState extends State<GardenCard> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: widget.onTap != null ? SystemMouseCursors.click : MouseCursor.defer,
-      onEnter: widget.onTap != null ? (_) => setState(() => _isHovered = true) : null,
-      onExit: widget.onTap != null ? (_) => setState(() => _isHovered = false) : null,
+      cursor: widget.onTap != null
+          ? SystemMouseCursors.click
+          : MouseCursor.defer,
+      onEnter: widget.onTap != null
+          ? (_) => setState(() => _isHovered = true)
+          : null,
+      onExit: widget.onTap != null
+          ? (_) => setState(() => _isHovered = false)
+          : null,
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
