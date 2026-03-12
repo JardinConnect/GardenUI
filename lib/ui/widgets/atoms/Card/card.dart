@@ -6,7 +6,7 @@ import 'package:garden_ui/ui/design_system.dart';
 /// This component provides a consistent card design with configurable
 /// visual properties for shadow and border. Perfect for displaying
 /// grouped content with consistent styling.
-class GardenCard extends StatelessWidget {
+class GardenCard extends StatefulWidget {
   /// The content to display inside the card.
   final Widget child;
 
@@ -25,17 +25,27 @@ class GardenCard extends StatelessWidget {
     super.key,
     required this.child,
     this.hasShadow = true,
-    this.hasBorder = false,
+    this.hasBorder = true,
     this.backgroundColor,
     this.onTap,
   });
 
+  @override
+  State<GardenCard> createState() => _GardenCardState();
+}
+
+class _GardenCardState extends State<GardenCard> {
+  bool _isHovered = false;
+
   List<BoxShadow>? get _boxShadow {
-    return hasShadow ? GardenShadow.shadowMd : null;
+    if (!widget.hasShadow) return null;
+    return _isHovered && widget.onTap != null
+        ? GardenShadow.shadowMd
+        : GardenShadow.shadowSm;
   }
 
   Border? get _border {
-    return hasBorder
+    return widget.hasBorder
         ? Border.all(color: GardenColors.base.shade300, width: 1.0)
         : null;
   }
@@ -43,18 +53,27 @@ class GardenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: onTap != null ? SystemMouseCursors.click : MouseCursor.defer,
+      cursor: widget.onTap != null
+          ? SystemMouseCursors.click
+          : MouseCursor.defer,
+      onEnter: widget.onTap != null
+          ? (_) => setState(() => _isHovered = true)
+          : null,
+      onExit: widget.onTap != null
+          ? (_) => setState(() => _isHovered = false)
+          : null,
       child: GestureDetector(
-        onTap: onTap,
-        child: Container(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
           padding: EdgeInsets.all(GardenSpace.paddingMd),
           decoration: BoxDecoration(
-            color: backgroundColor ?? GardenColors.base.shade50,
+            color: widget.backgroundColor ?? GardenColors.base.shade50,
             borderRadius: GardenRadius.radiusMd,
             boxShadow: _boxShadow,
             border: _border,
           ),
-          child: child,
+          child: widget.child,
         ),
       ),
     );

@@ -20,12 +20,16 @@ class Menu extends StatefulWidget {
   /// Logo image provider to display at the top of the menu.
   final ImageProvider logo;
 
+  /// Optional callback when the logo is tapped.
+  final VoidCallback? onLogoTap;
+
   const Menu({
     super.key,
     required this.items,
     required this.bottomItems,
     required this.logo,
     this.size = MenuSize.md,
+    this.onLogoTap,
   });
 
   @override
@@ -33,7 +37,36 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  int? selectedIndex = 0;
+  int? selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = _findActiveIndex();
+  }
+
+  @override
+  void didUpdateWidget(covariant Menu oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final newIndex = _findActiveIndex();
+    if (newIndex != selectedIndex) {
+      setState(() {
+        selectedIndex = newIndex;
+      });
+    }
+  }
+
+  /// Trouve l'index actif depuis les items et bottomItems.
+  int? _findActiveIndex() {
+    for (int i = 0; i < widget.items.length; i++) {
+      if (widget.items[i].isActive) return i;
+    }
+    for (int i = 0; i < widget.bottomItems.length; i++) {
+      if (widget.bottomItems[i].isActive) return widget.items.length + i;
+    }
+    // Par défaut, sélectionner le premier item
+    return widget.items.isNotEmpty ? 0 : null;
+  }
 
   _renderMenuItems(List<MenuItem> items, int startIndex) {
     return List.generate(items.length, (index) {
@@ -60,11 +93,11 @@ class _MenuState extends State<Menu> {
   double get _width {
     switch (widget.size) {
       case MenuSize.sm:
-        return InternalConstants.menuWidthSm * 0.75; // 150
+        return InternalConstants.menuWidthSm * 0.75;
       case MenuSize.lg:
-        return InternalConstants.menuWidthLg * 1.25; // 500
+        return InternalConstants.menuWidthLg * 1.25;
       default:
-        return InternalConstants.menuWidthMd * 0.83; // 250
+        return InternalConstants.menuWidthMd * 0.83;
     }
   }
 
@@ -120,7 +153,15 @@ class _MenuState extends State<Menu> {
           Column(
             spacing: GardenSpace.gapMd,
             children: [
-              Image(image: widget.logo, width: _logoWidth),
+              GestureDetector(
+                onTap: widget.onLogoTap,
+                child: MouseRegion(
+                  cursor: widget.onLogoTap != null
+                      ? SystemMouseCursors.click
+                      : SystemMouseCursors.basic,
+                  child: Image(image: widget.logo, width: _logoWidth),
+                ),
+              ),
               Divider(thickness: 1, color: GardenColors.base.shade500),
               ..._renderMenuItems(widget.items, 0),
             ],
