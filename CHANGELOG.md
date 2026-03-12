@@ -4,6 +4,12 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.4.0] - 2026-03-12
+
+### 🔧 Modifié
+- **Card** : Add hover
+- **NotificationToast** : Center message text
+
 ## [0.3.9] - 2026-03-06
 
 ### 🔧 Modifié
