@@ -150,10 +150,10 @@ class AnalyticsSummaryCard extends StatelessWidget {
           children: [
             Expanded(
               child: _buildSensorItem(
-                iconName: "Soleil",
-                value: "$light lux",
-                fillPercentage: 100,
-                color: GardenColors.yellowWarning.shade500,
+                iconName: "Thermometre",
+                value: "$temperatureSurface°C",
+                fillPercentage: fillTemperatureSurfacePercentage,
+                color: GardenColors.redAlert.shade500,
               ),
             ),
             Expanded(
@@ -166,10 +166,10 @@ class AnalyticsSummaryCard extends StatelessWidget {
             ),
             Expanded(
               child: _buildSensorItem(
-                iconName: "Humidite_surface",
-                value: "$humiditySurface%",
-                fillPercentage: humiditySurface.toDouble(),
-                color: GardenColors.blueInfo.shade400,
+                iconName: "Soleil",
+                value: "$light lux",
+                fillPercentage: 100,
+                color: GardenColors.yellowWarning.shade500,
               ),
             ),
           ],
@@ -178,14 +178,6 @@ class AnalyticsSummaryCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: _buildSensorItem(
-                iconName: "Thermometre",
-                value: "$temperatureSurface°C",
-                fillPercentage: fillTemperatureSurfacePercentage,
-                color: GardenColors.redAlert.shade500,
-              ),
-            ),
             Expanded(
               child: _buildSensorItem(
                 iconName: "Thermometre",
@@ -199,6 +191,14 @@ class AnalyticsSummaryCard extends StatelessWidget {
                 iconName: "Humidite_profondeur",
                 value: "$humidityDepth%",
                 fillPercentage: humidityDepth.toDouble(),
+                color: GardenColors.blueInfo.shade400,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Humidite_surface",
+                value: "$humiditySurface%",
+                fillPercentage: humiditySurface.toDouble(),
                 color: GardenColors.blueInfo.shade400,
               ),
             ),
