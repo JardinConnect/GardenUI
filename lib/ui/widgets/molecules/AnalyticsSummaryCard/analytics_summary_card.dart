@@ -91,55 +91,50 @@ class AnalyticsSummaryCard extends StatelessWidget {
     final fillTemperatureDepthPercentage =
         (100 * temperatureDepth / temperatureDepthMaxValue).clamp(0.0, 100.0);
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onPressed,
-        child: GardenCard(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GardenCard(
+      onTap: onPressed,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: batteryPercentage != null
+                ? MainAxisAlignment.spaceBetween
+                : MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: batteryPercentage != null
-                    ? MainAxisAlignment.spaceBetween
-                    : MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(name, style: GardenTypography.headingSm),
-                  if (batteryPercentage != null)
-                    BatteryIndicator(
-                      batteryPercentage: batteryPercentage!,
-                      size: BatteryIndicatorSize.sm,
-                    ),
-                ],
-              ),
-
-              SizedBox(height: GardenSpace.gapMd),
-
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Visibility(
-                    visible: filter == null,
-                    maintainSize: true,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    child: _buildAllSensorsContent(
-                      fillTemperatureSurfacePercentage,
-                      fillTemperatureDepthPercentage,
-                    ),
-                  ),
-                  if (filter != null)
-                    _buildFilteredContent(
-                      fillTemperatureSurfacePercentage,
-                      fillTemperatureDepthPercentage,
-                    ),
-                ],
-              ),
+              Text(name, style: GardenTypography.headingSm),
+              if (batteryPercentage != null)
+                BatteryIndicator(
+                  batteryPercentage: batteryPercentage!,
+                  size: BatteryIndicatorSize.sm,
+                ),
             ],
           ),
-        ),
+
+          SizedBox(height: GardenSpace.gapMd),
+
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Visibility(
+                visible: filter == null,
+                maintainSize: true,
+                maintainAnimation: true,
+                maintainState: true,
+                child: _buildAllSensorsContent(
+                  fillTemperatureSurfacePercentage,
+                  fillTemperatureDepthPercentage,
+                ),
+              ),
+              if (filter != null)
+                _buildFilteredContent(
+                  fillTemperatureSurfacePercentage,
+                  fillTemperatureDepthPercentage,
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -155,10 +150,10 @@ class AnalyticsSummaryCard extends StatelessWidget {
           children: [
             Expanded(
               child: _buildSensorItem(
-                iconName: "Soleil",
-                value: "$light lux",
-                fillPercentage: 100,
-                color: GardenColors.yellowWarning.shade500,
+                iconName: "Thermometre",
+                value: "$temperatureSurface°C",
+                fillPercentage: fillTemperatureSurfacePercentage,
+                color: GardenColors.redAlert.shade500,
               ),
             ),
             Expanded(
@@ -171,10 +166,10 @@ class AnalyticsSummaryCard extends StatelessWidget {
             ),
             Expanded(
               child: _buildSensorItem(
-                iconName: "Humidite_surface",
-                value: "$humiditySurface%",
-                fillPercentage: humiditySurface.toDouble(),
-                color: GardenColors.blueInfo.shade400,
+                iconName: "Soleil",
+                value: "$light lux",
+                fillPercentage: 100,
+                color: GardenColors.yellowWarning.shade500,
               ),
             ),
           ],
@@ -183,14 +178,6 @@ class AnalyticsSummaryCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: _buildSensorItem(
-                iconName: "Thermometre",
-                value: "$temperatureSurface°C",
-                fillPercentage: fillTemperatureSurfacePercentage,
-                color: GardenColors.redAlert.shade500,
-              ),
-            ),
             Expanded(
               child: _buildSensorItem(
                 iconName: "Thermometre",
@@ -204,6 +191,14 @@ class AnalyticsSummaryCard extends StatelessWidget {
                 iconName: "Humidite_profondeur",
                 value: "$humidityDepth%",
                 fillPercentage: humidityDepth.toDouble(),
+                color: GardenColors.blueInfo.shade400,
+              ),
+            ),
+            Expanded(
+              child: _buildSensorItem(
+                iconName: "Humidite_surface",
+                value: "$humiditySurface%",
+                fillPercentage: humiditySurface.toDouble(),
                 color: GardenColors.blueInfo.shade400,
               ),
             ),

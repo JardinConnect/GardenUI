@@ -43,7 +43,7 @@ void main() {
       final decoration = containerWidget.decoration as BoxDecoration;
 
       expect(decoration.boxShadow, isNotNull);
-      expect(decoration.boxShadow, equals(GardenShadow.shadowMd));
+      expect(decoration.boxShadow, equals(GardenShadow.shadowSm));
     });
 
     testWidgets('does not apply shadow when hasShadow is false', (
