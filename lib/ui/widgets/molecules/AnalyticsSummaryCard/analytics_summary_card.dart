@@ -151,7 +151,7 @@ class AnalyticsSummaryCard extends StatelessWidget {
             Expanded(
               child: _buildSensorItem(
                 iconName: "Thermometre",
-                value: "$temperatureSurface°C",
+                value: "${temperatureSurface.toStringAsFixed(1)}°C",
                 fillPercentage: fillTemperatureSurfacePercentage,
                 color: GardenColors.redAlert.shade500,
               ),
@@ -181,7 +181,7 @@ class AnalyticsSummaryCard extends StatelessWidget {
             Expanded(
               child: _buildSensorItem(
                 iconName: "Thermometre",
-                value: "$temperatureDepth°C",
+                value: "${temperatureDepth.toStringAsFixed(1)}°C",
                 fillPercentage: fillTemperatureDepthPercentage,
                 color: Colors.brown,
               ),
