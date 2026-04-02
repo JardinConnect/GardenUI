@@ -4,6 +4,14 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.4.1] - 2026-04-02
+
+### 🔧 Modifié
+- **SensorAlertCard** : Add scrolling to sensor card
+- **AnalyticsSummaryCard** : Format of temperature value
+- **AnalyticsSummaryCard** : Let the click handle to GardenCard
+- **AnalyticsSummaryCard** : Fix analytics order
+
 ## [0.4.0] - 2026-03-12
 
 ### 🔧 Modifié
