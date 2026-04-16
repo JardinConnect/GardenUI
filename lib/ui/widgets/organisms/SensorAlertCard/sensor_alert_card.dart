@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
 
+/// Données d'une page capteur affichée dans la carte.
+typedef SensorPageData = ({
+  SensorType sensorType,
+  SensorThreshold threshold,
+  Color iconColor,
+});
+
 /// A card displaying sensor alert thresholds with toggle and pagination.
 ///
 /// This organism displays the maximum and minimum threshold values for an
@@ -12,11 +19,8 @@ class SensorAlertCard extends StatefulWidget {
   /// The title of the card
   final String title;
 
-  /// The type of sensor being displayed.
-  final SensorType sensorType;
-
-  /// The threshold values and alert types for this sensor.
-  final SensorThreshold threshold;
+  /// List of sensor pages to display.
+  final List<SensorPageData> sensors;
 
   /// Whether the alert is currently enabled.
   final bool isEnabled;
@@ -24,17 +28,8 @@ class SensorAlertCard extends StatefulWidget {
   /// Callback when the toggle is switched.
   final ValueChanged<bool> onToggle;
 
-  /// The total number of pages/sensors.
-  final int totalPages;
-
-  /// The current page index (0-based).
-  final int currentPage;
-
-  /// Callback when a page dot is tapped.
-  final ValueChanged<int> onPageChanged;
-
-  /// Color for the sensor icon.
-  final Color iconColor;
+  /// Whether to show prev/next arrow buttons around the pagination dots.
+  final bool showArrows;
 
   /// Optional callback when the card is tapped.
   final VoidCallback? onTap;
@@ -42,14 +37,10 @@ class SensorAlertCard extends StatefulWidget {
   const SensorAlertCard({
     super.key,
     required this.title,
-    required this.sensorType,
-    required this.threshold,
+    required this.sensors,
     required this.isEnabled,
     required this.onToggle,
-    required this.totalPages,
-    required this.currentPage,
-    required this.onPageChanged,
-    required this.iconColor,
+    this.showArrows = true,
     this.onTap,
   });
 
@@ -59,25 +50,12 @@ class SensorAlertCard extends StatefulWidget {
 
 class _SensorAlertCardState extends State<SensorAlertCard> {
   late final PageController _pageController;
+  int _currentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: widget.currentPage);
-  }
-
-  @override
-  void didUpdateWidget(SensorAlertCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // Sync si le parent change la page sans swipe
-    if (oldWidget.currentPage != widget.currentPage &&
-        _pageController.hasClients) {
-      _pageController.animateToPage(
-        widget.currentPage,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
+    _pageController = PageController();
   }
 
   @override
@@ -86,8 +64,18 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
     super.dispose();
   }
 
+  void _goToPage(int page) {
+    _pageController.animateToPage(
+      page,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final totalPages = widget.sensors.length;
+
     return GardenCard(
       hasShadow: true,
       hasBorder: false,
@@ -99,14 +87,22 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                widget.title,
-                style: GardenTypography.bodyLg.copyWith(
-                  color: GardenColors.typography.shade900,
-                  fontWeight: FontWeight.w600,
+              Expanded(
+                child: Tooltip(
+                  message: widget.title,
+                  child: Text(
+                    widget.title,
+                    style: GardenTypography.bodyLg.copyWith(
+                      color: GardenColors.typography.shade900,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ),
               GardenToggle(
+                enabledIcon: Icons.check,
                 isEnabled: widget.isEnabled,
                 onToggle: widget.onToggle,
               ),
@@ -121,96 +117,84 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
           // Body swipeable via PageView
           SizedBox(
             height: 120,
-            child: GestureDetector(
-              onHorizontalDragStart: (_) {},
-              onHorizontalDragUpdate: (_) {},
-              onHorizontalDragEnd: (_) {},
-              child: ScrollConfiguration(
-                behavior: ScrollConfiguration.of(context).copyWith(
-                  dragDevices: {
-                    PointerDeviceKind.touch,
-                    PointerDeviceKind.mouse,
-                  },
-                ),
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: widget.totalPages,
-                  onPageChanged: widget.onPageChanged,
-                  itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GardenIcon(
-                          iconName: widget.sensorType.iconName,
-                          size: GardenIconSize.lg,
-                          color: widget.iconColor,
-                        ),
-                        SizedBox(width: GardenSpace.gapLg),
-                        if (widget.threshold.thresholds.length <= 2)
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              for (
-                                var i = 0;
-                                i < widget.threshold.thresholds.length;
-                                i++
-                              ) ...[
-                                _ThresholdRow(
-                                  thresholdValue:
-                                      widget.threshold.thresholds[i],
-                                ),
-                                if (i < widget.threshold.thresholds.length - 1)
-                                  SizedBox(height: GardenSpace.gapSm),
-                              ],
+            child: ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(
+                dragDevices: {
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.mouse,
+                },
+              ),
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: totalPages,
+                onPageChanged: (page) => setState(() => _currentPage = page),
+                itemBuilder: (context, index) {
+                  final sensor = widget.sensors[index];
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GardenIcon(
+                        iconName: sensor.sensorType.iconName,
+                        size: GardenIconSize.lg,
+                        color: sensor.iconColor,
+                      ),
+                      SizedBox(width: GardenSpace.gapLg),
+                      if (sensor.threshold.thresholds.length <= 2)
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (var i = 0;
+                                i < sensor.threshold.thresholds.length;
+                                i++) ...[
+                              _ThresholdRow(
+                                thresholdValue: sensor.threshold.thresholds[i],
+                              ),
+                              if (i < sensor.threshold.thresholds.length - 1)
+                                SizedBox(height: GardenSpace.gapSm),
                             ],
-                          )
-                        else
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              for (
-                                var i = 0;
-                                i < widget.threshold.thresholds.length;
-                                i += 2
-                              )
-                                Column(
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
+                          ],
+                        )
+                      else
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (var i = 0;
+                                i < sensor.threshold.thresholds.length;
+                                i += 2)
+                              Column(
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      _ThresholdRow(
+                                        thresholdValue:
+                                            sensor.threshold.thresholds[i],
+                                      ),
+                                      if (i + 1 <
+                                          sensor.threshold.thresholds
+                                              .length) ...[
+                                        SizedBox(width: GardenSpace.gapLg),
                                         _ThresholdRow(
-                                          thresholdValue:
-                                              widget.threshold.thresholds[i],
+                                          thresholdValue: sensor
+                                              .threshold.thresholds[i + 1],
                                         ),
-                                        if (i + 1 <
-                                            widget
-                                                .threshold
-                                                .thresholds
-                                                .length) ...[
-                                          SizedBox(width: GardenSpace.gapLg),
-                                          _ThresholdRow(
-                                            thresholdValue: widget
-                                                .threshold
-                                                .thresholds[i + 1],
-                                          ),
-                                        ],
                                       ],
-                                    ),
-                                    if (i + 2 <
-                                        widget.threshold.thresholds.length)
-                                      SizedBox(height: GardenSpace.gapSm),
-                                  ],
-                                ),
-                            ],
-                          ),
-                      ],
-                    );
-                  },
-                ),
+                                    ],
+                                  ),
+                                  if (i + 2 <
+                                      sensor.threshold.thresholds.length)
+                                    SizedBox(height: GardenSpace.gapSm),
+                                ],
+                              ),
+                          ],
+                        ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -220,18 +204,50 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
           Divider(thickness: 1, color: GardenColors.base.shade300, height: 1),
           SizedBox(height: GardenSpace.gapMd),
 
-          // Footer: Pagination dots (cliquables + sync avec swipe)
-          PaginationDots(
-            totalDots: widget.totalPages,
-            activeIndex: widget.currentPage,
-            onDotTapped: (page) {
-              _pageController.animateToPage(
-                page,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-              widget.onPageChanged(page);
-            },
+          // Footer: flèches (optionnelles) + pagination dots
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.showArrows) ...[
+                IconButton(
+                  icon: Icon(
+                    Icons.chevron_left,
+                    color: _currentPage > 0
+                        ? GardenColors.typography.shade600
+                        : GardenColors.base.shade300,
+                  ),
+                  iconSize: 20,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: _currentPage > 0
+                      ? () => _goToPage(_currentPage - 1)
+                      : null,
+                ),
+                SizedBox(width: GardenSpace.gapSm),
+              ],
+              PaginationDots(
+                totalDots: totalPages,
+                activeIndex: _currentPage,
+                onDotTapped: _goToPage,
+              ),
+              if (widget.showArrows) ...[
+                SizedBox(width: GardenSpace.gapSm),
+                IconButton(
+                  icon: Icon(
+                    Icons.chevron_right,
+                    color: _currentPage < totalPages - 1
+                        ? GardenColors.typography.shade600
+                        : GardenColors.base.shade300,
+                  ),
+                  iconSize: 20,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: _currentPage < totalPages - 1
+                      ? () => _goToPage(_currentPage + 1)
+                      : null,
+                ),
+              ],
+            ],
           ),
         ],
       ),
