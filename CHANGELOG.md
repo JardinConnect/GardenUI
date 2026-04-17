@@ -4,6 +4,12 @@ Toutes les modifications notables de ce projet sont documentées dans ce fichier
 
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+
+## [0.4.2] - 2026-04-18
+
+### 🔧 Modifié
+- **SensorAlertCard** : Fix sensor alert card display and add scroll to sensor card
+
 ## [0.4.1] - 2026-04-02
 
 ### 🔧 Modifié
