@@ -3,6 +3,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:garden_ui/ui/components.dart';
 import 'package:garden_ui/ui/design_system.dart';
 
+const _twoThresholds = SensorThreshold(
+  thresholds: [
+    ThresholdValue(
+      value: 35,
+      unit: '°C',
+      label: 'maximale',
+      alertType: MenuAlertType.warning,
+    ),
+    ThresholdValue(
+      value: 2,
+      unit: '°C',
+      label: 'minimale',
+      alertType: MenuAlertType.warning,
+    ),
+  ],
+);
+
+SensorPageData _tempSensor({Color? color}) => (
+  sensorType: SensorType.airTemperature,
+  threshold: _twoThresholds,
+  iconColor: color ?? GardenColors.redAlert.shade500,
+);
+
 void main() {
   group('SensorAlertCard Widget Tests', () {
     testWidgets('renders with temperature sensor', (WidgetTester tester) async {
@@ -11,29 +34,15 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert soil temperature',
-              sensorType: SensorType.soilTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [
+                (
+                  sensorType: SensorType.soilTemperature,
+                  threshold: _twoThresholds,
+                  iconColor: GardenColors.redAlert.shade500,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -51,29 +60,30 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert surface humidity',
-              sensorType: SensorType.humiditySurface,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 90,
-                    unit: '%',
-                    label: 'maximale',
-                    alertType: MenuAlertType.error,
+              sensors: [
+                (
+                  sensorType: SensorType.humiditySurface,
+                  threshold: const SensorThreshold(
+                    thresholds: [
+                      ThresholdValue(
+                        value: 90,
+                        unit: '%',
+                        label: 'maximale',
+                        alertType: MenuAlertType.error,
+                      ),
+                      ThresholdValue(
+                        value: 10,
+                        unit: '%',
+                        label: 'minimale',
+                        alertType: MenuAlertType.error,
+                      ),
+                    ],
                   ),
-                  ThresholdValue(
-                    value: 10,
-                    unit: '%',
-                    label: 'minimale',
-                    alertType: MenuAlertType.error,
-                  ),
-                ],
-              ),
+                  iconColor: GardenColors.blueInfo.shade400,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 1,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.blueInfo.shade400,
             ),
           ),
         ),
@@ -91,29 +101,9 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -131,29 +121,9 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -174,31 +144,11 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: false,
               onToggle: (value) {
                 toggledValue = value;
               },
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -210,37 +160,27 @@ void main() {
       expect(toggledValue, true);
     });
 
-    testWidgets('displays correct number of pagination dots', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('displays pagination dots', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [
+                _tempSensor(),
+                (
+                  sensorType: SensorType.humiditySurface,
+                  threshold: _twoThresholds,
+                  iconColor: GardenColors.blueInfo.shade400,
+                ),
+                (
+                  sensorType: SensorType.rain,
+                  threshold: _twoThresholds,
+                  iconColor: GardenColors.blueInfo.shade500,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -249,55 +189,47 @@ void main() {
       expect(find.byType(PaginationDots), findsOneWidget);
     });
 
-    testWidgets('calls onPageChanged when dot is tapped', (
+    testWidgets('navigates to next page when right arrow is tapped', (
       WidgetTester tester,
     ) async {
-      int? changedPage;
-
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: SensorAlertCard(
-              title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
+              title: 'Alert',
+              sensors: [
+                _tempSensor(),
+                (
+                  sensorType: SensorType.rain,
+                  threshold: const SensorThreshold(
+                    thresholds: [
+                      ThresholdValue(
+                        value: 100,
+                        unit: ' mm',
+                        label: 'maximale',
+                        alertType: MenuAlertType.none,
+                      ),
+                    ],
                   ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+                  iconColor: GardenColors.blueInfo.shade500,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {
-                changedPage = index;
-              },
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
       );
 
-      // Find the PaginationDots widget and tap within it
-      final paginationDots = find.byType(PaginationDots);
-      expect(paginationDots, findsOneWidget);
-
-      // Tap within the PaginationDots bounds (will tap on first dot)
-      await tester.tap(paginationDots);
+      // Initially on page 0 — right arrow is enabled
+      final rightArrow = find.byIcon(Icons.chevron_right);
+      expect(rightArrow, findsOneWidget);
+      await tester.tap(rightArrow);
       await tester.pumpAndSettle();
 
-      expect(changedPage, isNotNull);
+      // Now on page 1 — right arrow is disabled, left arrow is enabled
+      final leftArrow = find.byIcon(Icons.chevron_left);
+      expect(leftArrow, findsOneWidget);
     });
 
     testWidgets('displays alert indicators', (WidgetTester tester) async {
@@ -306,35 +238,14 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
       );
 
-      // Should find two alert indicators (one for max, one for min)
       expect(find.byType(AlertIndicator), findsNWidgets(2));
     });
 
@@ -344,29 +255,9 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -381,29 +272,30 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert rain',
-              sensorType: SensorType.rain,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 100,
-                    unit: ' mm',
-                    label: 'maximale',
-                    alertType: MenuAlertType.none,
+              sensors: [
+                (
+                  sensorType: SensorType.rain,
+                  threshold: const SensorThreshold(
+                    thresholds: [
+                      ThresholdValue(
+                        value: 100,
+                        unit: ' mm',
+                        label: 'maximale',
+                        alertType: MenuAlertType.none,
+                      ),
+                      ThresholdValue(
+                        value: 0,
+                        unit: ' mm',
+                        label: 'minimale',
+                        alertType: MenuAlertType.none,
+                      ),
+                    ],
                   ),
-                  ThresholdValue(
-                    value: 0,
-                    unit: ' mm',
-                    label: 'minimale',
-                    alertType: MenuAlertType.none,
-                  ),
-                ],
-              ),
+                  iconColor: GardenColors.blueInfo.shade500,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 4,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.blueInfo.shade500,
             ),
           ),
         ),
@@ -419,29 +311,9 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 35,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 2,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+              sensors: [_tempSensor()],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),
@@ -456,35 +328,36 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert light intensity',
-              sensorType: SensorType.light,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 10000,
-                    unit: ' lux',
-                    label: 'maximale',
-                    alertType: MenuAlertType.error,
+              sensors: [
+                (
+                  sensorType: SensorType.light,
+                  threshold: const SensorThreshold(
+                    thresholds: [
+                      ThresholdValue(
+                        value: 10000,
+                        unit: ' lux',
+                        label: 'maximale',
+                        alertType: MenuAlertType.error,
+                      ),
+                      ThresholdValue(
+                        value: 5000,
+                        unit: ' lux',
+                        label: 'optimale',
+                        alertType: MenuAlertType.none,
+                      ),
+                      ThresholdValue(
+                        value: 1000,
+                        unit: ' lux',
+                        label: 'minimale',
+                        alertType: MenuAlertType.warning,
+                      ),
+                    ],
                   ),
-                  ThresholdValue(
-                    value: 5000,
-                    unit: ' lux',
-                    label: 'optimale',
-                    alertType: MenuAlertType.none,
-                  ),
-                  ThresholdValue(
-                    value: 1000,
-                    unit: ' lux',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                ],
-              ),
+                  iconColor: GardenColors.secondary.shade400,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 0,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.secondary.shade400,
             ),
           ),
         ),
@@ -506,41 +379,42 @@ void main() {
           home: Scaffold(
             body: SensorAlertCard(
               title: 'Alert air temperature',
-              sensorType: SensorType.airTemperature,
-              threshold: const SensorThreshold(
-                thresholds: [
-                  ThresholdValue(
-                    value: 40,
-                    unit: '°C',
-                    label: 'critique',
-                    alertType: MenuAlertType.error,
+              sensors: [
+                (
+                  sensorType: SensorType.airTemperature,
+                  threshold: const SensorThreshold(
+                    thresholds: [
+                      ThresholdValue(
+                        value: 40,
+                        unit: '°C',
+                        label: 'critique',
+                        alertType: MenuAlertType.error,
+                      ),
+                      ThresholdValue(
+                        value: 30,
+                        unit: '°C',
+                        label: 'maximale',
+                        alertType: MenuAlertType.warning,
+                      ),
+                      ThresholdValue(
+                        value: 10,
+                        unit: '°C',
+                        label: 'minimale',
+                        alertType: MenuAlertType.warning,
+                      ),
+                      ThresholdValue(
+                        value: 0,
+                        unit: '°C',
+                        label: 'gel',
+                        alertType: MenuAlertType.error,
+                      ),
+                    ],
                   ),
-                  ThresholdValue(
-                    value: 30,
-                    unit: '°C',
-                    label: 'maximale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 10,
-                    unit: '°C',
-                    label: 'minimale',
-                    alertType: MenuAlertType.warning,
-                  ),
-                  ThresholdValue(
-                    value: 0,
-                    unit: '°C',
-                    label: 'gel',
-                    alertType: MenuAlertType.error,
-                  ),
-                ],
-              ),
+                  iconColor: GardenColors.redAlert.shade500,
+                ),
+              ],
               isEnabled: true,
               onToggle: (value) {},
-              totalPages: 5,
-              currentPage: 2,
-              onPageChanged: (index) {},
-              iconColor: GardenColors.redAlert.shade500,
             ),
           ),
         ),

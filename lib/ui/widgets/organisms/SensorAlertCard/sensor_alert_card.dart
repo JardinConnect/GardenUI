@@ -119,10 +119,7 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
             height: 120,
             child: ScrollConfiguration(
               behavior: ScrollConfiguration.of(context).copyWith(
-                dragDevices: {
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.mouse,
-                },
+                dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
               ),
               child: PageView.builder(
                 controller: _pageController,
@@ -145,9 +142,11 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            for (var i = 0;
-                                i < sensor.threshold.thresholds.length;
-                                i++) ...[
+                            for (
+                              var i = 0;
+                              i < sensor.threshold.thresholds.length;
+                              i++
+                            ) ...[
                               _ThresholdRow(
                                 thresholdValue: sensor.threshold.thresholds[i],
                               ),
@@ -161,9 +160,11 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            for (var i = 0;
-                                i < sensor.threshold.thresholds.length;
-                                i += 2)
+                            for (
+                              var i = 0;
+                              i < sensor.threshold.thresholds.length;
+                              i += 2
+                            )
                               Column(
                                 children: [
                                   Row(
@@ -175,12 +176,15 @@ class _SensorAlertCardState extends State<SensorAlertCard> {
                                             sensor.threshold.thresholds[i],
                                       ),
                                       if (i + 1 <
-                                          sensor.threshold.thresholds
+                                          sensor
+                                              .threshold
+                                              .thresholds
                                               .length) ...[
                                         SizedBox(width: GardenSpace.gapLg),
                                         _ThresholdRow(
                                           thresholdValue: sensor
-                                              .threshold.thresholds[i + 1],
+                                              .threshold
+                                              .thresholds[i + 1],
                                         ),
                                       ],
                                     ],
